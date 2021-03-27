@@ -51,7 +51,6 @@ class SignupModel extends Mvc\Model {
         if ($query) {
             // checks if the email is already registered
             if ($query->fetch(PDO::FETCH_COLUMN) == 1) {
-                $this->signupError = "email-is-already-registered";
                 return true;
             }
             return false;
