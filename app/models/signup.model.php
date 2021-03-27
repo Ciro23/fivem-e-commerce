@@ -28,9 +28,7 @@ class SignupModel extends Mvc\Model {
     private function validateEmail($email) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->signupError = "invalid-email-format";
-        }
-
-        if ($this->emailExists($email)) {
+        } else if ($this->emailExists($email)) {
             // checks if the error is db related
             if ($this->error) {
                 $this->signupError = "something-went-wrong";
