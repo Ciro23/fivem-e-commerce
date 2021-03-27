@@ -5,7 +5,7 @@ class SignupModel extends Mvc\Model {
     /**
      * @var string error
      */
-    public $error;
+    public $error = false;
 
     public function signup() {
         // gets user input from the html form
@@ -26,15 +26,13 @@ class SignupModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateUsername($username) {
-        $error = false;
-
         if (empty($username)) {
-            $error = "username-cant-be-empty";
+            $this->error = "username-cant-be-empty";
         } else if (strlen($username) < 4 || strlen($username) > 20) {
-            $error = "username-length-must-be-between-4-and-20";
+            $this->error = "username-length-must-be-between-4-and-20";
         }
         
-        if ($error) {
+        if ($this->error) {
             return true;
         }
         return false;
@@ -49,17 +47,15 @@ class SignupModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validatePassword($password, $rePassword) {
-        $error = false;
-
         if (empty($password)) {
-            $error = "password-cant-be-empty";
+            $this->error = "password-cant-be-empty";
         } else if (strlen($password) < 6 || strlen($password) > 64) {
-            $error = "password-length-must-be-between-6-and-64";
+            $this->error = "password-length-must-be-between-6-and-64";
         } else if ($password != $rePassword) {
-            $error = "passwords-do-not-match";
+            $this->error = "passwords-do-not-match";
         }
 
-        if ($error) {
+        if ($this->error) {
             return true;
         }
         return false;
