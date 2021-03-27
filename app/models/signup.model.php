@@ -42,6 +42,14 @@ class SignupModel extends Mvc\Model {
         return false;
     }
 
+    /**
+     * validate the password
+     * 
+     * @param string $password
+     * @param string $rePassword
+     * 
+     * @return bool, true on error, false otherwise
+     */
     private function validatePassword($password, $rePassword) {
         $error = false;
 
