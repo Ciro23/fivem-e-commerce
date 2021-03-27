@@ -19,6 +19,51 @@ class SignupModel extends Mvc\Model {
     }
 
     /**
+     * validates the email
+     * 
+     * @param string $email
+     * 
+     * @return bool, true on error, false otherwise
+     */
+    private function validateEmail($email) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->signupError = "invalid-email-format";
+        }
+
+        if ($this->emailExists($email)) {
+
+            // checks if the error is db related
+            if ($this->error) {
+                $this->signupError = "something-went-wrong";
+            } else {
+                $this->signupError = "email-is-alread-registered";
+            }
+        }
+
+        if ($this->signupError) {
+            return true;
+        }
+        return false;
+    }
+
+    private function emailExists($email) {
+        $sql = "SELECT email FROM users WHERE email = ?";
+        $query = $this->executeStmt($sql, [$email]);
+
+        // tries to run the query
+        if ($query) {
+            // checks if the email is already registered
+            if ($query->fetch(PDO::FETCH_COLUMN) == 1) {
+                $this->signupError = "email-is-already-registered";
+                return true;
+            }
+            return false;
+        }
+        $this->error = true;
+        return true;
+    }
+
+    /**
      * validate the username
      * 
      * @param string $username
