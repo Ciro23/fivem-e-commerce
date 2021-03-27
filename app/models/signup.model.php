@@ -23,7 +23,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @param string $email
      * 
-     * @return bool, true on error, false otherwise
+     * @return bool true on error, false otherwise
      */
     private function validateEmail($email) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
