@@ -31,7 +31,6 @@ class SignupModel extends Mvc\Model {
         }
 
         if ($this->emailExists($email)) {
-
             // checks if the error is db related
             if ($this->error) {
                 $this->signupError = "something-went-wrong";
