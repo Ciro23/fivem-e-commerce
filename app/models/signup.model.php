@@ -30,12 +30,10 @@ class SignupModel extends Mvc\Model {
 
         if (empty($username)) {
             $error = "username-cant-be-empty";
-        }
-
-        if (strlen($username) < 4 || strlen($username) > 20) {
+        } else if (strlen($username) < 4 || strlen($username) > 20) {
             $error = "username-length-must-be-between-4-and-20";
         }
-
+        
         if ($error) {
             return true;
         }
@@ -55,13 +53,9 @@ class SignupModel extends Mvc\Model {
 
         if (empty($password)) {
             $error = "password-cant-be-empty";
-        }
-
-        if (strlen($password) < 6 || strlen($password) > 64) {
+        } else if (strlen($password) < 6 || strlen($password) > 64) {
             $error = "password-length-must-be-between-6-and-64";
-        }
-
-        if ($password != $rePassword) {
+        } else if ($password != $rePassword) {
             $error = "passwords-do-not-match";
         }
 
