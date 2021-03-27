@@ -23,7 +23,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @param string $username
      * 
-     * @return bool, true on error, false otherwise
+     * @return bool true on error, false otherwise
      */
     private function validateUsername($username) {
         $error = false;
@@ -48,7 +48,7 @@ class SignupModel extends Mvc\Model {
      * @param string $password
      * @param string $rePassword
      * 
-     * @return bool, true on error, false otherwise
+     * @return bool true on error, false otherwise
      */
     private function validatePassword($password, $rePassword) {
         $error = false;
