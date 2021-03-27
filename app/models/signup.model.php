@@ -3,9 +3,9 @@
 class SignupModel extends Mvc\Model {
 
     /**
-     * @var string error
+     * @var string signupError
      */
-    public $error = false;
+    public $signupError = false;
 
     public function signup() {
         // gets user input from the html form
@@ -27,12 +27,12 @@ class SignupModel extends Mvc\Model {
      */
     private function validateUsername($username) {
         if (empty($username)) {
-            $this->error = "username-cant-be-empty";
+            $this->signupError = "username-cant-be-empty";
         } else if (strlen($username) < 4 || strlen($username) > 20) {
-            $this->error = "username-length-must-be-between-4-and-20";
+            $this->signupError = "username-length-must-be-between-4-and-20";
         }
         
-        if ($this->error) {
+        if ($this->signupError) {
             return true;
         }
         return false;
@@ -48,14 +48,14 @@ class SignupModel extends Mvc\Model {
      */
     private function validatePassword($password, $rePassword) {
         if (empty($password)) {
-            $this->error = "password-cant-be-empty";
+            $this->signupError = "password-cant-be-empty";
         } else if (strlen($password) < 6 || strlen($password) > 64) {
-            $this->error = "password-length-must-be-between-6-and-64";
+            $this->signupError = "password-length-must-be-between-6-and-64";
         } else if ($password != $rePassword) {
-            $this->error = "passwords-do-not-match";
+            $this->signupError = "passwords-do-not-match";
         }
 
-        if ($this->error) {
+        if ($this->signupError) {
             return true;
         }
         return false;
