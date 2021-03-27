@@ -33,4 +33,18 @@ class SignupModel extends Mvc\Model {
 
         return false;
     }
+
+    private function validatePassword($password, $rePassword) {
+        if (empty($password)) {
+            return "password-cant-be-empty";
+        }
+
+        if (strlen($password) < 6 || strlen($password) > 64) {
+            return "password-length-must-be-between-6-and-64";
+        }
+
+        if ($password != $rePassword) {
+            return "passwords-do-not-match";
+        }
+    }
 }
