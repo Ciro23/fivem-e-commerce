@@ -2,6 +2,11 @@
 
 class SignupModel extends Mvc\Model {
 
+    /**
+     * @var string error
+     */
+    public $error;
+
     public function signup() {
         // gets user input from the html form
         extract($_POST);
@@ -11,8 +16,6 @@ class SignupModel extends Mvc\Model {
         $username = htmlspecialchars($username);
         $password = htmlspecialchars($password);
         $rePassword = htmlspecialchars($rePassword);
-
-
     }
 
     /**
@@ -20,31 +23,43 @@ class SignupModel extends Mvc\Model {
      * 
      * @param string $username
      * 
-     * @return string|false, first contains error on failure, false otherwise
+     * @return bool, true on error, false otherwise
      */
     private function validateUsername($username) {
+        $error = false;
+
         if (empty($username)) {
-            return "username-cant-be-empty";
+            $error = "username-cant-be-empty";
         }
 
         if (strlen($username) < 4 || strlen($username) > 20) {
-            return "username-length-must-be-between-4-and-20";
+            $error = "username-length-must-be-between-4-and-20";
         }
 
+        if ($error) {
+            return true;
+        }
         return false;
     }
 
     private function validatePassword($password, $rePassword) {
+        $error = false;
+
         if (empty($password)) {
-            return "password-cant-be-empty";
+            $error = "password-cant-be-empty";
         }
 
         if (strlen($password) < 6 || strlen($password) > 64) {
-            return "password-length-must-be-between-6-and-64";
+            $error = "password-length-must-be-between-6-and-64";
         }
 
         if ($password != $rePassword) {
-            return "passwords-do-not-match";
+            $error = "passwords-do-not-match";
         }
+
+        if ($error) {
+            return true;
+        }
+        return false;
     }
 }
