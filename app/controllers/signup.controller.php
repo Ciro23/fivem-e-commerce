@@ -6,7 +6,7 @@ class SignupController extends Mvc\Controller {
      * shows the signup page
      */
     public function index() {
-        if (!isset($_SESSION['id'])) {
+        if (!isset($_SESSION['uid'])) {
             $this->view("signup");
         } else {
             header("Location: /");
