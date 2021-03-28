@@ -104,8 +104,8 @@ class SignupModel extends Mvc\Model {
             return true;
         }
         
-        if (strlen($password) < 6 || strlen($password) > 64) {
-            $this->signupError = "password-length-must-be-between-6-and-64";
+        if (strlen($password) < 6 || strlen($password) > 72) {
+            $this->signupError = "password-length-must-be-between-6-and-72";
             return true;
         }
         
