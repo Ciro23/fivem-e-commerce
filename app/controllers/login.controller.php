@@ -18,8 +18,9 @@ class LoginController extends Mvc\Model {
      */
     public function login() {
         $loginModel = $this->model("login");
+        $userModel = $this->model("user");
 
-        if ($loginModel->login()) {
+        if ($loginModel->login($userModel)) {
             header("Location: ");
             // ! success
         } else {
