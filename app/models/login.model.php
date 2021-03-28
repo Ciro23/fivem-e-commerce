@@ -15,4 +15,20 @@ class LoginModel extends Mvc\Model {
         $email = htmlspecialchars($email);
         $password = htmlspecialchars($password);
     }
+
+    /**
+     * validates the email
+     * 
+     * @param string $email
+     * 
+     * @return bool true on error, false otherwise
+     */
+    private function validateEmail($email) {
+        if (empty($email)) {
+            $this->loginError = "email-cant-be-empty";
+            return true;
+        }
+        
+        return false;
+    }
 }
