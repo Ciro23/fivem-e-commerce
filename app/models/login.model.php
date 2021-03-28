@@ -36,4 +36,20 @@ class LoginModel extends Mvc\Model {
 
         return false;
     }
+
+    /**
+     * validates the password
+     * 
+     * @param string $password
+     * 
+     * @return bool true on error, false otherwise
+     */
+    private function validatePassword($password) {
+        if (empty($password)) {
+            $this->loginError = "password-cant-be-empty";
+            return true;
+        }
+
+        return false;
+    }
 }
