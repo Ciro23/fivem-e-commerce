@@ -8,6 +8,16 @@ class LoginModel extends Mvc\Model {
     public $loginError = false;
 
     /**
+     * @var string $email
+     */
+    private $email;
+
+    /**
+     * @var string $password
+     */
+    private $password;
+
+    /**
      * performs the login action
      * 
      * @return bool success status
@@ -17,19 +27,17 @@ class LoginModel extends Mvc\Model {
         extract($_POST);
 
         // sanitizes the input
-        $email = htmlspecialchars($email);
-        $password = htmlspecialchars($password);
+        $this->email = htmlspecialchars($email);
+        $this->password = htmlspecialchars($password);
     }
 
     /**
      * validates the email
      * 
-     * @param string $email
-     * 
      * @return bool true on error, false otherwise
      */
-    private function validateEmail($email) {
-        if (empty($email)) {
+    private function validateEmail() {
+        if (empty($this->email)) {
             $this->loginError = "email-cant-be-empty";
             return true;
         }
@@ -40,12 +48,10 @@ class LoginModel extends Mvc\Model {
     /**
      * validates the password
      * 
-     * @param string $password
-     * 
      * @return bool true on error, false otherwise
      */
-    private function validatePassword($password) {
-        if (empty($password)) {
+    private function validatePassword() {
+        if (empty($this->password)) {
             $this->loginError = "password-cant-be-empty";
             return true;
         }
