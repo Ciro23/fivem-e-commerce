@@ -126,6 +126,7 @@ class SignupModel extends Mvc\Model {
             return true;
         }
         $this->error = true;
+        $this->signupError = "something-went-wrong";
         return false;
     }
 }
