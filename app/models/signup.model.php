@@ -65,6 +65,13 @@ class SignupModel extends Mvc\Model {
         return false;
     }
 
+    /**
+     * checks if the email already exists in the db
+     * 
+     * @param string $email
+     * 
+     * @return bool success status
+     */
     private function emailExists($email) {
         $sql = "SELECT email FROM users WHERE email = ?";
         $query = $this->executeStmt($sql, [$email]);
