@@ -8,6 +8,26 @@ class SignupModel extends Mvc\Model {
     public $signupError = false;
 
     /**
+     * @var string $email
+     */
+    private $email;
+
+    /**
+     * @var string $username
+     */
+    private $username;
+
+    /**
+     * @var string $password
+     */
+    private $password;
+
+    /**
+     * @var string $rePassword
+     */
+    private $rePassword;
+
+    /**
      * performs the signup action
      * 
      * @return bool success status
@@ -17,22 +37,22 @@ class SignupModel extends Mvc\Model {
         extract($_POST);
 
         // sanitizes the input
-        $email = htmlspecialchars($email);
-        $username = htmlspecialchars($username);
-        $password = htmlspecialchars($password);
-        $rePassword = htmlspecialchars($rePassword);
+        $this->email = htmlspecialchars($email);
+        $this->username = htmlspecialchars($username);
+        $this->password = htmlspecialchars($password);
+        $this->rePassword = htmlspecialchars($rePassword);
 
         // checks for errors
         if (
-            $this->validateEmail($email)
-            || $this->validateUsername($username)
-            || $this->validatePassword($password, $rePassword)
+            $this->validateEmail()
+            || $this->validateUsername()
+            || $this->validatePassword()
         ) {
             return false;
         }
 
         // insert the data into the db and creates the session
-        if ($this->insertIntoDb($email, $username, $password)) {
+        if ($this->insertIntoDb()) {
             $_SESSION['uid'] = $this->lastInsertId();
             return true;
         }
@@ -42,22 +62,20 @@ class SignupModel extends Mvc\Model {
     /**
      * validates the email
      * 
-     * @param string $email
-     * 
      * @return bool true on error, false otherwise
      */
-    private function validateEmail($email) {
-        if (empty($email)) {
+    private function validateEmail() {
+        if (empty($this->email)) {
             $this->signupError = "email-cant-be-empty";
             return true;
         }
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $this->signupError = "invalid-email-format";
             return true;
         }
         
-        if ($this->emailExists($email)) {
+        if ($this->emailExists($this->email)) {
             // checks if the error is db related
             if ($this->error) {
                 $this->signupError = "something-went-wrong";
@@ -73,13 +91,11 @@ class SignupModel extends Mvc\Model {
     /**
      * checks if the email already exists in the db
      * 
-     * @param string $email
-     * 
      * @return bool success status
      */
-    private function emailExists($email) {
+    private function emailExists() {
         $sql = "SELECT email FROM users WHERE email = ?";
-        $query = $this->executeStmt($sql, [$email]);
+        $query = $this->executeStmt($sql, [$this->email]);
 
         // tries to run the query
         if ($query) {
@@ -96,17 +112,15 @@ class SignupModel extends Mvc\Model {
     /**
      * validate the username
      * 
-     * @param string $username
-     * 
      * @return bool true on error, false otherwise
      */
-    private function validateUsername($username) {
-        if (empty($username)) {
+    private function validateUsername() {
+        if (empty($this->username)) {
             $this->signupError = "username-cant-be-empty";
             return true;
         }
         
-        if (strlen($username) < 4 || strlen($username) > 20) {
+        if (strlen($this->username) < 4 || strlen($this->username) > 20) {
             $this->signupError = "username-length-must-be-between-4-and-20";
             return true;
         }
@@ -117,23 +131,20 @@ class SignupModel extends Mvc\Model {
     /**
      * validate the password
      * 
-     * @param string $password
-     * @param string $rePassword
-     * 
      * @return bool true on error, false otherwise
      */
-    private function validatePassword($password, $rePassword) {
-        if (empty($password)) {
+    private function validatePassword() {
+        if (empty($this->password)) {
             $this->signupError = "password-cant-be-empty";
             return true;
         }
         
-        if (strlen($password) < 6 || strlen($password) > 72) {
+        if (strlen($this->password) < 6 || strlen($this->password) > 72) {
             $this->signupError = "password-length-must-be-between-6-and-72";
             return true;
         }
         
-        if ($password != $rePassword) {
+        if ($this->password != $this->rePassword) {
             $this->signupError = "passwords-do-not-match";
             return true;
         }
@@ -144,15 +155,11 @@ class SignupModel extends Mvc\Model {
     /**
      * insert the data into the db
      * 
-     * @param string $email
-     * @param string $username
-     * @param string $password
-     * 
      * @return bool success status
      */
-    private function insertIntoDb($email, $username, $password) {
+    private function insertIntoDb() {
         $sql = "INSERT INTO user (email, username, password) VALUES (?, ?, ?)";
-        $inParameters = [$email, $username, $password];
+        $inParameters = [$this->email, $this->username, $this->password];
 
         // tries to run the query
         if ($this->executeStmt($sql, $inParameters)) {
