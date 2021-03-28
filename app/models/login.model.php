@@ -60,4 +60,19 @@ class LoginModel extends Mvc\Model {
 
         return false;
     }
+
+    /**
+     * checks if the email and the password belong to an account
+     * 
+     * @param object $userModel
+     * 
+     * @return bool success status
+     */
+    private function areCredentialsCorrect($userModel) {
+        if (password_verify($this->password, $userModel->getUserPassword($this->email))) {
+            return true;
+        }
+        
+        return false;
+    }
 }
