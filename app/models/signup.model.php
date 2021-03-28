@@ -47,6 +47,11 @@ class SignupModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateEmail($email) {
+        if (empty($email)) {
+            $this->signupError = "email-cant-be-empty";
+            return true;
+        }
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->signupError = "invalid-email-format";
             return true;
