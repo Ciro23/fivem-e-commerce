@@ -20,9 +20,11 @@ class LoginModel extends Mvc\Model {
     /**
      * performs the login action
      * 
+     * @param object $userModel
+     * 
      * @return bool success status
      */
-    public function login() {
+    public function login($userModel) {
         // gets user input from the html form
         extract($_POST);
 
