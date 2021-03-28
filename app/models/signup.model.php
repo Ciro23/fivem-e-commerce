@@ -7,6 +7,11 @@ class SignupModel extends Mvc\Model {
      */
     public $signupError = false;
 
+    /**
+     * performs the signup action
+     * 
+     * @return bool success status
+     */
     public function signup() {
         // gets user input from the html form
         extract($_POST);
