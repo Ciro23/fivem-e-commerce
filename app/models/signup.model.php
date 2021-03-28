@@ -25,6 +25,13 @@ class SignupModel extends Mvc\Model {
         ) {
             return true;
         }
+
+        // insert the data into the db and creates the session
+        if ($this->insertIntoDb($email, $username, $password)) {
+            $_SESSION['uid'] = $this->lastInsertId();
+            return true;
+        }
+        return false;
     }
 
     /**
