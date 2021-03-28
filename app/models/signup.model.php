@@ -16,6 +16,15 @@ class SignupModel extends Mvc\Model {
         $username = htmlspecialchars($username);
         $password = htmlspecialchars($password);
         $rePassword = htmlspecialchars($rePassword);
+
+        // checks for errors
+        if (
+            $this->validateEmail($email)
+            || $this->validateUsername($username)
+            || $this->validatePassword($password, $rePassword)
+        ) {
+            return true;
+        }
     }
 
     /**
