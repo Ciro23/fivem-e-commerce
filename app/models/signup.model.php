@@ -74,7 +74,7 @@ class SignupModel extends Mvc\Model {
             $this->signupError = "invalid-email-format";
             return true;
         }
-        
+
         if ($this->emailExists($this->email)) {
             // checks if the error is db related
             if ($this->error) {
@@ -119,7 +119,7 @@ class SignupModel extends Mvc\Model {
             $this->signupError = "username-cant-be-empty";
             return true;
         }
-        
+
         if (strlen($this->username) < 4 || strlen($this->username) > 20) {
             $this->signupError = "username-length-must-be-between-4-and-20";
             return true;
@@ -138,12 +138,12 @@ class SignupModel extends Mvc\Model {
             $this->signupError = "password-cant-be-empty";
             return true;
         }
-        
+
         if (strlen($this->password) < 6 || strlen($this->password) > 72) {
             $this->signupError = "password-length-must-be-between-6-and-72";
             return true;
         }
-        
+
         if ($this->password != $this->rePassword) {
             $this->signupError = "passwords-do-not-match";
             return true;
@@ -151,7 +151,7 @@ class SignupModel extends Mvc\Model {
 
         return false;
     }
-    
+
     /**
      * insert the data into the db
      * 

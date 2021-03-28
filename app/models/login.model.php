@@ -72,7 +72,7 @@ class LoginModel extends Mvc\Model {
         if (password_verify($this->password, $userModel->getUserPassword($this->email))) {
             return true;
         }
-        
+
         return false;
     }
 }
