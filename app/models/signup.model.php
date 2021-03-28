@@ -28,18 +28,19 @@ class SignupModel extends Mvc\Model {
     private function validateEmail($email) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->signupError = "invalid-email-format";
-        } else if ($this->emailExists($email)) {
+            return true;
+        }
+        
+        if ($this->emailExists($email)) {
             // checks if the error is db related
             if ($this->error) {
                 $this->signupError = "something-went-wrong";
             } else {
                 $this->signupError = "email-is-alread-registered";
             }
-        }
-
-        if ($this->signupError) {
             return true;
         }
+
         return false;
     }
 
@@ -69,13 +70,14 @@ class SignupModel extends Mvc\Model {
     private function validateUsername($username) {
         if (empty($username)) {
             $this->signupError = "username-cant-be-empty";
-        } else if (strlen($username) < 4 || strlen($username) > 20) {
-            $this->signupError = "username-length-must-be-between-4-and-20";
-        }
-        
-        if ($this->signupError) {
             return true;
         }
+        
+        if (strlen($username) < 4 || strlen($username) > 20) {
+            $this->signupError = "username-length-must-be-between-4-and-20";
+            return true;
+        }
+
         return false;
     }
 
@@ -90,15 +92,19 @@ class SignupModel extends Mvc\Model {
     private function validatePassword($password, $rePassword) {
         if (empty($password)) {
             $this->signupError = "password-cant-be-empty";
-        } else if (strlen($password) < 6 || strlen($password) > 64) {
-            $this->signupError = "password-length-must-be-between-6-and-64";
-        } else if ($password != $rePassword) {
-            $this->signupError = "passwords-do-not-match";
-        }
-
-        if ($this->signupError) {
             return true;
         }
+        
+        if (strlen($password) < 6 || strlen($password) > 64) {
+            $this->signupError = "password-length-must-be-between-6-and-64";
+            return true;
+        }
+        
+        if ($password != $rePassword) {
+            $this->signupError = "passwords-do-not-match";
+            return true;
+        }
+
         return false;
     }
 }
