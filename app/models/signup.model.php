@@ -23,7 +23,7 @@ class SignupModel extends Mvc\Model {
             || $this->validateUsername($username)
             || $this->validatePassword($password, $rePassword)
         ) {
-            return true;
+            return false;
         }
 
         // insert the data into the db and creates the session
