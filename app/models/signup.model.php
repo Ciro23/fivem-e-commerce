@@ -94,7 +94,7 @@ class SignupModel extends Mvc\Model {
      * @return bool success status
      */
     private function emailExists() {
-        $sql = "SELECT email FROM users WHERE email = ?";
+        $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
         $query = $this->executeStmt($sql, [$this->email]);
 
         // tries to run the query
