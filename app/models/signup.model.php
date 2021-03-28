@@ -3,7 +3,7 @@
 class SignupModel extends Mvc\Model {
 
     /**
-     * @var string|bool signupError
+     * @var string|bool $signupError
      */
     public $signupError = false;
 
