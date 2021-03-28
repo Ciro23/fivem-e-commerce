@@ -3,6 +3,11 @@
 class LoginModel extends Mvc\Model {
 
     /**
+     * @var string|bool $loginError
+     */
+    public $loginError = false;
+
+    /**
      * performs the login action
      * 
      * @return bool success status
@@ -28,7 +33,7 @@ class LoginModel extends Mvc\Model {
             $this->loginError = "email-cant-be-empty";
             return true;
         }
-        
+
         return false;
     }
 }
