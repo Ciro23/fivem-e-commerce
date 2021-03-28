@@ -155,7 +155,7 @@ class SignupModel extends Mvc\Model {
         $inParameters = [$email, $username, $password];
 
         // tries to run the query
-        if ($query = $this->executeStmt($sql, $inParameters)) {
+        if ($this->executeStmt($sql, $inParameters)) {
             return true;
         }
         $this->error = true;
