@@ -18,8 +18,9 @@ class SignupController extends Mvc\Controller {
      */
     public function signup() {
         $signupModel = $this->model("signup");
+        $userModel = $this->model("user");
 
-        if ($signupModel->signup()) {
+        if ($signupModel->signup($userModel)) {
             header("Location: ");
             // ! success
         } else {

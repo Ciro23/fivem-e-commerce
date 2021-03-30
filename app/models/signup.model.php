@@ -30,9 +30,11 @@ class SignupModel extends Mvc\Model {
     /**
      * performs the signup action
      * 
+     * @param object $userModel
+     * 
      * @return bool success status
      */
-    public function signup() {
+    public function signup($userModel) {
         // gets user input from the html form
         extract($_POST);
 
@@ -44,7 +46,7 @@ class SignupModel extends Mvc\Model {
 
         // checks for errors
         if (
-            $this->validateEmail()
+            $this->validateEmail($userModel)
             || $this->validateUsername()
             || $this->validatePassword()
         ) {
@@ -62,9 +64,11 @@ class SignupModel extends Mvc\Model {
     /**
      * validates the email
      * 
+     * @param object $userModel
+     * 
      * @return bool true on error, false otherwise
      */
-    private function validateEmail() {
+    private function validateEmail($userModel) {
         if (empty($this->email)) {
             $this->signupError = "email-cant-be-empty";
             return true;
@@ -75,7 +79,7 @@ class SignupModel extends Mvc\Model {
             return true;
         }
 
-        if ($this->emailExists($this->email)) {
+        if ($userModel->emailExists($this->email)) {
             // checks if the error is db related
             if ($this->error) {
                 $this->signupError = "something-went-wrong";
@@ -86,27 +90,6 @@ class SignupModel extends Mvc\Model {
         }
 
         return false;
-    }
-
-    /**
-     * checks if the email already exists in the db
-     * 
-     * @return bool success status
-     */
-    private function emailExists() {
-        $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
-        $query = $this->executeStmt($sql, [$this->email]);
-
-        // tries to run the query
-        if ($query) {
-            // checks if the email is already registered
-            if ($query->fetch(PDO::FETCH_COLUMN) == 1) {
-                return true;
-            }
-            return false;
-        }
-        $this->error = true;
-        return true;
     }
 
     /**
