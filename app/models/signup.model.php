@@ -79,7 +79,7 @@ class SignupModel extends Mvc\Model {
             return true;
         }
 
-        if ($userModel->emailExists($this->email)) {
+        if ($userModel->doesEmailExists($this->email)) {
             // checks if the error is db related
             if ($this->error) {
                 $this->signupError = "something-went-wrong";
