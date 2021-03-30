@@ -10,12 +10,12 @@ class SignupModel extends Mvc\Model {
     /**
      * @var string $email
      */
-    private $email;
+    public $email;
 
     /**
      * @var string $username
      */
-    private $username;
+    public $username;
 
     /**
      * @var string $password
