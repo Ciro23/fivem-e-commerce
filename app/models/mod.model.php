@@ -82,6 +82,14 @@ class ModModel extends Mvc\Model {
         ) {
             return false;
         }
+
+        // tries to insert the data into the db
+        if ($this->insertIntoDb()) {
+            return true;
+        }
+        // in case of pdo error
+        $this->error = "something-went-wrong";
+        return false;
     }
 
     /**
