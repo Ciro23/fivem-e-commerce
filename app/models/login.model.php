@@ -31,6 +31,29 @@ class LoginModel extends Mvc\Model {
         // sanitizes the input
         $this->email = htmlspecialchars($email);
         $this->password = htmlspecialchars($password);
+
+        // checks for errors
+        if (
+            $this->validateEmail()
+            || $this->validatePassword()
+        ) {
+            return false;
+        }
+
+        // insert the data into the db and creates the session
+        if ($this->areCredentialsCorrect($userModel)) {
+            $_SESSION['uid'] = $userModel->getIdByEmail($this->email);
+            return true;
+        }
+
+        // in case of wrong credentials
+        if ($userModel->error) {
+            $this->loginError = "something-went-wrong";
+        } else {
+            $this->loginError = "credentials-are-not-correct";
+        }
+
+        return false;
     }
 
     /**
