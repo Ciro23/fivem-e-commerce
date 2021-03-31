@@ -69,6 +69,8 @@ class SignupModel extends Mvc\Model {
             $_SESSION['uid'] = $this->lastInsertId();
             return true;
         }
+        // in case of query failure
+        $this->signupError = "something-went-wrong";
         return false;
     }
 
@@ -160,7 +162,6 @@ class SignupModel extends Mvc\Model {
             return true;
         }
         $this->error = true;
-        $this->signupError = "something-went-wrong";
         return false;
     }
 }
