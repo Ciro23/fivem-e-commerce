@@ -119,6 +119,11 @@ class SignupModel extends Mvc\Model {
             return true;
         }
 
+        if (!preg_match("/^[A-Za-z0-9]+$/", $this->username)) {
+            $this->signupError = "username-can-only-contains-alphanumeric-characters";
+            return true;
+        }
+
         if (strlen($this->username) < 4 || strlen($this->username) > 20) {
             $this->signupError = "username-length-must-be-between-4-and-20";
             return true;
