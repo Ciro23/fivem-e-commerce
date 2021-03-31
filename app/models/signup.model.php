@@ -64,6 +64,9 @@ class SignupModel extends Mvc\Model {
             return false;
         }
 
+        // hashes the password
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+
         // insert the data into the db and creates the session
         if ($this->insertIntoDb()) {
             $_SESSION['uid'] = $this->lastInsertId();
