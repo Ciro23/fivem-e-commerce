@@ -12,6 +12,9 @@ class SignupController extends Mvc\Controller {
             $data['form']['email'] = $_GET['email'] ?? "";
             $data['form']['username'] = $_GET['username'] ?? "";
 
+            // formats the error
+            $data['form']['error'] = SignupModel::formatError($data['form']['error']);
+
             $this->view("signup", $data);
         } else {
             header("Location: /");
