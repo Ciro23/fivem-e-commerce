@@ -10,7 +10,7 @@ class LoginModel extends Mvc\Model {
     /**
      * @var string $email
      */
-    private $email;
+    public $email;
 
     /**
      * @var string $password
