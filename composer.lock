@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a609dff7d57386d6d91ceacaa0d09dab",
+    "content-hash": "909f7498027edf596c5b8312e6115038",
     "packages": [
         {
             "name": "ciro23/mvc-framework",
-            "version": "dev-master",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ciro23/mvc-framework.git",
-                "reference": "8cf6c17283dc6f2fd00024f0d71195076611fc74"
+                "reference": "0cc1d2c1e8afca22dedf29ff0d6cde029c7a8ee2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ciro23/mvc-framework/zipball/8cf6c17283dc6f2fd00024f0d71195076611fc74",
-                "reference": "8cf6c17283dc6f2fd00024f0d71195076611fc74",
+                "url": "https://api.github.com/repos/Ciro23/mvc-framework/zipball/0cc1d2c1e8afca22dedf29ff0d6cde029c7a8ee2",
+                "reference": "0cc1d2c1e8afca22dedf29ff0d6cde029c7a8ee2",
                 "shasum": ""
             },
             "require": {
@@ -40,7 +40,7 @@
                 }
             ],
             "description": "Simple MVC framework with a default Controller, Model and Dbh",
-            "time": "2021-01-15T15:52:46+00:00"
+            "time": "2021-03-31T14:44:58+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -528,9 +528,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "ciro23/mvc-framework": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
