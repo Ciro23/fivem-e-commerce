@@ -3,9 +3,9 @@
 class SignupModel extends Mvc\Model {
 
     /**
-     * @var string|false $signupError
+     * @var string|false $error
      */
-    public $signupError = false;
+    public $error = false;
 
     /**
      * @var string $email
@@ -73,7 +73,7 @@ class SignupModel extends Mvc\Model {
             return true;
         }
         // in case of query failure
-        $this->signupError = "something-went-wrong";
+        $this->error = "something-went-wrong";
         return false;
     }
 
@@ -86,21 +86,21 @@ class SignupModel extends Mvc\Model {
      */
     private function validateEmail($userModel) {
         if (empty($this->email)) {
-            $this->signupError = "email-cant-be-empty";
+            $this->error = "email-cant-be-empty";
             return true;
         }
 
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $this->signupError = "invalid-email-format";
+            $this->error = "invalid-email-format";
             return true;
         }
 
         if ($userModel->doesEmailExists($this->email)) {
             // checks if the error is db related
             if ($userModel->error) {
-                $this->signupError = "something-went-wrong";
+                $this->error = "something-went-wrong";
             } else {
-                $this->signupError = "email-is-already-registered";
+                $this->error = "email-is-already-registered";
             }
             return true;
         }
@@ -115,17 +115,17 @@ class SignupModel extends Mvc\Model {
      */
     private function validateUsername() {
         if (empty($this->username)) {
-            $this->signupError = "username-cant-be-empty";
+            $this->error = "username-cant-be-empty";
             return true;
         }
 
         if (!preg_match("/^[A-Za-z0-9]+$/", $this->username)) {
-            $this->signupError = "username-can-only-contains-alphanumeric-characters";
+            $this->error = "username-can-only-contains-alphanumeric-characters";
             return true;
         }
 
         if (strlen($this->username) < 4 || strlen($this->username) > 20) {
-            $this->signupError = "username-length-must-be-between-4-and-20";
+            $this->error = "username-length-must-be-between-4-and-20";
             return true;
         }
 
@@ -139,17 +139,17 @@ class SignupModel extends Mvc\Model {
      */
     private function validatePassword() {
         if (empty($this->password)) {
-            $this->signupError = "password-cant-be-empty";
+            $this->error = "password-cant-be-empty";
             return true;
         }
 
         if (strlen($this->password) < 6 || strlen($this->password) > 72) {
-            $this->signupError = "password-length-must-be-between-6-and-72";
+            $this->error = "password-length-must-be-between-6-and-72";
             return true;
         }
 
         if ($this->password != $this->rePassword) {
-            $this->signupError = "passwords-do-not-match";
+            $this->error = "passwords-do-not-match";
             return true;
         }
 

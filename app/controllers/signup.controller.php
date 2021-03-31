@@ -33,7 +33,7 @@ class SignupController extends Mvc\Controller {
             // ! success
         } else {
             header("Location: /signup/?error="
-                . $signupModel->signupError
+                . $signupModel->error
                 . "&email="
                 . $signupModel->email
                 . "&username="

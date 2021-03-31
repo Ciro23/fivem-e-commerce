@@ -3,9 +3,9 @@
 class LoginModel extends Mvc\Model {
 
     /**
-     * @var string|false $loginError
+     * @var string|false $error
      */
-    public $loginError = false;
+    public $error = false;
 
     /**
      * @var string $email
@@ -48,9 +48,9 @@ class LoginModel extends Mvc\Model {
 
         // in case of wrong credentials
         if ($userModel->error) {
-            $this->loginError = "something-went-wrong";
+            $this->error = "something-went-wrong";
         } else {
-            $this->loginError = "credentials-are-not-correct";
+            $this->error = "credentials-are-not-correct";
         }
 
         return false;
@@ -70,7 +70,7 @@ class LoginModel extends Mvc\Model {
      */
     private function validateEmail() {
         if (empty($this->email)) {
-            $this->loginError = "email-cant-be-empty";
+            $this->error = "email-cant-be-empty";
             return true;
         }
 
@@ -84,7 +84,7 @@ class LoginModel extends Mvc\Model {
      */
     private function validatePassword() {
         if (empty($this->password)) {
-            $this->loginError = "password-cant-be-empty";
+            $this->error = "password-cant-be-empty";
             return true;
         }
 
