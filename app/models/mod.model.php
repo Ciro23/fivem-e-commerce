@@ -139,15 +139,13 @@ class ModModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateFile() {
-        // gets file extension
-        $pathInfo = pathinfo($this->file['tmp_name']);
-        $extension = $pathInfo['extension'];
-
         if (empty($this->file)) {
             $this->error = "file-cant-be-empty";
             return true;
         }
 
+        $extension = $this->getExtension($this->file['tmp_name']);
+        
         if (in_array($extension, $this->allowedExt['file'])) {
             $this->error = "file-must-be-zip-or-rar";
             return true;
@@ -157,5 +155,17 @@ class ModModel extends Mvc\Model {
             $this->error = "file-maximum-size-is-50-mb";
             return true;
         }
+    }
+
+    /**
+     * gets the file extension
+     * 
+     * @param string $filePath
+     * 
+     * @return string extension
+     */
+    private function getExtension($filePath) {
+        $pathInfo = pathinfo($filePath);
+        return $pathInfo['extension'];
     }
 }
