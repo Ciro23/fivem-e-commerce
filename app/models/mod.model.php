@@ -203,4 +203,27 @@ class ModModel extends Mvc\Model {
         $pathInfo = pathinfo($filePath);
         return $pathInfo['extension'];
     }
+
+    /**
+     * insert the data into the db
+     * 
+     * @return bool success status
+     */
+    private function insertIntoDb() {
+        $sql = "INSERT INTO mod (name, description, version, size, author) VALUES (?, ?, ?, ?, ?)";
+        $inParamters = [
+            $this->name,
+            $this->description,
+            $this->version,
+            $this->file['size'],
+            $this->author
+        ];
+
+        // tries to run the query
+        if ($this->executeStmt($sql, $inParamters)) {
+            return true;
+        }
+        $this->PDOError = true;
+        return false;
+    }
 }
