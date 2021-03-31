@@ -3,6 +3,11 @@
 class ModModel extends Mvc\Model {
 
     /**
+     * @var string|false $uploadError
+     */
+    public $uploadError;
+
+    /**
      * @var string $name
      */
     private $name;
@@ -51,5 +56,29 @@ class ModModel extends Mvc\Model {
         $this->author = $_SESSION['uid'];
         $this->file = $_FILES['file']['tmp_name'];
         $this->image = $_FILES['image']['tmp_name'];
+    }
+
+    /**
+     * validate the name
+     * 
+     * @return bool true on error, false otherwise
+     */
+    private function validateName() {
+        if (empty($this->name)) {
+            $this->uploadError = "name-cant-be-empty";
+            return true;
+        }
+
+        if (!preg_match("/^[A-Za-z0-9]+$/", $this->name)) {
+            $this->uploadError = "name-can-only-contains-alphanumeric-characters";
+            return true;
+        }
+
+        if (strlen($this->name) < 4 || strlen($this->name) > 20) {
+            $this->uploadError = "name-length-must-be-between-4-and-20";
+            return true;
+        }
+
+        return false;
     }
 }
