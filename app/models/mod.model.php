@@ -145,7 +145,7 @@ class ModModel extends Mvc\Model {
         }
 
         $extension = $this->getExtension($this->file['tmp_name']);
-        
+
         if (in_array($extension, $this->allowedExt['file'])) {
             $this->error = "file-must-be-zip-or-rar";
             return true;
@@ -153,6 +153,30 @@ class ModModel extends Mvc\Model {
 
         if ($this->file['size'] > 50000) {
             $this->error = "file-maximum-size-is-50-mb";
+            return true;
+        }
+    }
+
+    /**
+     * validates the image
+     * 
+     * @return bool true on error, false otherwise
+     */
+    private function validateImage() {
+        if (empty($this->image)) {
+            $this->error = "image-cant-be-empty";
+            return true;
+        }
+
+        $extension = $this->getExtension($this->image['tmp_name']);
+        
+        if (in_array($extension, $this->allowedExt['image'])) {
+            $this->error = "image-must-be-jpg-or-png";
+            return true;
+        }
+
+        if ($this->image['size'] > 2000) {
+            $this->error = "image-maximum-size-is-2-mb";
             return true;
         }
     }
