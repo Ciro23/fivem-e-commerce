@@ -41,7 +41,7 @@ class UserModel extends Mvc\Model {
             return false;
         }
         $this->error = true;
-        return true;
+        return false;
     }
 
     /**
