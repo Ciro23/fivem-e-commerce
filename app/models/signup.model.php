@@ -81,7 +81,7 @@ class SignupModel extends Mvc\Model {
 
         if ($userModel->doesEmailExists($this->email)) {
             // checks if the error is db related
-            if ($this->error) {
+            if ($userModel->error) {
                 $this->signupError = "something-went-wrong";
             } else {
                 $this->signupError = "email-is-alread-registered";
