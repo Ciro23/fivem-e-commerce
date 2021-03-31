@@ -71,6 +71,17 @@ class ModModel extends Mvc\Model {
         $this->author = $_SESSION['uid'];
         $this->file = $_FILES['file'];
         $this->image = $_FILES['image'];
+
+        // checks for errors
+        if (
+            $this->validateName()
+            || $this->validateDescription()
+            || $this->validateVersion()
+            || $this->validateFile()
+            || $this->validateImage()
+        ) {
+            return false;
+        }
     }
 
     /**
