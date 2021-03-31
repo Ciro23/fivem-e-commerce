@@ -7,7 +7,12 @@ class SignupController extends Mvc\Controller {
      */
     public function index() {
         if (!isset($_SESSION['uid'])) {
-            $this->view("signup");
+            // saves the error, the email and the username if something goes wrong
+            $data['form']['error'] = $_GET['error'] ?? "";
+            $data['form']['email'] = $_GET['email'] ?? "";
+            $data['form']['username'] = $_GET['username'] ?? "";
+
+            $this->view("signup", $data);
         } else {
             header("Location: /");
         }
