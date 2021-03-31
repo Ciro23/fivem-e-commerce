@@ -29,7 +29,7 @@ class UserModel extends Mvc\Model {
      * @return bool success status
      */
     public function doesEmailExists($email) {
-        $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+        $sql = "SELECT COUNT(*) FROM user WHERE email = ?";
         $query = $this->executeStmt($sql, [$email]);
 
         // tries to run the query

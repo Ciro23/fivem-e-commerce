@@ -100,7 +100,7 @@ class SignupModel extends Mvc\Model {
             if ($userModel->error) {
                 $this->signupError = "something-went-wrong";
             } else {
-                $this->signupError = "email-is-alread-registered";
+                $this->signupError = "email-is-already-registered";
             }
             return true;
         }
