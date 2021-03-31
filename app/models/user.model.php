@@ -43,4 +43,23 @@ class UserModel extends Mvc\Model {
         $this->error = true;
         return true;
     }
+
+    /**
+     * gets the user id by his email
+     * 
+     * @param string $email
+     * 
+     * @return int|bool id in case of success, false otherwise
+     */
+    public function getIdByEmail($email) {
+        $sql = "SELECT id FROM user WHERE email = ?";
+        $query = $this->executeStmt($sql, [$email]);
+
+        // tries to run the query
+        if ($query) {
+            return $query->fetch(PDO::FETCH_COLUMN);
+        }
+        $this->error = true;
+        return false;
+    }
 }
