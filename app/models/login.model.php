@@ -57,6 +57,13 @@ class LoginModel extends Mvc\Model {
     }
 
     /**
+     * performs the logout action
+     */
+    public function logout() {
+        session_destroy();
+    }
+
+    /**
      * validates the email
      * 
      * @return bool true on error, false otherwise

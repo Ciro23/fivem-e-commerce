@@ -38,4 +38,14 @@ class LoginController extends Mvc\Controller {
                 . $loginModel->email);
         }
     }
+
+    /**
+     * performs the logout action
+     */
+    public function logout() {
+        $loginModel = $this->model("login");
+        $loginModel->logout();
+
+        header("Location: /");
+    }
 }
