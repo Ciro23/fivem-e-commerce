@@ -54,8 +54,8 @@ class ModModel extends Mvc\Model {
         $this->description = $description;
         $this->version = $version;
         $this->author = $_SESSION['uid'];
-        $this->file = $_FILES['file']['tmp_name'];
-        $this->image = $_FILES['image']['tmp_name'];
+        $this->file = $_FILES['file'];
+        $this->image = $_FILES['image'];
     }
 
     /**
