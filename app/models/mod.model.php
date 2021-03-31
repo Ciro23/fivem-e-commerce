@@ -100,4 +100,21 @@ class ModModel extends Mvc\Model {
 
         return false;
     }
+
+    /**
+     * validate the version
+     * 
+     * @return bool true on error, false otherwise
+     */
+    private function validateVersion() {
+        if (empty($this->version)) {
+            $this->error = "version-cant-be-empty";
+            return true;
+        }
+
+        if (!preg_match("\d+(?:\.\d+){1,2}", $this->version)) {
+            $this->error = "invalid-version-format";
+            return true;
+        }
+    }
 }
