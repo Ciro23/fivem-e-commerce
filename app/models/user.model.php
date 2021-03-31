@@ -7,7 +7,7 @@ class UserModel extends Mvc\Model {
      * 
      * @param string $email
      * 
-     * @return string|bool the email or false on failure
+     * @return string|false the email or false on failure
      */
     public function getUserPassword($email) {
         $sql = "SELECT password FROM user WHERE email = ?";
@@ -49,7 +49,7 @@ class UserModel extends Mvc\Model {
      * 
      * @param string $email
      * 
-     * @return int|bool id in case of success, false otherwise
+     * @return int|false id in case of success, false otherwise
      */
     public function getIdByEmail($email) {
         $sql = "SELECT id FROM user WHERE email = ?";

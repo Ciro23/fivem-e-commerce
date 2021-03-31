@@ -3,7 +3,7 @@
 class LoginModel extends Mvc\Model {
 
     /**
-     * @var string|bool $loginError
+     * @var string|false $loginError
      */
     public $loginError = false;
 
