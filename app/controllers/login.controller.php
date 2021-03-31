@@ -32,8 +32,10 @@ class LoginController extends Mvc\Controller {
             header("Location: ");
             // ! success
         } else {
-            header("Location: ");
-            // ! failure
+            header("Location: /login/?error="
+                . $loginModel->signupError
+                . "&email="
+                . $loginModel->email);
         }
     }
 }
