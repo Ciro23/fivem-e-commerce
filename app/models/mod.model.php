@@ -133,6 +133,11 @@ class ModModel extends Mvc\Model {
         }
     }
 
+    /**
+     * validates the file
+     * 
+     * @return bool true on error, false otherwise
+     */
     private function validateFile() {
         // gets file extension
         $pathInfo = pathinfo($this->file['tmp_name']);
