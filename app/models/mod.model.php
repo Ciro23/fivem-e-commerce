@@ -38,6 +38,21 @@ class ModModel extends Mvc\Model {
     private $image;
 
     /**
+     * @var array $allowedExt
+     */
+    private $allowedExt = [
+        "file" => [
+            'zip',
+            'rar'
+        ],
+        "image" => [
+            'jpg',
+            'jpeg',
+            'png'
+        ]
+    ];
+
+    /**
      * performs the upload action
      */
     public function upload() {
@@ -114,6 +129,27 @@ class ModModel extends Mvc\Model {
 
         if (!preg_match("\d+(?:\.\d+){1,2}", $this->version)) {
             $this->error = "invalid-version-format";
+            return true;
+        }
+    }
+
+    private function validateFile() {
+        // gets file extension
+        $pathInfo = pathinfo($this->file['tmp_name']);
+        $extension = $pathInfo['extension'];
+
+        if (empty($this->file)) {
+            $this->error = "file-cant-be-empty";
+            return true;
+        }
+
+        if (in_array($extension, $this->allowedExt['file'])) {
+            $this->error = "file-must-be-zip-or-rar";
+            return true;
+        }
+
+        if ($this->file['size'] > 50000) {
+            $this->error = "file-maximum-size-is-50-mb";
             return true;
         }
     }
