@@ -81,4 +81,23 @@ class ModModel extends Mvc\Model {
 
         return false;
     }
+
+    /**
+     * validate the description
+     * 
+     * @return bool true on error, false otherwise
+     */
+    private function validateDescription() {
+        if (empty($this->description)) {
+            $this->error = "description-cant-be-empty";
+            return true;
+        }
+
+        if (strlen($this->description) < 20 || strlen($this->description) > 500) {
+            $this->error = "description-length-must-be-between-20-and-500";
+            return true;
+        }
+
+        return false;
+    }
 }
