@@ -74,7 +74,7 @@ class ModModel extends Mvc\Model {
     }
 
     /**
-     * validate the name
+     * validates the name
      * 
      * @return bool true on error, false otherwise
      */
@@ -98,7 +98,7 @@ class ModModel extends Mvc\Model {
     }
 
     /**
-     * validate the description
+     * validates the description
      * 
      * @return bool true on error, false otherwise
      */
@@ -117,7 +117,7 @@ class ModModel extends Mvc\Model {
     }
 
     /**
-     * validate the version
+     * validates the version
      * 
      * @return bool true on error, false otherwise
      */
