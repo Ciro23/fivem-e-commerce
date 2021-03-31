@@ -47,7 +47,7 @@ class LoginModel extends Mvc\Model {
         }
 
         // in case of wrong credentials
-        if ($userModel->error) {
+        if ($userModel->PDOError) {
             $this->error = "something-went-wrong";
         } else {
             $this->error = "credentials-are-not-correct";
@@ -102,7 +102,7 @@ class LoginModel extends Mvc\Model {
         if (password_verify($this->password, $userModel->getUserPassword($this->email))) {
             return true;
         }
-
+        $this->PDOError = true;
         return false;
     }
 }

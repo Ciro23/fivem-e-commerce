@@ -97,7 +97,7 @@ class SignupModel extends Mvc\Model {
 
         if ($userModel->doesEmailExists($this->email)) {
             // checks if the error is db related
-            if ($userModel->error) {
+            if ($userModel->PDOError) {
                 $this->error = "something-went-wrong";
             } else {
                 $this->error = "email-is-already-registered";
@@ -169,7 +169,7 @@ class SignupModel extends Mvc\Model {
         if ($this->executeStmt($sql, $inParameters)) {
             return true;
         }
-        $this->error = true;
+        $this->PDOError = true;
         return false;
     }
 }
