@@ -169,7 +169,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        $extension = $this->getExtension($this->file['tmp_name']);
+        $extension = $this->getExtension($this->file['name']);
 
         if (in_array($extension, $this->allowedExt['file'])) {
             $this->error = "file-must-be-zip-or-rar";
@@ -193,7 +193,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        $extension = $this->getExtension($this->image['tmp_name']);
+        $extension = $this->getExtension($this->image['name']);
         
         if (in_array($extension, $this->allowedExt['image'])) {
             $this->error = "image-must-be-jpg-or-png";
@@ -209,13 +209,12 @@ class ModUploadModel extends Mvc\Model {
     /**
      * gets the file extension
      * 
-     * @param string $filePath
+     * @param string $fileName
      * 
      * @return string extension
      */
-    private function getExtension($filePath) {
-        $pathInfo = pathinfo($filePath);
-        return $pathInfo['extension'];
+    private function getExtension($fileName) {
+        return pathinfo($fileName)['extension'];
     }
 
     /**
