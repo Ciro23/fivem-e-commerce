@@ -1,12 +1,23 @@
 <?php
 
-class ModController extends Mvc\Controller {
+class ModUploadController extends Mvc\Controller {
+
+    /**
+     * shows the upload mod page
+     */
+    public function index() {
+        if (isset($_SESSION['uid'])) {
+            $this->view("modupload");
+        } else {
+            header("Location: /login");
+        }
+    }
 
     /**
      * performs the upload action
      */
     public function upload() {
-        $modModel = $this->model("mod");
+        $modModel = $this->model("modupload");
 
         // tries to upload the mod
         if ($modModel->upload()) {
