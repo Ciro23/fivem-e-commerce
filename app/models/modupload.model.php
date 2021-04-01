@@ -176,7 +176,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        if ($this->file['size'] > 50000) {
+        if ($this->file['size'] > 50000000) {
             $this->error = "file-maximum-size-is-50-mb";
             return true;
         }
@@ -200,7 +200,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        if ($this->image['size'] > 2000) {
+        if ($this->image['size'] > 2000000) {
             $this->error = "image-maximum-size-is-2-mb";
             return true;
         }
