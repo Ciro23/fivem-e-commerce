@@ -87,10 +87,10 @@ class ModUploadModel extends Mvc\Model {
 
         // new file name and path
         $newFileName = $this->name . "-" . $this->lastInsertId();
-        $newFilePath = $_ENV['modsFolder'] . "/" . $newFileName;
+        $newFilePath = $_ENV['modsFolder'] . $newFileName;
 
         // new image path
-        $newImagePath = $_ENV['imgsFolder'] . "/" . $newFileName;
+        $newImagePath = $_ENV['imgsFolder'] . $newFileName;
 
         // tries to insert the data into the db and to store the uploaded files
         if (
