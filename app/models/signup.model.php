@@ -162,7 +162,7 @@ class SignupModel extends Mvc\Model {
      * @return bool success status
      */
     private function insertIntoDb() {
-        $sql = "INSERT INTO user (email, username, password) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
         $inParameters = [$this->email, $this->username, $this->password];
 
         // tries to run the query

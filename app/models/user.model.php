@@ -10,7 +10,7 @@ class UserModel extends Mvc\Model {
      * @return string|false the email or false on failure
      */
     public function getPassword($email) {
-        $sql = "SELECT password FROM user WHERE email = ?";
+        $sql = "SELECT password FROM users WHERE email = ?";
         $inParameters = [$email];
 
         // tries to run the query
@@ -29,7 +29,7 @@ class UserModel extends Mvc\Model {
      * @return bool success status
      */
     public function doesEmailExists($email) {
-        $sql = "SELECT COUNT(*) FROM user WHERE email = ?";
+        $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
         $query = $this->executeStmt($sql, [$email]);
 
         // tries to run the query
@@ -52,7 +52,7 @@ class UserModel extends Mvc\Model {
      * @return int|false id in case of success, false otherwise
      */
     public function getId($email) {
-        $sql = "SELECT id FROM user WHERE email = ?";
+        $sql = "SELECT id FROM users WHERE email = ?";
         $query = $this->executeStmt($sql, [$email]);
 
         // tries to run the query
