@@ -1,6 +1,6 @@
 <?php
 
-class ModApprovingModel extends Mvc\Model {
+class ModApproveModel extends Mvc\Model {
 
     /**
      * @var string $error
