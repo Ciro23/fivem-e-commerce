@@ -87,6 +87,10 @@ class ModModel extends Mvc\Model {
 
         // tries to insert the data into the db
         if ($this->insertIntoDb()) {
+            // moves the uploaded file in the mods folder
+            $newFileName = $_ENV['modsFolder'] . "/" . $this->name . "-" . $this->lastInsertId();
+            move_uploaded_file($this->file['tmp_name'], $newFileName);
+
             return true;
         }
         // in case of pdo error
