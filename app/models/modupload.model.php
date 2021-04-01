@@ -223,7 +223,7 @@ class ModUploadModel extends Mvc\Model {
      * @return bool success status
      */
     private function insertIntoDb() {
-        $sql = "INSERT INTO mod (name, description, version, size, author) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO mods (name, description, version, size, author) VALUES (?, ?, ?, ?, ?)";
         $inParameters = [
             $this->name,
             $this->description,
