@@ -24,8 +24,8 @@ class LoginController extends Mvc\Controller {
      * performs the login action
      */
     public function login() {
-        $loginModel = $this->model("login");
-        $userModel = $this->model("user");
+        $loginModel = $this->model("Login");
+        $userModel = $this->model("User");
 
         if ($loginModel->login($userModel)) {
             header("Location: ");
@@ -42,7 +42,7 @@ class LoginController extends Mvc\Controller {
      * performs the logout action
      */
     public function logout() {
-        $loginModel = $this->model("login");
+        $loginModel = $this->model("Login");
         $loginModel->logout();
 
         header("Location: /");
