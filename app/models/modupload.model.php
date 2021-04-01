@@ -85,12 +85,19 @@ class ModUploadModel extends Mvc\Model {
             return false;
         }
 
-        // tries to insert the data into the db
-        if ($this->insertIntoDb()) {
-            // moves the uploaded file in the mods folder
-            $newFileName = $_ENV['modsFolder'] . "/" . $this->name . "-" . $this->lastInsertId();
-            move_uploaded_file($this->file['tmp_name'], $newFileName);
+        // new file name and path
+        $newFileName = $this->name . "-" . $this->lastInsertId();
+        $newFilePath = $_ENV['modsFolder'] . "/" . $newFileName;
 
+        // new image path
+        $newImagePath = $_ENV['imgsFolder'] . "/" . $newFileName;
+
+        // tries to insert the data into the db and to store the uploaded files
+        if (
+            $this->insertIntoDb()
+            && move_uploaded_file($this->file['tmp_name'], $newFilePath)
+            && move_uploaded_file($this->image['tmp_name'], $newImagePath)
+        ) {
             return true;
         }
         // in case of pdo error
@@ -194,7 +201,7 @@ class ModUploadModel extends Mvc\Model {
         }
 
         $extension = $this->getExtension($this->image['name']);
-        
+
         if (!in_array($extension, $this->allowedExt['image'])) {
             $this->error = "image-must-be-jpg-or-png";
             return true;
