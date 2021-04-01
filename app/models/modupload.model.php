@@ -224,7 +224,7 @@ class ModUploadModel extends Mvc\Model {
      */
     private function insertIntoDb() {
         $sql = "INSERT INTO mod (name, description, version, size, author) VALUES (?, ?, ?, ?, ?)";
-        $inParamters = [
+        $inParameters = [
             $this->name,
             $this->description,
             $this->version,
@@ -233,7 +233,7 @@ class ModUploadModel extends Mvc\Model {
         ];
 
         // tries to run the query
-        if ($this->executeStmt($sql, $inParamters)) {
+        if ($this->executeStmt($sql, $inParameters)) {
             return true;
         }
         $this->PDOError = true;
