@@ -42,7 +42,7 @@ class LoginModel extends Mvc\Model {
 
         // insert the data into the db and creates the session
         if ($this->areCredentialsCorrect($userModel)) {
-            $_SESSION['uid'] = $userModel->getIdByEmail($this->email);
+            $_SESSION['uid'] = $userModel->getId($this->email);
             return true;
         }
 
@@ -99,7 +99,7 @@ class LoginModel extends Mvc\Model {
      * @return bool success status
      */
     private function areCredentialsCorrect($userModel) {
-        if (password_verify($this->password, $userModel->getUserPassword($this->email))) {
+        if (password_verify($this->password, $userModel->getPassword($this->email))) {
             return true;
         }
         $this->PDOError = true;
