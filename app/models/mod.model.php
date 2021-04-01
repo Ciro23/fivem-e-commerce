@@ -10,17 +10,17 @@ class ModModel extends Mvc\Model {
     /**
      * @var string $name
      */
-    private $name;
+    public $name;
 
     /**
      * @var string $description
      */
-    private $description;
+    public $description;
 
     /**
      * @var string $version
      */
-    private $version;
+    public $version;
 
     /**
      * @var int $author
@@ -54,6 +54,8 @@ class ModModel extends Mvc\Model {
 
     /**
      * performs the upload action
+     * 
+     * @return bool success status
      */
     public function upload() {
         // gets user input
