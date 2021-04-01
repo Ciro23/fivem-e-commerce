@@ -27,10 +27,10 @@ class ModUploadController extends Mvc\Controller {
                 . $modModel->error
                 . "&name="
                 . $modModel->name
-                . "&description="
-                . $modModel->description
                 . "&version="
-                . $modModel->version);
+                . $modModel->version
+                . "&description="
+                . $modModel->description);
         }
     }
 }
