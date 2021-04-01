@@ -3,9 +3,9 @@
 class ModModel extends Mvc\Model {
 
     /**
-     * @var string|false $error
+     * @var string $error
      */
-    public $error;
+    public $error = "";
 
     /**
      * @var string $name

@@ -3,9 +3,9 @@
 class SignupModel extends Mvc\Model {
 
     /**
-     * @var string|false $error
+     * @var string $error
      */
-    public $error = false;
+    public $error = "";
 
     /**
      * @var string $email
