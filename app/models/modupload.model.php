@@ -152,7 +152,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        if (preg_match("\d+(?:\.\d+){1,2}", $this->version)) {
+        if (!preg_match("/\d+(?:\.\d+){1,2}/", $this->version)) {
             $this->error = "invalid-version-format";
             return true;
         }
@@ -171,7 +171,7 @@ class ModUploadModel extends Mvc\Model {
 
         $extension = $this->getExtension($this->file['name']);
 
-        if (in_array($extension, $this->allowedExt['file'])) {
+        if (!in_array($extension, $this->allowedExt['file'])) {
             $this->error = "file-must-be-zip-or-rar";
             return true;
         }
@@ -195,7 +195,7 @@ class ModUploadModel extends Mvc\Model {
 
         $extension = $this->getExtension($this->image['name']);
         
-        if (in_array($extension, $this->allowedExt['image'])) {
+        if (!in_array($extension, $this->allowedExt['image'])) {
             $this->error = "image-must-be-jpg-or-png";
             return true;
         }
