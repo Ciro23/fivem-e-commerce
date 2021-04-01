@@ -152,7 +152,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        if (!preg_match("\d+(?:\.\d+){1,2}", $this->version)) {
+        if (preg_match("\d+(?:\.\d+){1,2}", $this->version)) {
             $this->error = "invalid-version-format";
             return true;
         }
