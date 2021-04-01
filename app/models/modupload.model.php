@@ -133,8 +133,8 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        if (strlen($this->description) < 20 || strlen($this->description) > 500) {
-            $this->error = "description-length-must-be-between-20-and-500";
+        if (strlen($this->description) < 10 || strlen($this->description) > 200) {
+            $this->error = "description-length-must-be-between-10-and-200";
             return true;
         }
 
