@@ -7,10 +7,9 @@ class LoginController extends Mvc\Controller {
      */
     public function index() {
         if (!isset($_SESSION['uid'])) {
-            // saves the error, the email and the username if something goes wrong
+            // saves the error, the email if something goes wrong
             $data['form']['error'] = $_GET['error'] ?? "";
             $data['form']['email'] = $_GET['email'] ?? "";
-            $data['form']['username'] = $_GET['username'] ?? "";
 
             // formats the error
             $data['form']['error'] = SignupModel::formatError($data['form']['error']);
