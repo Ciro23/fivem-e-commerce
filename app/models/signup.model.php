@@ -8,24 +8,14 @@ class SignupModel extends Mvc\Model {
     public $error = "";
 
     /**
-     * @var string $email
+     * @var array $data contains all form data
      */
-    public $email;
-
-    /**
-     * @var string $username
-     */
-    public $username;
-
-    /**
-     * @var string $password
-     */
-    private $password;
-
-    /**
-     * @var string $rePassword
-     */
-    private $rePassword;
+    public $data = [
+        "email" => "",
+        "username" => "",
+        "password" => "",
+        "rePassword" => ""
+    ];
 
     /**
      * replaces dashes with spaces and uppercase the first character of an error
@@ -65,7 +55,7 @@ class SignupModel extends Mvc\Model {
         }
 
         // hashes the password
-        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+        $this->data['password'] = password_hash($this->data['password'], PASSWORD_BCRYPT);
 
         // insert the data into the db and creates the session
         if ($this->insertIntoDb()) {
@@ -85,17 +75,17 @@ class SignupModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateEmail($userModel) {
-        if (empty($this->email)) {
+        if (empty($this->data['email'])) {
             $this->error = "email-cant-be-empty";
             return true;
         }
 
-        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->error = "invalid-email-format";
             return true;
         }
 
-        if ($userModel->doesEmailExists($this->email)) {
+        if ($userModel->doesEmailExists($this->data['email'])) {
             // checks if the error is db related
             if ($userModel->PDOError) {
                 $this->error = "something-went-wrong";
@@ -114,17 +104,17 @@ class SignupModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateUsername() {
-        if (empty($this->username)) {
+        if (empty($this->data['username'])) {
             $this->error = "username-cant-be-empty";
             return true;
         }
 
-        if (!preg_match("/^[A-Za-z0-9]+$/", $this->username)) {
+        if (!preg_match("/^[A-Za-z0-9]+$/", $this->data['username'])) {
             $this->error = "username-can-only-contains-alphanumeric-characters";
             return true;
         }
 
-        if (strlen($this->username) < 4 || strlen($this->username) > 20) {
+        if (strlen($this->data['username']) < 4 || strlen($this->data['username']) > 20) {
             $this->error = "username-length-must-be-between-4-and-20";
             return true;
         }
@@ -138,17 +128,17 @@ class SignupModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validatePassword() {
-        if (empty($this->password)) {
+        if (empty($this->data['password'])) {
             $this->error = "password-cant-be-empty";
             return true;
         }
 
-        if (strlen($this->password) < 6 || strlen($this->password) > 72) {
+        if (strlen($this->data['password']) < 6 || strlen($this->data['password']) > 72) {
             $this->error = "password-length-must-be-between-6-and-72";
             return true;
         }
 
-        if ($this->password != $this->rePassword) {
+        if ($this->data['password'] != $this->data['rePassword']) {
             $this->error = "passwords-do-not-match";
             return true;
         }
@@ -163,7 +153,7 @@ class SignupModel extends Mvc\Model {
      */
     private function insertIntoDb() {
         $sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
-        $inParameters = [$this->email, $this->username, $this->password];
+        $inParameters = [$this->data['email'], $this->data['username'], $this->data['password']];
 
         // tries to run the query
         if ($this->executeStmt($sql, $inParameters)) {

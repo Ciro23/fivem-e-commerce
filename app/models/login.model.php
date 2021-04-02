@@ -8,14 +8,12 @@ class LoginModel extends Mvc\Model {
     public $error = "";
 
     /**
-     * @var string $email
+     * @var array $data contains all form data
      */
-    public $email;
-
-    /**
-     * @var string $password
-     */
-    private $password;
+    private $data = [
+        "email" => "",
+        "password" => "",
+    ];
 
     /**
      * performs the login action
@@ -29,8 +27,8 @@ class LoginModel extends Mvc\Model {
         extract($_POST);
 
         // sanitizes the input
-        $this->email = htmlspecialchars($email);
-        $this->password = htmlspecialchars($password);
+        $this->data['email'] = htmlspecialchars($email);
+        $this->data['password'] = htmlspecialchars($password);
 
         // checks for errors
         if (
@@ -42,7 +40,7 @@ class LoginModel extends Mvc\Model {
 
         // insert the data into the db and creates the session
         if ($this->areCredentialsCorrect($userModel)) {
-            $_SESSION['uid'] = $userModel->getId($this->email);
+            $_SESSION['uid'] = $userModel->getId($this->data['email']);
             return true;
         }
 
@@ -69,7 +67,7 @@ class LoginModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateEmail() {
-        if (empty($this->email)) {
+        if (empty($this->data['email'])) {
             $this->error = "email-cant-be-empty";
             return true;
         }
@@ -83,7 +81,7 @@ class LoginModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validatePassword() {
-        if (empty($this->password)) {
+        if (empty($this->data['password'])) {
             $this->error = "password-cant-be-empty";
             return true;
         }
@@ -99,7 +97,7 @@ class LoginModel extends Mvc\Model {
      * @return bool success status
      */
     private function areCredentialsCorrect($userModel) {
-        if (password_verify($this->password, $userModel->getPassword($this->email))) {
+        if (password_verify($this->data['password'], $userModel->getPassword($this->data['email']))) {
             return true;
         }
         $this->PDOError = true;

@@ -8,34 +8,16 @@ class ModUploadModel extends Mvc\Model {
     public $error = "";
 
     /**
-     * @var string $name
+     * @var array $data contains all form data
      */
-    public $name;
-
-    /**
-     * @var string $description
-     */
-    public $description;
-
-    /**
-     * @var string $version
-     */
-    public $version;
-
-    /**
-     * @var int $author
-     */
-    private $author;
-
-    /**
-     * @var array $file
-     */
-    private $file;
-
-    /**
-     * @var array $image
-     */
-    private $image;
+    private $data = [
+        "name" => "",
+        "description" => "",
+        "version" => "",
+        "author" => "",
+        "file" => "",
+        "image" => ""
+    ];
 
     /**
      * @var array $allowedExt
@@ -67,12 +49,12 @@ class ModUploadModel extends Mvc\Model {
         $version = htmlspecialchars($version);
 
         // saves data into class properties
-        $this->name = $name;
-        $this->description = $description;
-        $this->version = $version;
-        $this->author = $_SESSION['uid'];
-        $this->file = $_FILES['file'];
-        $this->image = $_FILES['image'];
+        $this->data['name'] = $name;
+        $this->data['description'] = $description;
+        $this->data['version'] = $version;
+        $this->data['author'] = $_SESSION['uid'];
+        $this->data['file'] = $_FILES['file'];
+        $this->data['image'] = $_FILES['image'];
 
         // checks for errors
         if (
@@ -86,7 +68,7 @@ class ModUploadModel extends Mvc\Model {
         }
 
         // new file name and path
-        $newFileName = $this->name . "-" . $this->lastInsertId();
+        $newFileName = $this->data['name'] . "-" . $this->lastInsertId();
         $newFilePath = $_ENV['modsFolder'] . $newFileName;
 
         // new image path
@@ -95,8 +77,8 @@ class ModUploadModel extends Mvc\Model {
         // tries to insert the data into the db and to store the uploaded files
         if (
             $this->insertIntoDb()
-            && move_uploaded_file($this->file['tmp_name'], $newFilePath)
-            && move_uploaded_file($this->image['tmp_name'], $newImagePath)
+            && move_uploaded_file($this->data['file']['tmp_name'], $newFilePath)
+            && move_uploaded_file($this->data['image']['tmp_name'], $newImagePath)
         ) {
             return true;
         }
@@ -111,17 +93,17 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateName() {
-        if (empty($this->name)) {
+        if (empty($this->data['name'])) {
             $this->error = "name-cant-be-empty";
             return true;
         }
 
-        if (!preg_match("/^[A-Za-z0-9]+$/", $this->name)) {
+        if (!preg_match("/^[A-Za-z0-9]+$/", $this->data['name'])) {
             $this->error = "name-can-only-contains-alphanumeric-characters";
             return true;
         }
 
-        if (strlen($this->name) < 4 || strlen($this->name) > 20) {
+        if (strlen($this->data['name']) < 4 || strlen($this->data['name']) > 20) {
             $this->error = "name-length-must-be-between-4-and-20";
             return true;
         }
@@ -135,12 +117,12 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateDescription() {
-        if (empty($this->description)) {
+        if (empty($this->data['description'])) {
             $this->error = "description-cant-be-empty";
             return true;
         }
 
-        if (strlen($this->description) < 10 || strlen($this->description) > 200) {
+        if (strlen($this->data['description']) < 10 || strlen($this->data['description']) > 200) {
             $this->error = "description-length-must-be-between-10-and-200";
             return true;
         }
@@ -154,12 +136,12 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateVersion() {
-        if (empty($this->version)) {
+        if (empty($this->data['version'])) {
             $this->error = "version-cant-be-empty";
             return true;
         }
 
-        if (!preg_match("/\d+(?:\.\d+){1,2}/", $this->version)) {
+        if (!preg_match("/\d+(?:\.\d+){1,2}/", $this->data['version'])) {
             $this->error = "invalid-version-format";
             return true;
         }
@@ -171,19 +153,19 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateFile() {
-        if (empty($this->file)) {
+        if (empty($this->data['file'])) {
             $this->error = "file-cant-be-empty";
             return true;
         }
 
-        $extension = $this->getExtension($this->file['name']);
+        $extension = $this->getExtension($this->data['file']['name']);
 
         if (!in_array($extension, $this->allowedExt['file'])) {
             $this->error = "file-must-be-zip-or-rar";
             return true;
         }
 
-        if ($this->file['size'] > 50000000) {
+        if ($this->data['file']['size'] > 50000000) {
             $this->error = "file-maximum-size-is-50-mb";
             return true;
         }
@@ -195,19 +177,19 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateImage() {
-        if (empty($this->image)) {
+        if (empty($this->data['image'])) {
             $this->error = "image-cant-be-empty";
             return true;
         }
 
-        $extension = $this->getExtension($this->image['name']);
+        $extension = $this->getExtension($this->data['image']['name']);
 
         if (!in_array($extension, $this->allowedExt['image'])) {
             $this->error = "image-must-be-jpg-or-png";
             return true;
         }
 
-        if ($this->image['size'] > 2000000) {
+        if ($this->data['image']['size'] > 2000000) {
             $this->error = "image-maximum-size-is-2-mb";
             return true;
         }
@@ -232,11 +214,11 @@ class ModUploadModel extends Mvc\Model {
     private function insertIntoDb() {
         $sql = "INSERT INTO mods (name, description, version, size, author) VALUES (?, ?, ?, ?, ?)";
         $inParameters = [
-            $this->name,
-            $this->description,
-            $this->version,
-            $this->file['size'],
-            $this->author
+            $this->data['name'],
+            $this->data['description'],
+            $this->data['version'],
+            $this->data['file']['size'],
+            $this->data['author']
         ];
 
         // tries to run the query
