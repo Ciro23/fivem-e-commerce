@@ -22,8 +22,12 @@ class InputHelper {
         foreach ($form as $keyForm => $valueForm) {
             foreach ($array as $keyArray => $valueArray) {
                 if ($keyForm == $keyArray) {
-                    // sanitizes and store the input
-                    $array[$keyArray] = htmlspecialchars($valueForm);
+                    // if the var type is string, sanitizes it
+                    if (gettype($valueForm) == "string") {
+                        $valueForm = htmlspecialchars($valueForm);
+                    }
+                    // stores the input
+                    $array[$keyArray] = $valueForm;
                 }
             }
         }
