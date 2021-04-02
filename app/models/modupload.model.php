@@ -40,21 +40,11 @@ class ModUploadModel extends Mvc\Model {
      * @return bool success status
      */
     public function upload() {
-        // gets user input
-        extract($_POST);
+        // gets the form input
+        $this->data = InputHelper::getFormInput($this->data, $_POST);
+        $this->data = InputHelper::getFormInput($this->data, $_FILES);
 
-        // sanitizes user input
-        $name = htmlspecialchars($name);
-        $description = htmlspecialchars($description);
-        $version = htmlspecialchars($version);
-
-        // saves data into class properties
-        $this->data['name'] = $name;
-        $this->data['description'] = $description;
-        $this->data['version'] = $version;
         $this->data['author'] = $_SESSION['uid'];
-        $this->data['file'] = $_FILES['file'];
-        $this->data['image'] = $_FILES['image'];
 
         // checks for errors
         if (

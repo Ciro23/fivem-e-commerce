@@ -23,12 +23,8 @@ class LoginModel extends Mvc\Model {
      * @return bool success status
      */
     public function login($userModel) {
-        // gets user input from the html form
-        extract($_POST);
-
-        // sanitizes the input
-        $this->data['email'] = htmlspecialchars($email);
-        $this->data['password'] = htmlspecialchars($password);
+        // gets form input
+        $this->data = InputHelper::getFormInput($this->data, $_POST);
 
         // checks for errors
         if (

@@ -36,14 +36,8 @@ class SignupModel extends Mvc\Model {
      * @return bool success status
      */
     public function signup($userModel) {
-        // gets user input from the html form
-        extract($_POST);
-
-        // sanitizes the input
-        $this->email = htmlspecialchars($email);
-        $this->username = htmlspecialchars($username);
-        $this->password = htmlspecialchars($password);
-        $this->rePassword = htmlspecialchars($rePassword);
+        // gets the form input
+        $this->data = InputHelper::getFormInput($this->data, $_POST);
 
         // checks for errors
         if (
@@ -58,8 +52,10 @@ class SignupModel extends Mvc\Model {
         $this->data['password'] = password_hash($this->data['password'], PASSWORD_BCRYPT);
 
         // insert the data into the db and creates the session
-        if ($this->insertIntoDb()) {
-            $_SESSION['uid'] = $this->lastInsertId();
+        if (
+            $this->insertIntoDb()
+            && $_SESSION['uid'] = $userModel->getId($this->data['email'])
+        ) {
             return true;
         }
         // in case of query failure
