@@ -14,7 +14,7 @@ class ModUploadController extends Mvc\Controller {
             $data['form']['version'] = $_GET['version'] ?? "";
 
             // formats the error
-            $data['form']['error'] = SignupModel::formatError($data['form']['error']);
+            $data['form']['error'] = StringHelper::formatError($data['form']['error']);
 
             $this->view("modupload", $data);
         } else {
@@ -35,11 +35,11 @@ class ModUploadController extends Mvc\Controller {
             header("Location: /mod/upload/?error="
                 . $modModel->error
                 . "&name="
-                . $modModel->name
+                . $modModel->data['name']
                 . "&version="
-                . $modModel->version
+                . $modModel->data['version']
                 . "&description="
-                . $modModel->description);
+                . $modModel->data['description']);
         }
     }
 }

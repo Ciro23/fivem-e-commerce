@@ -12,7 +12,7 @@ class LoginController extends Mvc\Controller {
             $data['form']['email'] = $_GET['email'] ?? "";
 
             // formats the error
-            $data['form']['error'] = SignupModel::formatError($data['form']['error']);
+            $data['form']['error'] = StringHelper::formatError($data['form']['error']);
 
             $this->view("login", $data);
         } else {
@@ -34,7 +34,7 @@ class LoginController extends Mvc\Controller {
             header("Location: /login/?error="
                 . $loginModel->error
                 . "&email="
-                . $loginModel->email);
+                . $loginModel->data['email']);
         }
     }
 
