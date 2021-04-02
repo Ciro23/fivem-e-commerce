@@ -9,7 +9,8 @@
         "classmap": [
             "app/core/",
             "app/controllers/",
-            "app/models/"
+            "app/models/",
+            "app/helpers"
         ]
     }
 }
