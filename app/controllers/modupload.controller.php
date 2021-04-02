@@ -7,7 +7,7 @@ class ModUploadController extends Mvc\Controller {
      */
     public function index() {
         if (isset($_SESSION['uid'])) {
-            // saves the error, the email if something goes wrong
+            // saves the error, and all the form data if something goes wrong
             $data['form']['error'] = $_GET['error'] ?? "";
             $data['form']['name'] = $_GET['name'] ?? "";
             $data['form']['description'] = $_GET['description'] ?? "";
