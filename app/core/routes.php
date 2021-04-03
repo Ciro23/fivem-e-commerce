@@ -13,9 +13,12 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute("POST", "/{type:login}/action[/]", "LoginController/login");
     $r->addRoute("GET", "/logout[/]", "LoginController/logout");
 
-    // mod routes
+    // mod upload routes
     $r->addRoute("GET", "/mod/upload[/[?{error}]]", "ModUploadController/index");
     $r->addRoute("POST", "/mod/upload/action[/]", "ModUploadController/upload");
+
+    // mod approve routes
+    $r->addRoute("GET", "/mod/{id:\d+}/update-status/{status:\d+}[/]", "ModApproveController/updateStatus");
 
     // user routes
     $r->addRoute("GET", "/user/{user}[/]", "UserController/index");
