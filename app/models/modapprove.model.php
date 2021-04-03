@@ -30,12 +30,31 @@ class ModApproveModel extends Mvc\Model {
         $this->data['mod_id'] = intval($modId);
         $this->data['status'] = intval($status);
 
+        // checks for error
+        if ($this->validateStatus()) {
+            return false;
+        }
+
         // update the status in the db
         if ($this->updateStatusInDb($status)) {
             return true;
         }
         // in case of pdo error
         $this->error = "something-went-wrong";
+        return false;
+    }
+
+    /**
+     * checks for errors in the status
+     * 
+     * @return bool true on error, false othewise
+     */
+    private function validateStatus() {
+        if (!in_array($this->data['status'], $this->allowedStatuses)) {
+            $this->error = "invalid-status";
+            return true;
+        }
+        
         return false;
     }
 
