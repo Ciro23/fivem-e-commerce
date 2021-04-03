@@ -212,13 +212,15 @@ class ModUploadModel extends Mvc\Model {
      * @return bool success status
      */
     private function insertIntoDb() {
-        $sql = "INSERT INTO mods (name, description, version, size, author) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO mods (name, description, version, size, author, file_ext, image_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $inParameters = [
             $this->data['name'],
             $this->data['description'],
             $this->data['version'],
             $this->data['file']['size'],
-            $this->data['author']
+            $this->data['author'],
+            $this->data['file']['ext'],
+            $this->data['image']['ext']
         ];
 
         // tries to run the query
