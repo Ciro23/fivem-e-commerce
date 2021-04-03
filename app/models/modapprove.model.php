@@ -8,9 +8,14 @@ class ModApproveModel extends Mvc\Model {
     public $error = "";
 
     /**
-     * @var int $modId
+     * @var array $data
      */
-    private $modId;
+    private $data = [
+        "mod_id" => "",
+        "status" => ""
+    ];
+
+    private $allowedStatuses = [0, 1, 2];
 
     /**
      * updates the mod status
@@ -21,8 +26,9 @@ class ModApproveModel extends Mvc\Model {
      * @return bool success status
      */
     public function updateStatus($modId, $status) {
-        // saves the mod id in the class properties
-        $this->modId = $modId;
+        // saves the mod id and the status in the class properties
+        $this->data['mod_id'] = intval($modId);
+        $this->data['status'] = intval($status);
 
         // update the status in the db
         if ($this->updateStatusInDb($status)) {
@@ -42,7 +48,7 @@ class ModApproveModel extends Mvc\Model {
      */
     private function updateStatusInDb($status) {
         $sql = "UPDATE mods SET status = ? WHERE id = ?";
-        $inParamters = [$status, $this->modId];
+        $inParamters = [$this->data['status'], $this->data['mod_id']];
 
         // tries to run the query
         if ($this->executeStmt($sql, $inParamters)) {
