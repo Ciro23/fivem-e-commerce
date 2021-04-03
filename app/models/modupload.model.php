@@ -93,8 +93,8 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        if (strlen($this->data['name']) < 4 || strlen($this->data['name']) > 20) {
-            $this->error = "name-length-must-be-between-4-and-20";
+        if (strlen($this->data['name']) < 4 || strlen($this->data['name']) > 30) {
+            $this->error = "name-length-must-be-between-4-and-30";
             return true;
         }
 
