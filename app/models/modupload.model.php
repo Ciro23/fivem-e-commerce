@@ -48,6 +48,10 @@ class ModUploadModel extends Mvc\Model {
 
         $this->data['author'] = $_SESSION['uid'];
 
+        // saves the extension of the file and the image
+        $this->data['file']['ext'] = $this->getExtension($this->data['file']);
+        $this->data['image']['ext'] = $this->getExtension($this->data['image']);
+
         // checks for errors
         if (
             $this->validateName($modModel)
@@ -60,10 +64,10 @@ class ModUploadModel extends Mvc\Model {
         }
 
         // the file new name is the mod name + the file extension
-        $newFileName = $this->data['name'] . "." . $this->getExtension($this->data['file']['name']);
+        $newFileName = $this->data['name'] . "." . $this->data['file']['ext'];
 
         // the image new name is the mod name + the image extension
-        $newImageName = $this->data['name'] . "." . $this->getExtension($this->data['image']['name']);
+        $newImageName = $this->data['name'] . "." . $this->data['image']['ext'];
 
         // new paths for the file and the image
         $newFilePath = $_ENV['modsFolder'] . $newFileName;
@@ -158,9 +162,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        $extension = $this->getExtension($this->data['file']['name']);
-
-        if (!in_array($extension, $this->allowedExt['file'])) {
+        if (!in_array($this->data['file']['ext'], $this->allowedExt['file'])) {
             $this->error = "file-must-be-zip-or-rar";
             return true;
         }
@@ -182,9 +184,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        $extension = $this->getExtension($this->data['image']['name']);
-
-        if (!in_array($extension, $this->allowedExt['image'])) {
+        if (!in_array($this->data['image']['ext'], $this->allowedExt['image'])) {
             $this->error = "image-must-be-jpg-or-png";
             return true;
         }
