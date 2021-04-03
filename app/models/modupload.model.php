@@ -37,9 +37,11 @@ class ModUploadModel extends Mvc\Model {
     /**
      * performs the upload action
      * 
+     * @param object $modModel
+     * 
      * @return bool success status
      */
-    public function upload() {
+    public function upload($modModel) {
         // gets the form input
         $this->data = InputHelper::getFormInput($this->data, $_POST);
         $this->data = InputHelper::getFormInput($this->data, $_FILES);
@@ -48,7 +50,7 @@ class ModUploadModel extends Mvc\Model {
 
         // checks for errors
         if (
-            $this->validateName()
+            $this->validateName($modModel)
             || $this->validateDescription()
             || $this->validateVersion()
             || $this->validateFile()
@@ -82,9 +84,14 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateName() {
+    private function validateName($modModel) {
         if (empty($this->data['name'])) {
             $this->error = "name-cant-be-empty";
+            return true;
+        }
+
+        if ($modModel->doesNameExists($this->data['name'])) {
+            $this->error = "name-is-already-taken";
             return true;
         }
 
