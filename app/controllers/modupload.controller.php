@@ -27,9 +27,10 @@ class ModUploadController extends Mvc\Controller {
      */
     public function upload() {
         $modUploadModel = $this->model("ModUpload");
+        $modModel = $this->model("Mod");
 
         // tries to upload the mod
-        if ($modUploadModel->upload()) {
+        if ($modUploadModel->upload($modModel)) {
             header("Location: /");
         } else {
             header("Location: /mod/upload/?error="
