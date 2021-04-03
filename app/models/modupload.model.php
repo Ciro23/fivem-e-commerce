@@ -59,12 +59,15 @@ class ModUploadModel extends Mvc\Model {
             return false;
         }
 
-        // new file name and path
-        $newFileName = $this->data['name'] . "-" . $this->lastInsertId();
-        $newFilePath = $_ENV['modsFolder'] . $newFileName;
+        // the file new name is the mod name + the file extension
+        $newFileName = $this->data['name'] . "." . $this->getExtension($this->data['file']['name']);
 
-        // new image path
-        $newImagePath = $_ENV['imgsFolder'] . $newFileName;
+        // the image new name is the mod name + the image extension
+        $newImageName = $this->data['name'] . "." . $this->getExtension($this->data['image']['name']);
+
+        // new paths for the file and the image
+        $newFilePath = $_ENV['modsFolder'] . $newFileName;
+        $newImagePath = $_ENV['imgsFolder'] . $newImageName;
 
         // tries to insert the data into the db and to store the uploaded files
         if (
