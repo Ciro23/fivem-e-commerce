@@ -41,7 +41,7 @@ class ModApproveModel extends Mvc\Model {
      * @return bool success status
      */
     private function updateStatusInDb($status) {
-        $sql = "UPDATE mod SET status = ? WHERE id = ?";
+        $sql = "UPDATE mods SET status = ? WHERE id = ?";
         $inParamters = [$status, $this->modId];
 
         // tries to run the query
