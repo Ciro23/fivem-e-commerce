@@ -62,4 +62,23 @@ class UserModel extends Mvc\Model {
         $this->PDOError = true;
         return false;
     }
+
+    /**
+     * gets the user role
+     * 
+     * @param int $id
+     * 
+     * @return int|false role in case of success, false otherwise
+     */
+    public function getRole($id) {
+        $sql = "SELECT role FROM users WHERE id = ?";
+        $query = $this->executeStmt($sql, [$id]);
+
+        // tries to run the query
+        if ($query) {
+            return $query->fetch(PDO::FETCH_COLUMN);
+        }
+        $this->PDOError = true;
+        return false;
+    }
 }
