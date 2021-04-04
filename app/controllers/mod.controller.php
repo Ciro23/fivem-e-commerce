@@ -13,7 +13,7 @@ class ModController extends Mvc\Controller {
         // gets the mod data
         $data = $modModel->getDetails($modId);
 
-        if ($data !== null) {
+        if ($data) {
             $this->view("mod", $data);
         } else {
             $this->view("pagenotfound");
