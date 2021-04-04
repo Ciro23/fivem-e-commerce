@@ -5,7 +5,7 @@ class ModApproveModel extends Mvc\Model {
     /**
      * @var string $error
      */
-    public $error = "";
+    private $error = "";
 
     /**
      * @var array $data
@@ -16,6 +16,15 @@ class ModApproveModel extends Mvc\Model {
     ];
 
     private $allowedStatuses = [0, 1, 2];
+
+    /**
+     * returns the error
+     * 
+     * @return error
+     */
+    public function getError() {
+        return $this->error;
+    }
 
     /**
      * updates the mod status

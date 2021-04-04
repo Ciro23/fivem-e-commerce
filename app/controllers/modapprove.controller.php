@@ -1,7 +1,7 @@
 <?php
 
 class ModApproveController extends Mvc\Controller {
-    
+
     /**
      * updates the mod status
      * 
@@ -15,7 +15,10 @@ class ModApproveController extends Mvc\Controller {
         if ($modApproveModel->updateStatus($modId, $status, $userModel)) {
             header("Location: /mod/" . $modId);
         } else {
-            header("Location: /mod/" . $modId . "/?error=" . $modApproveModel->error);
+            header("Location: /mod/"
+                . $modId
+                . "/?error="
+                . $modApproveModel->getError());
         }
     }
 }

@@ -32,9 +32,9 @@ class LoginController extends Mvc\Controller {
             // ! success
         } else {
             header("Location: /login/?error="
-                . $loginModel->error
+                . $loginModel->getError()
                 . "&email="
-                . $loginModel->data['email']);
+                . $loginModel->getEmail());
         }
     }
 

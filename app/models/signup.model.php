@@ -5,17 +5,44 @@ class SignupModel extends Mvc\Model {
     /**
      * @var string $error
      */
-    public $error = "";
+    private $error = "";
 
     /**
      * @var array $data contains all form data
      */
-    public $data = [
+    private $data = [
         "email" => "",
         "username" => "",
         "password" => "",
         "rePassword" => ""
     ];
+
+    /**
+     * returns the error
+     * 
+     * @return string
+     */
+    public function getError() {
+        return $this->error;
+    }
+
+    /**
+     * returns the email
+     * 
+     * @return string
+     */
+    public function getEmail() {
+        return $this->data['email'];
+    }
+
+    /**
+     * returns the username
+     * 
+     * @return string
+     */
+    public function getUsername() {
+        return $this->data['username'];
+    }
 
     /**
      * performs the signup action

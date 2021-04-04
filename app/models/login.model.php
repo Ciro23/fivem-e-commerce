@@ -5,7 +5,7 @@ class LoginModel extends Mvc\Model {
     /**
      * @var string $error
      */
-    public $error = "";
+    private $error = "";
 
     /**
      * @var array $data contains all form data
@@ -14,6 +14,24 @@ class LoginModel extends Mvc\Model {
         "email" => "",
         "password" => "",
     ];
+
+    /**
+     * returns the error
+     * 
+     * @return string
+     */
+    public function getError() {
+        return $this->error;
+    }
+
+    /**
+     * returns the email
+     * 
+     * @return string
+     */
+    public function getEmail() {
+        return $this->data['email'];
+    }
 
     /**
      * performs the login action

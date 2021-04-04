@@ -5,7 +5,7 @@ class ModUploadModel extends Mvc\Model {
     /**
      * @var string $error
      */
-    public $error = "";
+    private $error = "";
 
     /**
      * @var array $data contains all form data
@@ -33,6 +33,42 @@ class ModUploadModel extends Mvc\Model {
             'png'
         ]
     ];
+
+    /**
+     * returns the error
+     * 
+     * @return string
+     */
+    public function getError() {
+        return $this->error;
+    }
+
+    /**
+     * returns the mod name
+     * 
+     * @return string
+     */
+    public function getName() {
+        return $this->data['name'];
+    }
+
+    /**
+     * returns the mod description
+     * 
+     * @return string
+     */
+    public function getDescription() {
+        return $this->data['description'];
+    }
+
+    /**
+     * returns the mod version
+     * 
+     * @return string
+     */
+    public function getVersion() {
+        return $this->data['version'];
+    }
 
     /**
      * performs the upload action
