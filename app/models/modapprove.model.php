@@ -56,7 +56,7 @@ class ModApproveModel extends Mvc\Model {
      * @return true success status
      */
     private function isUserAdmin($userModel) {
-        if ($userModel->isAdmin($_SESSION['uid']) == 1) {
+        if ($userModel->getRole($_SESSION['uid']) == 1) {
             return true;
         }
         $this->error = "permission-denied";
