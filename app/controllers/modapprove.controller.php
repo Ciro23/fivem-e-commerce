@@ -10,8 +10,9 @@ class ModApproveController extends Mvc\Controller {
      */
     public function updateStatus($modId, $status) {
         $modApproveModel = $this->model("ModApprove");
+        $userModel = $this->model("User");
 
-        if ($modApproveModel->updateStatus($modId, $status)) {
+        if ($modApproveModel->updateStatus($modId, $status, $userModel)) {
             header("Location: /mod/" . $modId);
         } else {
             header("Location: /mod/" . $modId . "/?error=" . $modApproveModel->error);
