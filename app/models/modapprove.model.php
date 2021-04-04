@@ -22,16 +22,20 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @param int $modId
      * @param int $status (0 => rejected, 1 => pending, 2 => approved)
+     * @param object $userModel
      * 
      * @return bool success status
      */
-    public function updateStatus($modId, $status) {
+    public function updateStatus($modId, $status, $userModel) {
         // saves the mod id and the status in the class properties
         $this->data['mod_id'] = intval($modId);
         $this->data['status'] = intval($status);
 
         // checks for error
-        if ($this->validateStatus()) {
+        if (
+            !$this->isUserAdmin($userModel)
+            || $this->validateStatus()
+        ) {
             return false;
         }
 
@@ -41,6 +45,21 @@ class ModApproveModel extends Mvc\Model {
         }
         // in case of pdo error
         $this->error = "something-went-wrong";
+        return false;
+    }
+
+    /**
+     * checks if the user is an admin
+     * 
+     * @param object $userModel
+     * 
+     * @return true success status
+     */
+    private function isUserAdmin($userModel) {
+        if ($userModel->isAdmin($_SESSION['uid']) == 1) {
+            return true;
+        }
+        $this->error = "permission-denied";
         return false;
     }
 
