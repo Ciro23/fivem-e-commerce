@@ -15,7 +15,7 @@ class ModApproveController extends Mvc\Controller {
         ) {
             // gets the list of mods to approve
             $modModel = $this->model("Mod");
-            $data = $modModel->getList(1);
+            $data['mods'] = $modModel->getList(1);
 
             $this->view("modapprove", $data);
         } else {
