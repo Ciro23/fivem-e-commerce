@@ -64,6 +64,20 @@ class UserModel extends Mvc\Model {
     }
 
     /**
+     * checks if the user is admin
+     * 
+     * @param int $id
+     * 
+     * @return bool success status
+     */
+    public function isAdmin($id) {
+        if ($this->getRole($id) == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * gets the user role
      * 
      * @param int $id
