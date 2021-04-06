@@ -22,6 +22,25 @@ class ModModel extends Mvc\Model {
     }
 
     /**
+     * gets mod list by their status
+     * 
+     * @param int $status (0 => rejected, 1 => pending, 2 => approved)
+     * 
+     * @return array|false first contains mod list, false in case of error
+     */
+    public function getList($status) {
+        $sql = "SELECT * FROM mods WHERE status = ?";
+        $query = $this->executeStmt($sql, [$status]);
+
+        // tries to run the query
+        if ($query) {
+            // returns an associative array with the mod data
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return false;
+    }
+
+    /**
      * checks if the mod name already exists in the db
      * 
      * @param string $name
