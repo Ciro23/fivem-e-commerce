@@ -21,6 +21,13 @@ class ModModel extends Mvc\Model {
         return false;
     }
 
+    /**
+     * checks if the mod name already exists in the db
+     * 
+     * @param string $name
+     * 
+     * @return bool success status
+     */
     public function doesNameExists($name) {
         $sql = "SELECT COUNT(*) FROM mods WHERE name = ?";
         $query = $this->executeStmt($sql, [$name]);
