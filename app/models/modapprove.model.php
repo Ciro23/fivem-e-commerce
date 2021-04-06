@@ -73,7 +73,7 @@ class ModApproveModel extends Mvc\Model {
     }
 
     /**
-     * checks for errors in the status
+     * checks if the status is valid
      * 
      * @return bool true on error, false othewise
      */

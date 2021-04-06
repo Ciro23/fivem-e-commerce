@@ -76,7 +76,7 @@ class LoginModel extends Mvc\Model {
     }
 
     /**
-     * validates the email
+     * checks if the email is valid
      * 
      * @return bool true on error, false otherwise
      */
@@ -90,7 +90,7 @@ class LoginModel extends Mvc\Model {
     }
 
     /**
-     * validates the password
+     * checks if the password is valid
      * 
      * @return bool true on error, false otherwise
      */

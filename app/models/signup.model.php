@@ -80,7 +80,7 @@ class SignupModel extends Mvc\Model {
     }
 
     /**
-     * validates the email
+     * checks if the email is valid
      * 
      * @param object $userModel
      * 
@@ -111,7 +111,7 @@ class SignupModel extends Mvc\Model {
     }
 
     /**
-     * validate the username
+     * checks if the username is valid
      * 
      * @return bool true on error, false otherwise
      */
@@ -135,7 +135,7 @@ class SignupModel extends Mvc\Model {
     }
 
     /**
-     * validate the password
+     * che if the password is valid
      * 
      * @return bool true on error, false otherwise
      */

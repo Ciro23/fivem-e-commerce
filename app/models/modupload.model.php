@@ -123,7 +123,7 @@ class ModUploadModel extends Mvc\Model {
     }
 
     /**
-     * validates the name
+     * checks if the name is valid
      * 
      * @return bool true on error, false otherwise
      */
@@ -152,7 +152,7 @@ class ModUploadModel extends Mvc\Model {
     }
 
     /**
-     * validates the description
+     * checks if the description is valid
      * 
      * @return bool true on error, false otherwise
      */
@@ -171,7 +171,7 @@ class ModUploadModel extends Mvc\Model {
     }
 
     /**
-     * validates the version
+     * checks if the version is valid
      * 
      * @return bool true on error, false otherwise
      */
@@ -188,7 +188,7 @@ class ModUploadModel extends Mvc\Model {
     }
 
     /**
-     * validates the file
+     * checks if the file is valid
      * 
      * @return bool true on error, false otherwise
      */
@@ -210,7 +210,7 @@ class ModUploadModel extends Mvc\Model {
     }
 
     /**
-     * validates the image
+     * checks if the image is valid
      * 
      * @return bool true on error, false otherwise
      */
