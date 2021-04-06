@@ -28,8 +28,7 @@ class LoginController extends Mvc\Controller {
         $userModel = $this->model("User");
 
         if ($loginModel->login($userModel)) {
-            header("Location: ");
-            // ! success
+            header("Location: /");
         } else {
             header("Location: /login/?error="
                 . $loginModel->getError()
