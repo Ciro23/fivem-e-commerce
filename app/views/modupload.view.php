@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<?php include_once __DIR__ . "/../included/header.included.php" ?>
+
+    <!-- this page's css -->
+    <link rel="stylesheet" href="/assets/styles/css/login.style.css">
+
+    <title>Upload mod - <?= $_ENV['site_name'] ?></title>
 </head>
 <body>
     <form action="/mod/upload/action" method="POST" enctype="multipart/form-data">
