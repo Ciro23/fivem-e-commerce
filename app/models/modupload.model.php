@@ -73,14 +73,15 @@ class ModUploadModel extends Mvc\Model {
     /**
      * performs the upload action
      * 
+     * @param array $inputData
      * @param object $modModel
      * 
      * @return bool success status
      */
-    public function upload($modModel) {
+    public function upload($inputData, $modModel) {
         // gets the form input
-        $this->data = InputHelper::getFormInput($this->data, $_POST);
-        $this->data = InputHelper::getFormInput($this->data, $_FILES);
+        $this->data = InputHelper::getFormInput($this->data, $inputData[0]);
+        $this->data = InputHelper::getFormInput($this->data, $inputData[1]);
 
         $this->data['author'] = $_SESSION['uid'];
 
