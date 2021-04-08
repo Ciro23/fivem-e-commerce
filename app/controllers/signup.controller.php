@@ -3,7 +3,7 @@
 class SignupController extends Mvc\Controller {
 
     /**
-     * shows the signup page
+     * shows the signup page only if the user is not logged in
      */
     public function index() {
         if (!isset($_SESSION['uid'])) {

@@ -3,7 +3,7 @@
 class ModUploadController extends Mvc\Controller {
 
     /**
-     * shows the upload mod page
+     * shows the upload mod page only if the user is logged in
      */
     public function index() {
         if (isset($_SESSION['uid'])) {

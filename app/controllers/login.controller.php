@@ -3,7 +3,7 @@
 class LoginController extends Mvc\Controller {
 
     /**
-     * shows the login page
+     * shows the login page only if the user is not logged in
      */
     public function index() {
         if (!isset($_SESSION['uid'])) {

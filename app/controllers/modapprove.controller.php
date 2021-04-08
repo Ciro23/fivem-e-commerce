@@ -3,7 +3,7 @@
 class ModApproveController extends Mvc\Controller {
 
     /**
-     * shows the mod approve page
+     * shows the mod approve page only if the user is admin
      */
     public function index() {
         $userModel = $this->model("User");
