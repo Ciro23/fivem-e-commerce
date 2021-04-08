@@ -138,8 +138,8 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        if (!preg_match("/^[A-Za-z0-9]+$/", $this->data['name'])) {
-            $this->error = "name-can-only-contains-alphanumeric-characters";
+        if (!preg_match("/^[A-Za-z0-9\s]+$/", $this->data['name'])) {
+            $this->error = "name-can-only-contains-alphanumeric-characters-and-spaces";
             return true;
         }
 
