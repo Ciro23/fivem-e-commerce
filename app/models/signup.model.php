@@ -47,13 +47,14 @@ class SignupModel extends Mvc\Model {
     /**
      * performs the signup action
      * 
+     * @param array $inputData
      * @param object $userModel
      * 
      * @return bool success status
      */
-    public function signup($userModel) {
+    public function signup($inputData, $userModel) {
         // gets the form input
-        $this->data = InputHelper::getFormInput($this->data, $_POST);
+        $this->data = InputHelper::getFormInput($this->data, $inputData);
 
         // checks for errors
         if (

@@ -27,7 +27,8 @@ class LoginController extends Mvc\Controller {
         $loginModel = $this->model("Login");
         $userModel = $this->model("User");
 
-        if ($loginModel->login($userModel)) {
+        // tries to execute LoginModel::login(), which returns true in case of success, false otherwise
+        if ($loginModel->login($_POST, $userModel)) {
             header("Location: /");
         } else {
             header("Location: /login/?error="

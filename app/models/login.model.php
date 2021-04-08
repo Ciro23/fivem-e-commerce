@@ -36,13 +36,14 @@ class LoginModel extends Mvc\Model {
     /**
      * performs the login action
      * 
+     * @param array $inputData
      * @param object $userModel
      * 
      * @return bool success status
      */
-    public function login($userModel) {
+    public function login($inputData, $userModel) {
         // gets form input
-        $this->data = InputHelper::getFormInput($this->data, $_POST);
+        $this->data = InputHelper::getFormInput($this->data, $inputData);
 
         // checks for errors
         if (

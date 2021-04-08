@@ -28,7 +28,8 @@ class SignupController extends Mvc\Controller {
         $signupModel = $this->model("Signup");
         $userModel = $this->model("User");
 
-        if ($signupModel->signup($userModel)) {
+        // tries to execute SignupModel::signup(), which returns true in case of success, false otherwise
+        if ($signupModel->signup($_POST, $userModel)) {
             header("Location: /");
         } else {
             header("Location: /signup/?error="
