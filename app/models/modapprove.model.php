@@ -89,11 +89,9 @@ class ModApproveModel extends Mvc\Model {
     /**
      * updates the mod status in the db
      * 
-     * @param int $status (0 => rejected, 1 => pending, 2 => approved)
-     * 
      * @return bool success status
      */
-    private function updateStatusInDb($status) {
+    private function updateStatusInDb() {
         $sql = "UPDATE mods SET status = ? WHERE id = ?";
         $inParamters = [$this->data['status'], $this->data['mod_id']];
 
