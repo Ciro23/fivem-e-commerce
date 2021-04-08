@@ -17,6 +17,9 @@ class ModApproveController extends Mvc\Controller {
             $modModel = $this->model("Mod");
             $data['mods'] = $modModel->getList(1);
 
+            // saves the admin status
+            $data['user']['is_admin'] = true;
+
             $this->view("modapprove", $data);
         } else {
             $this->view("pagenotfound");
