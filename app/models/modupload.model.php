@@ -100,21 +100,10 @@ class ModUploadModel extends Mvc\Model {
             return false;
         }
 
-        // the file new name is the mod name + the file extension
-        $newFileName = $this->data['name'] . "." . $this->data['file']['ext'];
-
-        // the image new name is the mod name + the image extension
-        $newImageName = $this->data['name'] . "." . $this->data['image']['ext'];
-
-        // new paths for the file and the image
-        $newFilePath = $_ENV['modsFolder'] . $newFileName;
-        $newImagePath = $_ENV['imgsFolder'] . $newImageName;
-
         // tries to insert the data into the db and to store the uploaded files
         if (
             $this->insertIntoDb()
-            && move_uploaded_file($this->data['file']['tmp_name'], $newFilePath)
-            && move_uploaded_file($this->data['image']['tmp_name'], $newImagePath)
+            && $this->moveModFiles($this->lastInsertId("mods"))
         ) {
             return true;
         }
@@ -241,6 +230,38 @@ class ModUploadModel extends Mvc\Model {
      */
     private function getExtension($fileName) {
         return pathinfo($fileName)['extension'];
+    }
+
+    /**
+     * moves the uploaded files to the mods folder
+     * creates a new folder named as the new mod id and puts in it the mod file and its image
+     * 
+     * @param int $id the mod id
+     * 
+     * @return bool success status
+     */
+    private function moveModFiles($id) {
+        // creates the new mod folder
+        mkdir($_ENV['mods_folder'] . $id);
+
+        // the file new name is the mod name + the file extension
+        $newFileName = $this->data['name'] . "." . $this->data['file']['ext'];
+
+        // the image new name is the mod name + the image extension
+        $newImageName = $this->data['name'] . "." . $this->data['image']['ext'];
+
+        // new paths for the file and the image
+        $newFilePath = $_ENV['mods_folder'] . $id . "/" . $newFileName;
+        $newImagePath = $_ENV['mods_folder'] . $id . "/" . $newImageName;
+
+        // tries to move the uploaded files
+        if (
+            move_uploaded_file($this->data['file']['tmp_name'], $newFilePath)
+            && move_uploaded_file($this->data['image']['tmp_name'], $newImagePath)
+        ) {
+            return true;
+        }
+        return false;
     }
 
     /**
