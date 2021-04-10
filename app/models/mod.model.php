@@ -59,4 +59,21 @@ class ModModel extends Mvc\Model {
         $this->PDOError = true;
         return false;
     }
+
+    /**
+     * deletes mod row from the db
+     * 
+     * @param int $id
+     * 
+     * @return bool success status
+     */
+    public function deleteModFromDb($id) {
+        $sql = "DELETE FROM mods WHERE id = ?";
+        $inParameters = [$id];
+
+        if ($this->executeStmt($sql, $inParameters)) {
+            return true;
+        }
+        return false;
+    }
 }
