@@ -53,7 +53,7 @@ class LoginModel extends Mvc\Model {
             return false;
         }
 
-        // insert the data into the db and creates the session
+        // checks if the email and password are correct and creates the session
         if ($this->areCredentialsCorrect($userModel)) {
             $_SESSION['uid'] = $userModel->getUserIdByEmail($this->data['email']);
             return true;
