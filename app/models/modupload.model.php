@@ -107,7 +107,12 @@ class ModUploadModel extends Mvc\Model {
         ) {
             return true;
         }
-        // in case of pdo error
+        
+        // in case insertIntoDb() or moveModFiles fails
+        // rollback and deletes mod row in the db and mods folder
+        $this->rollBack($modModel);
+
+        // saves the error and returns
         $this->error = "something-went-wrong";
         return false;
     }
@@ -287,5 +292,18 @@ class ModUploadModel extends Mvc\Model {
         }
         $this->PDOError = true;
         return false;
+    }
+
+    /**
+     * deletes the mod from the db and delete its files from the server
+     * 
+     * @param object $modModel
+     */
+    private function rollBack($modModel) {
+        // deletes mod row from the db
+        $modModel->deleteModFromDb($this->lastInsertId("mods"));
+
+        // deletes mod files from the server
+        $modModel->deleteModFiles();
     }
 }
