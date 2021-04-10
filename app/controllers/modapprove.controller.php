@@ -11,11 +11,11 @@ class ModApproveController extends Mvc\Controller {
         // shows the page only if the user is an admin
         if (
             isset($_SESSION['uid'])
-            && $userModel->isAdmin($_SESSION['uid'])
+            && $userModel->isUserAdmin($_SESSION['uid'])
         ) {
             // gets the list of mods to approve
             $modModel = $this->model("Mod");
-            $data['mods'] = $modModel->getList(1);
+            $data['mods'] = $modModel->getModsByStatus(1);
 
             // saves the admin status
             $data['user']['is_admin'] = true;

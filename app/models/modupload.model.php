@@ -128,7 +128,7 @@ class ModUploadModel extends Mvc\Model {
             return true;
         }
 
-        if ($modModel->doesNameExists($this->data['name'])) {
+        if ($modModel->doesModNameExists($this->data['name'])) {
             $this->error = "name-is-already-taken";
             return true;
         }

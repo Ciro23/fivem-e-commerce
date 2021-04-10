@@ -9,7 +9,7 @@ class UserModel extends Mvc\Model {
      * 
      * @return string|false the email or false on failure
      */
-    public function getPassword($email) {
+    public function getUserPasswordByEmail($email) {
         $sql = "SELECT password FROM users WHERE email = ?";
         $inParameters = [$email];
 
@@ -28,7 +28,7 @@ class UserModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function doesEmailExists($email) {
+    public function doesUserEmailExists($email) {
         $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
         $query = $this->executeStmt($sql, [$email]);
 
@@ -51,7 +51,7 @@ class UserModel extends Mvc\Model {
      * 
      * @return int|false id in case of success, false otherwise
      */
-    public function getId($email) {
+    public function getUserIdByEmail($email) {
         $sql = "SELECT id FROM users WHERE email = ?";
         $query = $this->executeStmt($sql, [$email]);
 
@@ -70,8 +70,8 @@ class UserModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function isAdmin($id) {
-        if ($this->getRole($id) == 1) {
+    public function isUserAdmin($id) {
+        if ($this->getUserRole($id) == 1) {
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ class UserModel extends Mvc\Model {
      * 
      * @return int|false role in case of success, false otherwise
      */
-    public function getRole($id) {
+    public function getUserRole($id) {
         $sql = "SELECT role FROM users WHERE id = ?";
         $query = $this->executeStmt($sql, [$id]);
 

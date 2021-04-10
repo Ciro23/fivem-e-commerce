@@ -71,7 +71,7 @@ class SignupModel extends Mvc\Model {
         // insert the data into the db and creates the session
         if (
             $this->insertIntoDb()
-            && $_SESSION['uid'] = $userModel->getId($this->data['email'])
+            && $_SESSION['uid'] = $userModel->getUserIdByEmail($this->data['email'])
         ) {
             return true;
         }
@@ -98,7 +98,7 @@ class SignupModel extends Mvc\Model {
             return true;
         }
 
-        if ($userModel->doesEmailExists($this->data['email'])) {
+        if ($userModel->doesUserEmailExists($this->data['email'])) {
             // checks if the error is db related
             if ($userModel->PDOError) {
                 $this->error = "something-went-wrong";

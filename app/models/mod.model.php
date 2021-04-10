@@ -9,7 +9,7 @@ class ModModel extends Mvc\Model {
      * 
      * @return array|false first contains mod data, false in case of error
      */
-    public function getDetails($id) {
+    public function getModDetails($id) {
         $sql = "SELECT * FROM mods WHERE id = ?";
 
         // tries to run the query
@@ -27,7 +27,7 @@ class ModModel extends Mvc\Model {
      * 
      * @return array|false first contains mod list, false in case of error
      */
-    public function getList($status) {
+    public function getModsByStatus($status) {
         $sql = "SELECT * FROM mods WHERE status = ?";
 
         // tries to run the query
@@ -45,7 +45,7 @@ class ModModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function doesNameExists($name) {
+    public function doesModNameExists($name) {
         $sql = "SELECT COUNT(*) FROM mods WHERE name = ?";
 
         // tries to run the query

@@ -11,7 +11,7 @@ class ModController extends Mvc\Controller {
         $modModel = $this->model("Mod");
 
         // gets the mod data
-        $data = $modModel->getDetails($modId);
+        $data = $modModel->getModDetails($modId);
 
         if ($data) {
             $this->view("mod", $data);
