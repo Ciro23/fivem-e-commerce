@@ -8,9 +8,9 @@ class LoginModel extends Mvc\Model {
     private $loginError = "";
 
     /**
-     * @var array $data contains all form data
+     * @var array $userData contains all form userData
      */
-    private $data = [
+    private $userData = [
         "email" => "",
         "password" => "",
     ];
@@ -30,7 +30,7 @@ class LoginModel extends Mvc\Model {
      * @return string
      */
     public function getUserEmail() {
-        return $this->data['email'];
+        return $this->userData['email'];
     }
 
     /**
@@ -43,7 +43,7 @@ class LoginModel extends Mvc\Model {
      */
     public function login($inputData, $userModel) {
         // gets form input
-        $this->data = InputHelper::getFormInput($this->data, $inputData);
+        $this->userData = InputHelper::getFormInput($this->userData, $inputData);
 
         // checks for errors
         if (
@@ -55,7 +55,7 @@ class LoginModel extends Mvc\Model {
 
         // checks if the email and password are correct and creates the session
         if ($this->areCredentialsCorrect($userModel)) {
-            $_SESSION['uid'] = $userModel->getUserIdByEmail($this->data['email']);
+            $_SESSION['uid'] = $userModel->getUserIdByEmail($this->userData['email']);
             return true;
         }
 
@@ -82,7 +82,7 @@ class LoginModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateUserEmail() {
-        if (empty($this->data['email'])) {
+        if (empty($this->userData['email'])) {
             $this->loginError = "email-cant-be-empty";
             return true;
         }
@@ -96,7 +96,7 @@ class LoginModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateUserPassword() {
-        if (empty($this->data['password'])) {
+        if (empty($this->userData['password'])) {
             $this->loginError = "password-cant-be-empty";
             return true;
         }
@@ -112,7 +112,7 @@ class LoginModel extends Mvc\Model {
      * @return bool success status
      */
     private function areCredentialsCorrect($userModel) {
-        if (password_verify($this->data['password'], $userModel->getUserPasswordByEmail($this->data['email']))) {
+        if (password_verify($this->userData['password'], $userModel->getUserPasswordByEmail($this->userData['email']))) {
             return true;
         }
         

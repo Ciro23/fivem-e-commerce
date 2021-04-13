@@ -8,9 +8,9 @@ class ModUploadModel extends Mvc\Model {
     private $modUploadError = "";
 
     /**
-     * @var array $data contains all form data
+     * @var array $modData contains all form modData
      */
-    private $data = [
+    private $modData = [
         "name" => "",
         "description" => "",
         "version" => "",
@@ -49,7 +49,7 @@ class ModUploadModel extends Mvc\Model {
      * @return string
      */
     public function getModName() {
-        return $this->data['name'];
+        return $this->modData['name'];
     }
 
     /**
@@ -58,7 +58,7 @@ class ModUploadModel extends Mvc\Model {
      * @return string
      */
     public function getModDescription() {
-        return $this->data['description'];
+        return $this->modData['description'];
     }
 
     /**
@@ -67,7 +67,7 @@ class ModUploadModel extends Mvc\Model {
      * @return string
      */
     public function getModVersion() {
-        return $this->data['version'];
+        return $this->modData['version'];
     }
 
     /**
@@ -80,14 +80,14 @@ class ModUploadModel extends Mvc\Model {
      */
     public function uploadMod($inputData, $modModel) {
         // gets the form input
-        $this->data = InputHelper::getFormInput($this->data, $inputData[0]);
-        $this->data = InputHelper::getFormInput($this->data, $inputData[1]);
+        $this->modData = InputHelper::getFormInput($this->modData, $inputData[0]);
+        $this->modData = InputHelper::getFormInput($this->modData, $inputData[1]);
 
-        $this->data['author'] = $_SESSION['uid'];
+        $this->modData['author'] = $_SESSION['uid'];
 
         // saves the extension of the file and the logo
-        $this->data['file']['ext'] = FileHelper::getFileExtension($this->data['file']['name']);
-        $this->data['logo']['ext'] = FileHelper::getFileExtension($this->data['logo']['name']);
+        $this->modData['file']['ext'] = FileHelper::getFileExtension($this->modData['file']['name']);
+        $this->modData['logo']['ext'] = FileHelper::getFileExtension($this->modData['logo']['name']);
 
         // checks for errors
         if (
@@ -100,7 +100,7 @@ class ModUploadModel extends Mvc\Model {
             return false;
         }
 
-        // tries to insert the data into the db and to store the uploaded files
+        // tries to insert the modData into the db and to store the uploaded files
         if (
             $this->insertIntoDb()
             && $this->moveModFiles($this->lastInsertId("mods"))
@@ -123,22 +123,22 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateModName($modModel) {
-        if (empty($this->data['name'])) {
+        if (empty($this->modData['name'])) {
             $this->modUploadError = "name-cant-be-empty";
             return true;
         }
 
-        if ($modModel->doesModNameExists($this->data['name'])) {
+        if ($modModel->doesModNameExists($this->modData['name'])) {
             $this->modUploadError = "name-is-already-taken";
             return true;
         }
 
-        if (!preg_match("/^[A-Za-z0-9\s]+$/", $this->data['name'])) {
+        if (!preg_match("/^[A-Za-z0-9\s]+$/", $this->modData['name'])) {
             $this->modUploadError = "name-can-only-contains-alphanumeric-characters-and-spaces";
             return true;
         }
 
-        if (strlen($this->data['name']) < 4 || strlen($this->data['name']) > 30) {
+        if (strlen($this->modData['name']) < 4 || strlen($this->modData['name']) > 30) {
             $this->modUploadError = "name-length-must-be-between-4-and-30";
             return true;
         }
@@ -152,12 +152,12 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateModDescription() {
-        if (empty($this->data['description'])) {
+        if (empty($this->modData['description'])) {
             $this->modUploadError = "description-cant-be-empty";
             return true;
         }
 
-        if (strlen($this->data['description']) < 10 || strlen($this->data['description']) > 200) {
+        if (strlen($this->modData['description']) < 10 || strlen($this->modData['description']) > 200) {
             $this->modUploadError = "description-length-must-be-between-10-and-200";
             return true;
         }
@@ -171,12 +171,12 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateModVersion() {
-        if (empty($this->data['version'])) {
+        if (empty($this->modData['version'])) {
             $this->modUploadError = "version-cant-be-empty";
             return true;
         }
 
-        if (!preg_match("/\d+(?:\.\d+){1,2}/", $this->data['version'])) {
+        if (!preg_match("/\d+(?:\.\d+){1,2}/", $this->modData['version'])) {
             $this->modUploadError = "invalid-version-format";
             return true;
         }
@@ -188,17 +188,17 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateModFile() {
-        if (empty($this->data['file'])) {
+        if (empty($this->modData['file'])) {
             $this->modUploadError = "file-cant-be-empty";
             return true;
         }
 
-        if (!in_array($this->data['file']['ext'], $this->allowedExt['file'])) {
+        if (!in_array($this->modData['file']['ext'], $this->allowedExt['file'])) {
             $this->modUploadError = "file-must-be-zip-or-rar";
             return true;
         }
 
-        if ($this->data['file']['size'] > 50000000) {
+        if ($this->modData['file']['size'] > 50000000) {
             $this->modUploadError = "file-maximum-size-is-50-mb";
             return true;
         }
@@ -210,17 +210,17 @@ class ModUploadModel extends Mvc\Model {
      * @return bool true on error, false otherwise
      */
     private function validateModLogo() {
-        if (empty($this->data['logo'])) {
+        if (empty($this->modData['logo'])) {
             $this->modUploadError = "logo-cant-be-empty";
             return true;
         }
 
-        if (!in_array($this->data['logo']['ext'], $this->allowedExt['logo'])) {
+        if (!in_array($this->modData['logo']['ext'], $this->allowedExt['logo'])) {
             $this->modUploadError = "logo-must-be-jpg-or-png";
             return true;
         }
 
-        if ($this->data['logo']['size'] > 2000000) {
+        if ($this->modData['logo']['size'] > 2000000) {
             $this->modUploadError = "logo-maximum-size-is-2-mb";
             return true;
         }
@@ -239,10 +239,10 @@ class ModUploadModel extends Mvc\Model {
         mkdir($_ENV['mods_folder'] . $modId);
 
         // the file new name is the mod name + the file extension
-        $newFileName = $this->data['name'] . "." . $this->data['file']['ext'];
+        $newFileName = $this->modData['name'] . "." . $this->modData['file']['ext'];
 
         // the logo new name is the mod name + the logo extension
-        $newLogoName = $this->data['name'] . "." . $this->data['logo']['ext'];
+        $newLogoName = $this->modData['name'] . "." . $this->modData['logo']['ext'];
 
         // new paths for the file and the logo
         $newFilePath = $_ENV['mods_folder'] . $modId . "/" . $newFileName;
@@ -250,8 +250,8 @@ class ModUploadModel extends Mvc\Model {
 
         // tries to move the uploaded files
         if (
-            move_uploaded_file($this->data['file']['tmp_name'], $newFilePath)
-            && move_uploaded_file($this->data['logo']['tmp_name'], $newLogoPath)
+            move_uploaded_file($this->modData['file']['tmp_name'], $newFilePath)
+            && move_uploaded_file($this->modData['logo']['tmp_name'], $newLogoPath)
         ) {
             return true;
         }
@@ -259,20 +259,20 @@ class ModUploadModel extends Mvc\Model {
     }
 
     /**
-     * insert the data into the db
+     * insert the modData into the db
      * 
      * @return bool success status
      */
     private function insertIntoDb() {
         $sql = "INSERT INTO mods (name, description, version, size, author, file_ext, logo_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $params = [
-            $this->data['name'],
-            $this->data['description'],
-            $this->data['version'],
-            $this->data['file']['size'],
-            $this->data['author'],
-            $this->data['file']['ext'],
-            $this->data['logo']['ext']
+            $this->modData['name'],
+            $this->modData['description'],
+            $this->modData['version'],
+            $this->modData['file']['size'],
+            $this->modData['author'],
+            $this->modData['file']['ext'],
+            $this->modData['logo']['ext']
         ];
 
         // tries to run the query

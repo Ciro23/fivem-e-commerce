@@ -8,9 +8,9 @@ class ModApproveModel extends Mvc\Model {
     private $modApproveError = "";
 
     /**
-     * @var array $data
+     * @var array $modData
      */
-    private $data = [
+    private $modData = [
         "mod_id" => "",
         "status" => ""
     ];
@@ -37,8 +37,8 @@ class ModApproveModel extends Mvc\Model {
      */
     public function updateModStatus($modId, $status, $userModel) {
         // saves the mod id and the status in the class properties
-        $this->data['mod_id'] = intval($modId);
-        $this->data['status'] = intval($status);
+        $this->modData['mod_id'] = intval($modId);
+        $this->modData['status'] = intval($status);
 
         // checks for error
         if (
@@ -78,7 +78,7 @@ class ModApproveModel extends Mvc\Model {
      * @return bool true on error, false othewise
      */
     private function validateModStatus() {
-        if (!in_array($this->data['status'], $this->allowedStatuses)) {
+        if (!in_array($this->modData['status'], $this->allowedStatuses)) {
             $this->modApproveError = "invalid-status";
             return true;
         }
@@ -93,7 +93,7 @@ class ModApproveModel extends Mvc\Model {
      */
     private function updateModStatusInDb() {
         $sql = "UPDATE mods SET status = ? WHERE id = ?";
-        $inParamters = [$this->data['status'], $this->data['mod_id']];
+        $inParamters = [$this->modData['status'], $this->modData['mod_id']];
 
         // tries to run the query
         if ($this->executeStmt($sql, $inParamters)) {
