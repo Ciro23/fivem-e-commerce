@@ -86,8 +86,8 @@ class ModUploadModel extends Mvc\Model {
         $this->data['author'] = $_SESSION['uid'];
 
         // saves the extension of the file and the logo
-        $this->data['file']['ext'] = $this->getExtension($this->data['file']['name']);
-        $this->data['logo']['ext'] = $this->getExtension($this->data['logo']['name']);
+        $this->data['file']['ext'] = FileHelper::getExtension($this->data['file']['name']);
+        $this->data['logo']['ext'] = FileHelper::getExtension($this->data['logo']['name']);
 
         // checks for errors
         if (
@@ -224,17 +224,6 @@ class ModUploadModel extends Mvc\Model {
             $this->modUploadError = "logo-maximum-size-is-2-mb";
             return true;
         }
-    }
-
-    /**
-     * gets the file extension
-     * 
-     * @param string $fileName
-     * 
-     * @return string extension
-     */
-    private function getExtension($fileName) {
-        return pathinfo($fileName)['extension'];
     }
 
     /**
