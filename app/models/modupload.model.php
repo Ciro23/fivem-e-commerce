@@ -241,8 +241,8 @@ class ModUploadModel extends Mvc\Model {
         // the file new name is the mod name + the file extension
         $newFileName = $this->modData['name'] . "." . $this->modData['file']['ext'];
 
-        // the logo new name is the mod name + the logo extension
-        $newLogoName = $this->modData['name'] . "." . $this->modData['logo']['ext'];
+        // the logo new name is logo+ the logo extension
+        $newLogoName = "logo." . $this->modData['logo']['ext'];
 
         // new paths for the file and the logo
         $newFilePath = $_SERVER['DOCUMENT_ROOT'] . $_ENV['mods_folder'] . $modId . "/" . $newFileName;
