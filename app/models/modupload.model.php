@@ -5,7 +5,7 @@ class ModUploadModel extends Mvc\Model {
     /**
      * @var string $error
      */
-    private $error = "";
+    private $modUploadError = "";
 
     /**
      * @var array $data contains all form data
@@ -16,7 +16,7 @@ class ModUploadModel extends Mvc\Model {
         "version" => "",
         "author" => "",
         "file" => "",
-        "image" => ""
+        "logo" => ""
     ];
 
     /**
@@ -27,7 +27,7 @@ class ModUploadModel extends Mvc\Model {
             'zip',
             'rar'
         ],
-        "image" => [
+        "logo" => [
             'jpg',
             'jpeg',
             'png'
@@ -85,17 +85,17 @@ class ModUploadModel extends Mvc\Model {
 
         $this->data['author'] = $_SESSION['uid'];
 
-        // saves the extension of the file and the image
+        // saves the extension of the file and the logo
         $this->data['file']['ext'] = $this->getExtension($this->data['file']['name']);
-        $this->data['image']['ext'] = $this->getExtension($this->data['image']['name']);
+        $this->data['logo']['ext'] = $this->getExtension($this->data['logo']['name']);
 
         // checks for errors
         if (
-            $this->validateName($modModel)
-            || $this->validateDescription()
-            || $this->validateVersion()
-            || $this->validateFile()
-            || $this->validateImage()
+            $this->validateModName($modModel)
+            || $this->validateModDescription()
+            || $this->validateModVersion()
+            || $this->validateModFile()
+            || $this->validateModLogo()
         ) {
             return false;
         }
@@ -122,7 +122,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateName($modModel) {
+    private function validateModName($modModel) {
         if (empty($this->data['name'])) {
             $this->modUploadError = "name-cant-be-empty";
             return true;
@@ -151,7 +151,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateDescription() {
+    private function validateModDescription() {
         if (empty($this->data['description'])) {
             $this->modUploadError = "description-cant-be-empty";
             return true;
@@ -170,7 +170,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateVersion() {
+    private function validateModVersion() {
         if (empty($this->data['version'])) {
             $this->modUploadError = "version-cant-be-empty";
             return true;
@@ -187,7 +187,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateFile() {
+    private function validateModFile() {
         if (empty($this->data['file'])) {
             $this->modUploadError = "file-cant-be-empty";
             return true;
@@ -205,23 +205,23 @@ class ModUploadModel extends Mvc\Model {
     }
 
     /**
-     * checks if the image is valid
+     * checks if the logo is valid
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateImage() {
-        if (empty($this->data['image'])) {
-            $this->modUploadError = "image-cant-be-empty";
+    private function validateModLogo() {
+        if (empty($this->data['logo'])) {
+            $this->modUploadError = "logo-cant-be-empty";
             return true;
         }
 
-        if (!in_array($this->data['image']['ext'], $this->allowedExt['image'])) {
-            $this->modUploadError = "image-must-be-jpg-or-png";
+        if (!in_array($this->data['logo']['ext'], $this->allowedExt['logo'])) {
+            $this->modUploadError = "logo-must-be-jpg-or-png";
             return true;
         }
 
-        if ($this->data['image']['size'] > 2000000) {
-            $this->modUploadError = "image-maximum-size-is-2-mb";
+        if ($this->data['logo']['size'] > 2000000) {
+            $this->modUploadError = "logo-maximum-size-is-2-mb";
             return true;
         }
     }
@@ -239,30 +239,30 @@ class ModUploadModel extends Mvc\Model {
 
     /**
      * moves the uploaded files to the mods folder
-     * creates a new folder named as the new mod id and puts in it the mod file and its image
+     * creates a new folder named as the new mod id and puts in it the mod file and its logo
      * 
-     * @param int $id the mod id
+     * @param int $modId
      * 
      * @return bool success status
      */
-    private function moveModFiles($id) {
+    private function moveModFiles($modId) {
         // creates the new mod folder
-        mkdir($_ENV['mods_folder'] . $id);
+        mkdir($_ENV['mods_folder'] . $modId);
 
         // the file new name is the mod name + the file extension
         $newFileName = $this->data['name'] . "." . $this->data['file']['ext'];
 
-        // the image new name is the mod name + the image extension
-        $newImageName = $this->data['name'] . "." . $this->data['image']['ext'];
+        // the logo new name is the mod name + the logo extension
+        $newLogoName = $this->data['name'] . "." . $this->data['logo']['ext'];
 
-        // new paths for the file and the image
-        $newFilePath = $_ENV['mods_folder'] . $id . "/" . $newFileName;
-        $newImagePath = $_ENV['mods_folder'] . $id . "/" . $newImageName;
+        // new paths for the file and the logo
+        $newFilePath = $_ENV['mods_folder'] . $modId . "/" . $newFileName;
+        $newLogoPath = $_ENV['mods_folder'] . $modId . "/" . $newLogoName;
 
         // tries to move the uploaded files
         if (
             move_uploaded_file($this->data['file']['tmp_name'], $newFilePath)
-            && move_uploaded_file($this->data['image']['tmp_name'], $newImagePath)
+            && move_uploaded_file($this->data['logo']['tmp_name'], $newLogoPath)
         ) {
             return true;
         }
@@ -275,7 +275,7 @@ class ModUploadModel extends Mvc\Model {
      * @return bool success status
      */
     private function insertIntoDb() {
-        $sql = "INSERT INTO mods (name, description, version, size, author, file_ext, image_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO mods (name, description, version, size, author, file_ext, logo_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $params = [
             $this->data['name'],
             $this->data['description'],
@@ -283,7 +283,7 @@ class ModUploadModel extends Mvc\Model {
             $this->data['file']['size'],
             $this->data['author'],
             $this->data['file']['ext'],
-            $this->data['image']['ext']
+            $this->data['logo']['ext']
         ];
 
         // tries to run the query

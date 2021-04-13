@@ -47,8 +47,8 @@ class LoginModel extends Mvc\Model {
 
         // checks for errors
         if (
-            $this->validateEmail()
-            || $this->validatePassword()
+            $this->validateUserEmail()
+            || $this->validateUserPassword()
         ) {
             return false;
         }
@@ -81,7 +81,7 @@ class LoginModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateEmail() {
+    private function validateUserEmail() {
         if (empty($this->data['email'])) {
             $this->loginError = "email-cant-be-empty";
             return true;
@@ -95,7 +95,7 @@ class LoginModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validatePassword() {
+    private function validateUserPassword() {
         if (empty($this->data['password'])) {
             $this->loginError = "password-cant-be-empty";
             return true;

@@ -58,9 +58,9 @@ class SignupModel extends Mvc\Model {
 
         // checks for errors
         if (
-            $this->validateEmail($userModel)
+            $this->validateUserEmail($userModel)
             || $this->validateUsername()
-            || $this->validatePassword()
+            || $this->validateUserPassword()
         ) {
             return false;
         }
@@ -85,7 +85,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateEmail($userModel) {
+    private function validateUserEmail($userModel) {
         if (empty($this->data['email'])) {
             $this->signupError = "email-cant-be-empty";
             return true;
@@ -138,7 +138,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validatePassword() {
+    private function validateUserPassword() {
         if (empty($this->data['password'])) {
             $this->signupError = "password-cant-be-empty";
             return true;
