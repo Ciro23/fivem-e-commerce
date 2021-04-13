@@ -11,9 +11,11 @@ class ModModel extends Mvc\Model {
      */
     public function getModDetails($id) {
         $sql = "SELECT * FROM mods WHERE id = ?";
+        $params = [$id];
+        $query = $this->executeStmt($sql, $params);
 
         // tries to run the query
-        if ($query = $this->executeStmt($sql, [$id])) {
+        if ($query) {
             // returns an associative array with the mod data
             return $query->fetch(PDO::FETCH_ASSOC);
         }
@@ -29,9 +31,11 @@ class ModModel extends Mvc\Model {
      */
     public function getModsByStatus($status) {
         $sql = "SELECT * FROM mods WHERE status = ?";
+        $params = [$status];
+        $query = $this->executeStmt($sql, $params);
 
         // tries to run the query
-        if ($query = $this->executeStmt($sql, [$status])) {
+        if ($query) {
             // returns an associative array with the mod data
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -47,9 +51,11 @@ class ModModel extends Mvc\Model {
      */
     public function doesModNameExists($name) {
         $sql = "SELECT COUNT(*) FROM mods WHERE name = ?";
+        $params = [$name];
+        $query = $this->executeStmt($sql, $params);
 
         // tries to run the query
-        if ($query = $this->executeStmt($sql, [$name])) {
+        if ($query) {
             // checks if the email is already registered
             if ($query->fetch(PDO::FETCH_COLUMN) == 1) {
                 return true;

@@ -12,9 +12,10 @@ class UserModel extends Mvc\Model {
     public function getUserPasswordByEmail($email) {
         $sql = "SELECT password FROM users WHERE email = ?";
         $params = [$email];
+        $query = $this->executeStmt($sql, $params);
 
         // tries to run the query
-        if ($query = $this->executeStmt($sql, $params)) {
+        if ($query) {
             return $query->fetch(PDO::FETCH_COLUMN);
         }
         $this->PDOError = true;
@@ -30,7 +31,8 @@ class UserModel extends Mvc\Model {
      */
     public function doesUserEmailExists($email) {
         $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
-        $query = $this->executeStmt($sql, [$email]);
+        $params = [$email];
+        $query = $this->executeStmt($sql, $params);
 
         // tries to run the query
         if ($query) {
@@ -53,7 +55,8 @@ class UserModel extends Mvc\Model {
      */
     public function getUserIdByEmail($email) {
         $sql = "SELECT id FROM users WHERE email = ?";
-        $query = $this->executeStmt($sql, [$email]);
+        $params = [$email];
+        $query = $this->executeStmt($sql, $params);
 
         // tries to run the query
         if ($query) {
@@ -86,7 +89,8 @@ class UserModel extends Mvc\Model {
      */
     public function getUserRole($id) {
         $sql = "SELECT role FROM users WHERE id = ?";
-        $query = $this->executeStmt($sql, [$id]);
+        $params = [$id];
+        $query = $this->executeStmt($sql, $params);
 
         // tries to run the query
         if ($query) {
