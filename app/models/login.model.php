@@ -115,7 +115,7 @@ class LoginModel extends Mvc\Model {
         if (password_verify($this->data['password'], $userModel->getUserPasswordByEmail($this->data['email']))) {
             return true;
         }
-        $this->PDOError = true;
+        
         return false;
     }
 }

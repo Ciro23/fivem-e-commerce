@@ -170,7 +170,7 @@ class SignupModel extends Mvc\Model {
         if ($this->executeStmt($sql, $params)) {
             return true;
         }
-        $this->PDOError = true;
+        
         return false;
     }
 }

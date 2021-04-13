@@ -62,7 +62,7 @@ class ModModel extends Mvc\Model {
             }
             return false;
         }
-        $this->PDOError = true;
+        
         return false;
     }
 
@@ -80,6 +80,7 @@ class ModModel extends Mvc\Model {
         if ($this->executeStmt($sql, $params)) {
             return true;
         }
+        
         return false;
     }
 

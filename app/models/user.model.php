@@ -18,7 +18,7 @@ class UserModel extends Mvc\Model {
         if ($query) {
             return $query->fetch(PDO::FETCH_COLUMN);
         }
-        $this->PDOError = true;
+        
         return false;
     }
 
@@ -42,7 +42,7 @@ class UserModel extends Mvc\Model {
             }
             return false;
         }
-        $this->PDOError = true;
+        
         return false;
     }
 
@@ -62,7 +62,7 @@ class UserModel extends Mvc\Model {
         if ($query) {
             return $query->fetch(PDO::FETCH_COLUMN);
         }
-        $this->PDOError = true;
+        
         return false;
     }
 
@@ -96,7 +96,7 @@ class UserModel extends Mvc\Model {
         if ($query) {
             return $query->fetch(PDO::FETCH_COLUMN);
         }
-        $this->PDOError = true;
+        
         return false;
     }
 }

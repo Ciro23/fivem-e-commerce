@@ -99,7 +99,7 @@ class ModApproveModel extends Mvc\Model {
         if ($this->executeStmt($sql, $inParamters)) {
             return true;
         }
-        $this->PDOError = true;
+        
         return false;
     }
 }
