@@ -109,7 +109,7 @@ class ModUploadModel extends Mvc\Model {
         }
         
         // in case insertIntoDb() or moveModFiles fails
-        // rollback and deletes mod row in the db and mods folder
+        // restores previous state
         $this->rollBack($modModel);
 
         // saves the error and returns
@@ -236,7 +236,7 @@ class ModUploadModel extends Mvc\Model {
      */
     private function moveModFiles($modId) {
         // creates the new mod folder
-        mkdir($_ENV['mods_folder'] . $modId);
+        mkdir($_SERVER['DOCUMENT_ROOT'] . $_ENV['mods_folder'] . $modId);
 
         // the file new name is the mod name + the file extension
         $newFileName = $this->modData['name'] . "." . $this->modData['file']['ext'];
@@ -245,8 +245,8 @@ class ModUploadModel extends Mvc\Model {
         $newLogoName = $this->modData['name'] . "." . $this->modData['logo']['ext'];
 
         // new paths for the file and the logo
-        $newFilePath = $_ENV['mods_folder'] . $modId . "/" . $newFileName;
-        $newLogoPath = $_ENV['mods_folder'] . $modId . "/" . $newLogoName;
+        $newFilePath = $_SERVER['DOCUMENT_ROOT'] . $_ENV['mods_folder'] . $modId . "/" . $newFileName;
+        $newLogoPath = $_SERVER['DOCUMENT_ROOT'] . $_ENV['mods_folder'] . $modId . "/" . $newLogoName;
 
         // tries to move the uploaded files
         if (
@@ -293,6 +293,6 @@ class ModUploadModel extends Mvc\Model {
         $modModel->deleteModFromDb($this->lastInsertId("mods"));
 
         // deletes mod files from the server
-        $modModel->deleteModFiles();
+        FileHelper::deleteFolderAndItsContent($this->modData['id']);
     }
 }
