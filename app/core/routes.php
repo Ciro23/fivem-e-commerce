@@ -18,7 +18,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     // mod upload routes
     $r->addRoute("GET", "/mod/upload[/[?{error}]]", "ModUploadController/index");
-    $r->addRoute("POST", "/mod/upload/action[/]", "ModUploadController/upload");
+    $r->addRoute("POST", "/mod/upload/action[/]", "ModUploadController/uploadMod");
 
     // mod approve routes
     $r->addRoute("GET", "/mod/approve[/]", "ModApproveController/index");
