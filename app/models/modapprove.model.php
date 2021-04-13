@@ -11,7 +11,7 @@ class ModApproveModel extends Mvc\Model {
      * @var array $modData
      */
     private $modData = [
-        "mod_id" => "",
+        "id" => "",
         "status" => ""
     ];
 
@@ -37,7 +37,7 @@ class ModApproveModel extends Mvc\Model {
      */
     public function updateModStatus($modId, $status, $userModel) {
         // saves the mod id and the status in the class properties
-        $this->modData['mod_id'] = intval($modId);
+        $this->modData['id'] = intval($modId);
         $this->modData['status'] = intval($status);
 
         // checks for error
@@ -93,7 +93,7 @@ class ModApproveModel extends Mvc\Model {
      */
     private function updateModStatusInDb() {
         $sql = "UPDATE mods SET status = ? WHERE id = ?";
-        $inParamters = [$this->modData['status'], $this->modData['mod_id']];
+        $inParamters = [$this->modData['status'], $this->modData['id']];
 
         // tries to run the query
         if ($this->executeStmt($sql, $inParamters)) {
