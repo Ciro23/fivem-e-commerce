@@ -25,12 +25,12 @@ class ModUploadController extends Mvc\Controller {
     /**
      * performs the upload action
      */
-    public function upload() {
+    public function uploadMod() {
         $modUploadModel = $this->model("ModUpload");
         $modModel = $this->model("Mod");
 
         // tries to execute ModUpload::upload(), which returns true in case of success, false otherwise
-        if ($modUploadModel->upload([$_POST, $_FILES], $modModel)) {
+        if ($modUploadModel->uploadMod([$_POST, $_FILES], $modModel)) {
             header("Location: /");
         } else {
             header("Location: /mod/upload/?error="
@@ -38,9 +38,9 @@ class ModUploadController extends Mvc\Controller {
                 . "&name="
                 . $modUploadModel->getModName()
                 . "&version="
-                . $modUploadModel->getVersion()
+                . $modUploadModel->getModVersion()
                 . "&description="
-                . $modUploadModel->getDescription());
+                . $modUploadModel->getModDescription());
         }
     }
 }

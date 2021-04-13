@@ -22,7 +22,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     // mod approve routes
     $r->addRoute("GET", "/mod/approve[/]", "ModApproveController/index");
-    $r->addRoute("GET", "/mod/{id:\d+}/update-status/{status:\d+}[/]", "ModApproveController/updateStatus");
+    $r->addRoute("GET", "/mod/{id:\d+}/update-status/{status:\d+}[/]", "ModApproveController/updateModStatus");
 
     // user routes
     $r->addRoute("GET", "/user/{user}[/]", "UserController/index");

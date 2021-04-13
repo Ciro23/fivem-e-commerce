@@ -57,7 +57,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getDescription() {
+    public function getModDescription() {
         return $this->data['description'];
     }
 
@@ -66,7 +66,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getVersion() {
+    public function getModVersion() {
         return $this->data['version'];
     }
 
@@ -78,7 +78,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function upload($inputData, $modModel) {
+    public function uploadMod($inputData, $modModel) {
         // gets the form input
         $this->data = InputHelper::getFormInput($this->data, $inputData[0]);
         $this->data = InputHelper::getFormInput($this->data, $inputData[1]);

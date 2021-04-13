@@ -35,7 +35,7 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function updateStatus($modId, $status, $userModel) {
+    public function updateModStatus($modId, $status, $userModel) {
         // saves the mod id and the status in the class properties
         $this->data['mod_id'] = intval($modId);
         $this->data['status'] = intval($status);
@@ -43,13 +43,13 @@ class ModApproveModel extends Mvc\Model {
         // checks for error
         if (
             !$this->isUserAdmin($userModel)
-            || $this->validateStatus()
+            || $this->validateModStatus()
         ) {
             return false;
         }
 
         // update the status in the db
-        if ($this->updateStatusInDb($status)) {
+        if ($this->updateModStatusInDb($status)) {
             return true;
         }
         // in case of pdo error
@@ -77,7 +77,7 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @return bool true on error, false othewise
      */
-    private function validateStatus() {
+    private function validateModStatus() {
         if (!in_array($this->data['status'], $this->allowedStatuses)) {
             $this->modApproveError = "invalid-status";
             return true;
@@ -91,7 +91,7 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    private function updateStatusInDb() {
+    private function updateModStatusInDb() {
         $sql = "UPDATE mods SET status = ? WHERE id = ?";
         $inParamters = [$this->data['status'], $this->data['mod_id']];
 
