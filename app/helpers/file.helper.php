@@ -9,7 +9,7 @@ class FileHelper {
      * 
      * @return string extension
      */
-    public static function getExtension($fileName) {
+    public static function getFileExtension($fileName) {
         return pathinfo($fileName)['extension'];
     }
 }

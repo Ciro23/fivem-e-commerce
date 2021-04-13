@@ -86,8 +86,8 @@ class ModUploadModel extends Mvc\Model {
         $this->data['author'] = $_SESSION['uid'];
 
         // saves the extension of the file and the logo
-        $this->data['file']['ext'] = FileHelper::getExtension($this->data['file']['name']);
-        $this->data['logo']['ext'] = FileHelper::getExtension($this->data['logo']['name']);
+        $this->data['file']['ext'] = FileHelper::getFileExtension($this->data['file']['name']);
+        $this->data['logo']['ext'] = FileHelper::getFileExtension($this->data['logo']['name']);
 
         // checks for errors
         if (
