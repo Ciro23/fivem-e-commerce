@@ -83,15 +83,4 @@ class ModModel extends Mvc\Model {
         
         return false;
     }
-
-    /**
-     * deletes mod files from the server
-     * 
-     * @param int $id
-     * 
-     * @return bool success status
-     */
-    private function deleteModFiles($id) {
-        //* to do
-    }
 }
