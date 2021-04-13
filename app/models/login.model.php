@@ -3,9 +3,9 @@
 class LoginModel extends Mvc\Model {
 
     /**
-     * @var string $error
+     * @var string $loginError
      */
-    private $error = "";
+    private $loginError = "";
 
     /**
      * @var array $data contains all form data
@@ -20,8 +20,8 @@ class LoginModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getError() {
-        return $this->error;
+    public function getLoginError() {
+        return $this->loginError;
     }
 
     /**
@@ -29,7 +29,7 @@ class LoginModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getEmail() {
+    public function getUserEmail() {
         return $this->data['email'];
     }
 
@@ -61,9 +61,9 @@ class LoginModel extends Mvc\Model {
 
         // in case of wrong credentials
         if ($userModel->PDOError) {
-            $this->error = "something-went-wrong";
+            $this->loginError = "something-went-wrong";
         } else {
-            $this->error = "credentials-are-not-correct";
+            $this->loginError = "credentials-are-not-correct";
         }
 
         return false;
@@ -83,7 +83,7 @@ class LoginModel extends Mvc\Model {
      */
     private function validateEmail() {
         if (empty($this->data['email'])) {
-            $this->error = "email-cant-be-empty";
+            $this->loginError = "email-cant-be-empty";
             return true;
         }
 
@@ -97,7 +97,7 @@ class LoginModel extends Mvc\Model {
      */
     private function validatePassword() {
         if (empty($this->data['password'])) {
-            $this->error = "password-cant-be-empty";
+            $this->loginError = "password-cant-be-empty";
             return true;
         }
 

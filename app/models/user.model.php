@@ -11,10 +11,10 @@ class UserModel extends Mvc\Model {
      */
     public function getUserPasswordByEmail($email) {
         $sql = "SELECT password FROM users WHERE email = ?";
-        $inParameters = [$email];
+        $params = [$email];
 
         // tries to run the query
-        if ($query = $this->executeStmt($sql, $inParameters)) {
+        if ($query = $this->executeStmt($sql, $params)) {
             return $query->fetch(PDO::FETCH_COLUMN);
         }
         $this->PDOError = true;

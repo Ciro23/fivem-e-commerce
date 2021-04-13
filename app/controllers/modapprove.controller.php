@@ -42,7 +42,7 @@ class ModApproveController extends Mvc\Controller {
             header("Location: /mod/"
                 . $modId
                 . "/?error="
-                . $modApproveModel->getError());
+                . $modApproveModel->getModApproveError());
         }
     }
 }

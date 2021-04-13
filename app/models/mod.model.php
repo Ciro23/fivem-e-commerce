@@ -69,9 +69,9 @@ class ModModel extends Mvc\Model {
      */
     public function deleteModFromDb($id) {
         $sql = "DELETE FROM mods WHERE id = ?";
-        $inParameters = [$id];
+        $params = [$id];
 
-        if ($this->executeStmt($sql, $inParameters)) {
+        if ($this->executeStmt($sql, $params)) {
             return true;
         }
         return false;

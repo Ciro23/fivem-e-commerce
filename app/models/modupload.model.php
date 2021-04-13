@@ -39,8 +39,8 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getError() {
-        return $this->error;
+    public function getModUploadError() {
+        return $this->modUploadError;
     }
 
     /**
@@ -48,7 +48,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getName() {
+    public function getModName() {
         return $this->data['name'];
     }
 
@@ -113,7 +113,7 @@ class ModUploadModel extends Mvc\Model {
         $this->rollBack($modModel);
 
         // saves the error and returns
-        $this->error = "something-went-wrong";
+        $this->modUploadError = "something-went-wrong";
         return false;
     }
 
@@ -124,22 +124,22 @@ class ModUploadModel extends Mvc\Model {
      */
     private function validateName($modModel) {
         if (empty($this->data['name'])) {
-            $this->error = "name-cant-be-empty";
+            $this->modUploadError = "name-cant-be-empty";
             return true;
         }
 
         if ($modModel->doesModNameExists($this->data['name'])) {
-            $this->error = "name-is-already-taken";
+            $this->modUploadError = "name-is-already-taken";
             return true;
         }
 
         if (!preg_match("/^[A-Za-z0-9\s]+$/", $this->data['name'])) {
-            $this->error = "name-can-only-contains-alphanumeric-characters-and-spaces";
+            $this->modUploadError = "name-can-only-contains-alphanumeric-characters-and-spaces";
             return true;
         }
 
         if (strlen($this->data['name']) < 4 || strlen($this->data['name']) > 30) {
-            $this->error = "name-length-must-be-between-4-and-30";
+            $this->modUploadError = "name-length-must-be-between-4-and-30";
             return true;
         }
 
@@ -153,12 +153,12 @@ class ModUploadModel extends Mvc\Model {
      */
     private function validateDescription() {
         if (empty($this->data['description'])) {
-            $this->error = "description-cant-be-empty";
+            $this->modUploadError = "description-cant-be-empty";
             return true;
         }
 
         if (strlen($this->data['description']) < 10 || strlen($this->data['description']) > 200) {
-            $this->error = "description-length-must-be-between-10-and-200";
+            $this->modUploadError = "description-length-must-be-between-10-and-200";
             return true;
         }
 
@@ -172,12 +172,12 @@ class ModUploadModel extends Mvc\Model {
      */
     private function validateVersion() {
         if (empty($this->data['version'])) {
-            $this->error = "version-cant-be-empty";
+            $this->modUploadError = "version-cant-be-empty";
             return true;
         }
 
         if (!preg_match("/\d+(?:\.\d+){1,2}/", $this->data['version'])) {
-            $this->error = "invalid-version-format";
+            $this->modUploadError = "invalid-version-format";
             return true;
         }
     }
@@ -189,17 +189,17 @@ class ModUploadModel extends Mvc\Model {
      */
     private function validateFile() {
         if (empty($this->data['file'])) {
-            $this->error = "file-cant-be-empty";
+            $this->modUploadError = "file-cant-be-empty";
             return true;
         }
 
         if (!in_array($this->data['file']['ext'], $this->allowedExt['file'])) {
-            $this->error = "file-must-be-zip-or-rar";
+            $this->modUploadError = "file-must-be-zip-or-rar";
             return true;
         }
 
         if ($this->data['file']['size'] > 50000000) {
-            $this->error = "file-maximum-size-is-50-mb";
+            $this->modUploadError = "file-maximum-size-is-50-mb";
             return true;
         }
     }
@@ -211,17 +211,17 @@ class ModUploadModel extends Mvc\Model {
      */
     private function validateImage() {
         if (empty($this->data['image'])) {
-            $this->error = "image-cant-be-empty";
+            $this->modUploadError = "image-cant-be-empty";
             return true;
         }
 
         if (!in_array($this->data['image']['ext'], $this->allowedExt['image'])) {
-            $this->error = "image-must-be-jpg-or-png";
+            $this->modUploadError = "image-must-be-jpg-or-png";
             return true;
         }
 
         if ($this->data['image']['size'] > 2000000) {
-            $this->error = "image-maximum-size-is-2-mb";
+            $this->modUploadError = "image-maximum-size-is-2-mb";
             return true;
         }
     }
@@ -276,7 +276,7 @@ class ModUploadModel extends Mvc\Model {
      */
     private function insertIntoDb() {
         $sql = "INSERT INTO mods (name, description, version, size, author, file_ext, image_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $inParameters = [
+        $params = [
             $this->data['name'],
             $this->data['description'],
             $this->data['version'],
@@ -287,7 +287,7 @@ class ModUploadModel extends Mvc\Model {
         ];
 
         // tries to run the query
-        if ($this->executeStmt($sql, $inParameters)) {
+        if ($this->executeStmt($sql, $params)) {
             return true;
         }
         $this->PDOError = true;

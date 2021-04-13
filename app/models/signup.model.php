@@ -3,9 +3,9 @@
 class SignupModel extends Mvc\Model {
 
     /**
-     * @var string $error
+     * @var string $signupError
      */
-    private $error = "";
+    private $signupError = "";
 
     /**
      * @var array $data contains all form data
@@ -22,8 +22,8 @@ class SignupModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getError() {
-        return $this->error;
+    public function getSignupError() {
+        return $this->signupError;
     }
 
     /**
@@ -31,7 +31,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getEmail() {
+    public function getUserEmail() {
         return $this->data['email'];
     }
 
@@ -74,7 +74,7 @@ class SignupModel extends Mvc\Model {
             return true;
         }
         // in case of query failure
-        $this->error = "something-went-wrong";
+        $this->signupError = "something-went-wrong";
         return false;
     }
 
@@ -87,21 +87,21 @@ class SignupModel extends Mvc\Model {
      */
     private function validateEmail($userModel) {
         if (empty($this->data['email'])) {
-            $this->error = "email-cant-be-empty";
+            $this->signupError = "email-cant-be-empty";
             return true;
         }
 
         if (!filter_var($this->data['email'], FILTER_VALIDATE_EMAIL)) {
-            $this->error = "invalid-email-format";
+            $this->signupError = "invalid-email-format";
             return true;
         }
 
         if ($userModel->doesUserEmailExists($this->data['email'])) {
             // checks if the error is db related
             if ($userModel->PDOError) {
-                $this->error = "something-went-wrong";
+                $this->signupError = "something-went-wrong";
             } else {
-                $this->error = "email-is-already-registered";
+                $this->signupError = "email-is-already-registered";
             }
             return true;
         }
@@ -116,17 +116,17 @@ class SignupModel extends Mvc\Model {
      */
     private function validateUsername() {
         if (empty($this->data['username'])) {
-            $this->error = "username-cant-be-empty";
+            $this->signupError = "username-cant-be-empty";
             return true;
         }
 
         if (!preg_match("/^[A-Za-z0-9]+$/", $this->data['username'])) {
-            $this->error = "username-can-only-contains-alphanumeric-characters";
+            $this->signupError = "username-can-only-contains-alphanumeric-characters";
             return true;
         }
 
         if (strlen($this->data['username']) < 4 || strlen($this->data['username']) > 20) {
-            $this->error = "username-length-must-be-between-4-and-20";
+            $this->signupError = "username-length-must-be-between-4-and-20";
             return true;
         }
 
@@ -140,17 +140,17 @@ class SignupModel extends Mvc\Model {
      */
     private function validatePassword() {
         if (empty($this->data['password'])) {
-            $this->error = "password-cant-be-empty";
+            $this->signupError = "password-cant-be-empty";
             return true;
         }
 
         if (strlen($this->data['password']) < 6 || strlen($this->data['password']) > 72) {
-            $this->error = "password-length-must-be-between-6-and-72";
+            $this->signupError = "password-length-must-be-between-6-and-72";
             return true;
         }
 
         if ($this->data['password'] != $this->data['rePassword']) {
-            $this->error = "passwords-do-not-match";
+            $this->signupError = "passwords-do-not-match";
             return true;
         }
 
@@ -164,10 +164,10 @@ class SignupModel extends Mvc\Model {
      */
     private function insertIntoDb() {
         $sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
-        $inParameters = [$this->data['email'], $this->data['username'], $this->data['password']];
+        $params = [$this->data['email'], $this->data['username'], $this->data['password']];
 
         // tries to run the query
-        if ($this->executeStmt($sql, $inParameters)) {
+        if ($this->executeStmt($sql, $params)) {
             return true;
         }
         $this->PDOError = true;

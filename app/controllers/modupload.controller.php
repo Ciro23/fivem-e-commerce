@@ -34,9 +34,9 @@ class ModUploadController extends Mvc\Controller {
             header("Location: /");
         } else {
             header("Location: /mod/upload/?error="
-                . $modUploadModel->getError()
+                . $modUploadModel->getModUploadError()
                 . "&name="
-                . $modUploadModel->getName()
+                . $modUploadModel->getModName()
                 . "&version="
                 . $modUploadModel->getVersion()
                 . "&description="

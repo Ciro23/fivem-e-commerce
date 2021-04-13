@@ -3,9 +3,9 @@
 class ModApproveModel extends Mvc\Model {
 
     /**
-     * @var string $error
+     * @var string $modApproveError
      */
-    private $error = "";
+    private $modApproveError = "";
 
     /**
      * @var array $data
@@ -22,8 +22,8 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @return error
      */
-    public function getError() {
-        return $this->error;
+    public function getModApproveError() {
+        return $this->modApproveError;
     }
 
     /**
@@ -53,7 +53,7 @@ class ModApproveModel extends Mvc\Model {
             return true;
         }
         // in case of pdo error
-        $this->error = "something-went-wrong";
+        $this->modApproveError = "something-went-wrong";
         return false;
     }
 
@@ -68,7 +68,7 @@ class ModApproveModel extends Mvc\Model {
         if ($userModel->isUserAdmin($_SESSION['uid'])) {
             return true;
         }
-        $this->error = "permission-denied";
+        $this->modApproveError = "permission-denied";
         return false;
     }
 
@@ -79,7 +79,7 @@ class ModApproveModel extends Mvc\Model {
      */
     private function validateStatus() {
         if (!in_array($this->data['status'], $this->allowedStatuses)) {
-            $this->error = "invalid-status";
+            $this->modApproveError = "invalid-status";
             return true;
         }
         
