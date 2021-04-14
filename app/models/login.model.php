@@ -2,40 +2,22 @@
 
 class LoginModel extends Mvc\Model {
 
-    /**
-     * @var string $loginError
-     */
-    private $loginError = "";
+    private string $loginError = "";
 
-    /**
-     * @var array $userData contains all form userData
-     */
     private $userData = [
         "email" => "",
         "password" => "",
     ];
 
-    /**
-     * returns the error
-     * 
-     * @return string
-     */
     public function getLoginError() {
         return $this->loginError;
     }
 
-    /**
-     * returns the email
-     * 
-     * @return string
-     */
     public function getUserEmail() {
         return $this->userData['email'];
     }
 
     /**
-     * performs the login action
-     * 
      * @param array $inputData
      * @param object $userModel
      * 
@@ -69,16 +51,11 @@ class LoginModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * performs the logout action
-     */
     public function logout() {
         session_destroy();
     }
 
     /**
-     * checks if the email is valid
-     * 
      * @return bool true on error, false otherwise
      */
     private function validateUserEmail() {
@@ -91,8 +68,6 @@ class LoginModel extends Mvc\Model {
     }
 
     /**
-     * checks if the password is valid
-     * 
      * @return bool true on error, false otherwise
      */
     private function validateUserPassword() {
@@ -105,8 +80,6 @@ class LoginModel extends Mvc\Model {
     }
 
     /**
-     * checks if the email and the password belong to an account
-     * 
      * @param object $userModel
      * 
      * @return bool success status
