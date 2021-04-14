@@ -199,13 +199,13 @@ class ModUploadModel extends Mvc\Model {
     }
 
     private function insertIntoDb(): bool {
-        $sql = "INSERT INTO mods (name, description, version, size, author, file_ext, logo_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO mods (author, name, description, version, size, file_ext, logo_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $params = [
+            $this->modData['author'],
             $this->modData['name'],
             $this->modData['description'],
             $this->modData['version'],
             $this->modData['file']['size'],
-            $this->modData['author'],
             $this->modData['file']['ext'],
             $this->modData['logo']['ext']
         ];
