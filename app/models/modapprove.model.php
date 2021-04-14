@@ -5,24 +5,24 @@ class ModApproveModel extends Mvc\Model {
     /**
      * @var string $modApproveError
      */
-    private $modApproveError = "";
+    private string $modApproveError = "";
 
     /**
      * @var array $modData
      */
-    private $modData = [
+    private array $modData = [
         "id" => "",
         "status" => ""
     ];
 
-    private $allowedStatuses = [0, 1, 2];
+    private array $allowedStatuses = [0, 1, 2];
 
     /**
      * returns the error
      * 
      * @return error
      */
-    public function getModApproveError() {
+    public function getModApproveError(): string {
         return $this->modApproveError;
     }
 
@@ -35,7 +35,7 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function updateModStatus($modId, $status, $userModel) {
+    public function updateModStatus(int $modId, int $status, UserModel $userModel): bool {
         // saves the mod id and the status in the class properties
         $this->modData['id'] = intval($modId);
         $this->modData['status'] = intval($status);
@@ -64,7 +64,7 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @return true success status
      */
-    private function isUserAdmin($userModel) {
+    private function isUserAdmin(UserModel $userModel): bool {
         if ($userModel->isUserAdmin($_SESSION['uid'])) {
             return true;
         }
@@ -77,7 +77,7 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @return bool true on error, false othewise
      */
-    private function validateModStatus() {
+    private function validateModStatus(): bool {
         if (!in_array($this->modData['status'], $this->allowedStatuses)) {
             $this->modApproveError = "invalid-status";
             return true;
@@ -91,7 +91,7 @@ class ModApproveModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    private function updateModStatusInDb() {
+    private function updateModStatusInDb(): bool {
         $sql = "UPDATE mods SET status = ? WHERE id = ?";
         $inParamters = [$this->modData['status'], $this->modData['id']];
 
