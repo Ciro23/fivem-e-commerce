@@ -5,12 +5,12 @@ class SignupModel extends Mvc\Model {
     /**
      * @var string $signupError
      */
-    private $signupError = "";
+    private string $signupError = "";
 
     /**
      * @var array $userData contains all form userData
      */
-    private $userData = [
+    private array $userData = [
         "email" => "",
         "username" => "",
         "password" => "",
@@ -22,7 +22,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getSignupError() {
+    public function getSignupError(): string {
         return $this->signupError;
     }
 
@@ -31,7 +31,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getUserEmail() {
+    public function getUserEmail(): string {
         return $this->userData['email'];
     }
 
@@ -40,7 +40,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getUsername() {
+    public function getUsername(): string {
         return $this->userData['username'];
     }
 
@@ -52,7 +52,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function signup($inputData, $userModel) {
+    public function signup(array $inputData, UserModel $userModel): bool {
         // gets the form input
         $this->userData = InputHelper::getFormInput($this->userData, $inputData);
 
@@ -85,7 +85,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateUserEmail($userModel) {
+    private function validateUserEmail(UserModel $userModel): bool {
         if (empty($this->userData['email'])) {
             $this->signupError = "email-cant-be-empty";
             return true;
@@ -114,7 +114,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateUsername() {
+    private function validateUsername(): bool {
         if (empty($this->userData['username'])) {
             $this->signupError = "username-cant-be-empty";
             return true;
@@ -138,7 +138,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateUserPassword() {
+    private function validateUserPassword(): bool {
         if (empty($this->userData['password'])) {
             $this->signupError = "password-cant-be-empty";
             return true;
@@ -162,7 +162,7 @@ class SignupModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    private function insertIntoDb() {
+    private function insertIntoDb(): bool {
         $sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
         $params = [$this->userData['email'], $this->userData['username'], $this->userData['password']];
 

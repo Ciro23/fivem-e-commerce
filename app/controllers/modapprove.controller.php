@@ -32,7 +32,7 @@ class ModApproveController extends Mvc\Controller {
      * @param int $modId
      * @param int $status (0 => rejected, 1 => pending, 2 => approved)
      */
-    public function updateModStatus($modId, $status) {
+    public function updateModStatus(int $modId, int $status) {
         $modApproveModel = $this->model("ModApprove");
         $userModel = $this->model("User");
 

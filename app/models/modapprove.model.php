@@ -50,11 +50,23 @@ class ModApproveModel extends Mvc\Model {
 
         // update the status in the db
         if ($this->updateModStatusInDb($status)) {
+
+            // if the status is 0, deletes the mod folder
+            if (
+                $this->modData['status'] == 0
+                && !FileHelper::deleteFolderAndItsContent($this->modData['id'])
+            ) {
+                // in case updateModStatusInDb() or deleteFolderAndItsContent() fail
+                // restores previous mod state
+                $this->rollBack();
+
+                // saves the error and returns
+                $this->modApproveError = "something-went-wrong";
+                return false;
+            }
+
             return true;
         }
-        // in case of pdo error
-        $this->modApproveError = "something-went-wrong";
-        return false;
     }
 
     /**
@@ -101,5 +113,18 @@ class ModApproveModel extends Mvc\Model {
         }
         
         return false;
+    }
+
+    /**
+     * deletes the mod from the db and delete its files from the server
+     * 
+     * @param object $modModel
+     */
+    private function rollBack($modModel) {
+        // deletes mod row from the db
+        $modModel->deleteModFromDb($this->lastInsertId("mods"));
+
+        // deletes mod files from the server
+        FileHelper::deleteFolderAndItsContent($this->modData['id']);
     }
 }

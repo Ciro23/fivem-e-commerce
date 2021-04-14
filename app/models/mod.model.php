@@ -9,7 +9,7 @@ class ModModel extends Mvc\Model {
      * 
      * @return array|false first contains mod data, false in case of error
      */
-    public function getModDetails($id) {
+    public function getModDetails(int $id): array|false {
         $sql = "SELECT * FROM mods WHERE id = ?";
         $params = [$id];
         $query = $this->executeStmt($sql, $params);
@@ -29,7 +29,7 @@ class ModModel extends Mvc\Model {
      * 
      * @return array|false first contains mod list, false in case of error
      */
-    public function getModsByStatus($status) {
+    public function getModsByStatus(int $status): array|false {
         $sql = "SELECT * FROM mods WHERE status = ?";
         $params = [$status];
         $query = $this->executeStmt($sql, $params);
@@ -49,7 +49,7 @@ class ModModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function doesModNameExists($name) {
+    public function doesModNameExists(string $name): bool {
         $sql = "SELECT COUNT(*) FROM mods WHERE name = ?";
         $params = [$name];
         $query = $this->executeStmt($sql, $params);
@@ -73,7 +73,7 @@ class ModModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function deleteModFromDb($id) {
+    public function deleteModFromDb(int $id): bool {
         $sql = "DELETE FROM mods WHERE id = ?";
         $params = [$id];
 

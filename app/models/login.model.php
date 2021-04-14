@@ -4,16 +4,16 @@ class LoginModel extends Mvc\Model {
 
     private string $loginError = "";
 
-    private $userData = [
+    private array $userData = [
         "email" => "",
         "password" => "",
     ];
 
-    public function getLoginError() {
+    public function getLoginError(): string {
         return $this->loginError;
     }
 
-    public function getUserEmail() {
+    public function getUserEmail(): string {
         return $this->userData['email'];
     }
 
@@ -23,8 +23,7 @@ class LoginModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function login($inputData, $userModel) {
-        // gets form input
+    public function login(array $inputData, UserModel $userModel): bool {
         $this->userData = InputHelper::getFormInput($this->userData, $inputData);
 
         // checks for errors
@@ -51,14 +50,14 @@ class LoginModel extends Mvc\Model {
         return false;
     }
 
-    public function logout() {
+    public function logout(): void {
         session_destroy();
     }
 
     /**
      * @return bool true on error, false otherwise
      */
-    private function validateUserEmail() {
+    private function validateUserEmail(): bool {
         if (empty($this->userData['email'])) {
             $this->loginError = "email-cant-be-empty";
             return true;
@@ -70,7 +69,7 @@ class LoginModel extends Mvc\Model {
     /**
      * @return bool true on error, false otherwise
      */
-    private function validateUserPassword() {
+    private function validateUserPassword(): bool {
         if (empty($this->userData['password'])) {
             $this->loginError = "password-cant-be-empty";
             return true;
@@ -84,7 +83,7 @@ class LoginModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    private function areCredentialsCorrect($userModel) {
+    private function areCredentialsCorrect(UserModel $userModel): bool {
         if (password_verify($this->userData['password'], $userModel->getUserPasswordByEmail($this->userData['email']))) {
             return true;
         }

@@ -5,12 +5,12 @@ class ModUploadModel extends Mvc\Model {
     /**
      * @var string $error
      */
-    private $modUploadError = "";
+    private string $modUploadError = "";
 
     /**
      * @var array $modData contains all form modData
      */
-    private $modData = [
+    private array $modData = [
         "name" => "",
         "description" => "",
         "version" => "",
@@ -22,7 +22,7 @@ class ModUploadModel extends Mvc\Model {
     /**
      * @var array $allowedExt
      */
-    private $allowedExt = [
+    private array $allowedExt = [
         "file" => [
             'zip',
             'rar'
@@ -39,7 +39,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getModUploadError() {
+    public function getModUploadError(): string {
         return $this->modUploadError;
     }
 
@@ -48,7 +48,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getModName() {
+    public function getModName(): string {
         return $this->modData['name'];
     }
 
@@ -57,7 +57,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getModDescription() {
+    public function getModDescription(): string {
         return $this->modData['description'];
     }
 
@@ -66,7 +66,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return string
      */
-    public function getModVersion() {
+    public function getModVersion(): string {
         return $this->modData['version'];
     }
 
@@ -78,7 +78,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    public function uploadMod($inputData, $modModel) {
+    public function uploadMod(array $inputData, ModModel $modModel): bool {
         // gets the form input
         $this->modData = InputHelper::getFormInput($this->modData, $inputData[0]);
         $this->modData = InputHelper::getFormInput($this->modData, $inputData[1]);
@@ -122,7 +122,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateModName($modModel) {
+    private function validateModName(ModModel $modModel): bool {
         if (empty($this->modData['name'])) {
             $this->modUploadError = "name-cant-be-empty";
             return true;
@@ -151,7 +151,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateModDescription() {
+    private function validateModDescription(): bool {
         if (empty($this->modData['description'])) {
             $this->modUploadError = "description-cant-be-empty";
             return true;
@@ -170,7 +170,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateModVersion() {
+    private function validateModVersion(): bool {
         if (empty($this->modData['version'])) {
             $this->modUploadError = "version-cant-be-empty";
             return true;
@@ -187,7 +187,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateModFile() {
+    private function validateModFile(): bool {
         if (empty($this->modData['file'])) {
             $this->modUploadError = "file-cant-be-empty";
             return true;
@@ -209,7 +209,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool true on error, false otherwise
      */
-    private function validateModLogo() {
+    private function validateModLogo(): bool {
         if (empty($this->modData['logo'])) {
             $this->modUploadError = "logo-cant-be-empty";
             return true;
@@ -234,7 +234,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    private function moveModFiles($modId) {
+    private function moveModFiles(int $modId): bool {
         // creates the new mod folder
         mkdir($_SERVER['DOCUMENT_ROOT'] . $_ENV['mods_folder'] . $modId);
 
@@ -263,7 +263,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @return bool success status
      */
-    private function insertIntoDb() {
+    private function insertIntoDb(): bool {
         $sql = "INSERT INTO mods (name, description, version, size, author, file_ext, logo_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $params = [
             $this->modData['name'],
@@ -288,7 +288,7 @@ class ModUploadModel extends Mvc\Model {
      * 
      * @param object $modModel
      */
-    private function rollBack($modModel) {
+    private function rollBack(ModModel $modModel): void {
         // deletes mod row from the db
         $modModel->deleteModFromDb($this->lastInsertId("mods"));
 
