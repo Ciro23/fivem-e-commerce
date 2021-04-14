@@ -2,14 +2,8 @@
 
 class ModApproveModel extends Mvc\Model {
 
-    /**
-     * @var string $modApproveError
-     */
     private string $modApproveError = "";
 
-    /**
-     * @var array $modData
-     */
     private array $modData = [
         "id" => "",
         "status" => ""
@@ -17,11 +11,6 @@ class ModApproveModel extends Mvc\Model {
 
     private array $allowedStatuses = [0, 1, 2];
 
-    /**
-     * returns the error
-     * 
-     * @return error
-     */
     public function getModApproveError(): string {
         return $this->modApproveError;
     }
@@ -57,13 +46,6 @@ class ModApproveModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * checks if the user is an admin
-     * 
-     * @param object $userModel
-     * 
-     * @return true success status
-     */
     private function isUserAdmin(UserModel $userModel): bool {
         if ($userModel->isUserAdmin($_SESSION['uid'])) {
             return true;
@@ -72,11 +54,6 @@ class ModApproveModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * checks if the status is valid
-     * 
-     * @return bool true on error, false othewise
-     */
     private function validateModStatus(): bool {
         if (!in_array($this->modData['status'], $this->allowedStatuses)) {
             $this->modApproveError = "invalid-status";
@@ -86,11 +63,6 @@ class ModApproveModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * updates the mod status in the db
-     * 
-     * @return bool success status
-     */
     private function updateModStatusInDb(): bool {
         $sql = "UPDATE mods SET status = ? WHERE id = ?";
         $inParamters = [$this->modData['status'], $this->modData['id']];
