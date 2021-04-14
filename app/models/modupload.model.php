@@ -54,11 +54,11 @@ class ModUploadModel extends Mvc\Model {
 
         // checks for errors
         if (
-            $this->validateModName($modModel)
-            || $this->validateModDescription()
-            || $this->validateModVersion()
-            || $this->validateModFile()
-            || $this->validateModLogo()
+            !$this->isModNameValid($modModel)
+            || !$this->isModDescriptionValid()
+            || !$this->isModVersionValid()
+            || !$this->isModFileValid()
+            || !$this->isModLogoValid()
         ) {
             return false;
         }
@@ -80,87 +80,87 @@ class ModUploadModel extends Mvc\Model {
         return false;
     }
 
-    private function validateModName(ModModel $modModel): bool {
+    private function isModNameValid(ModModel $modModel): bool {
         if (empty($this->modData['name'])) {
             $this->modUploadError = "name-cant-be-empty";
-            return true;
+            return false;
         }
 
         if ($modModel->doesModNameExists($this->modData['name'])) {
             $this->modUploadError = "name-is-already-taken";
-            return true;
+            return false;
         }
 
         if (!preg_match("/^[A-Za-z0-9\s]+$/", $this->modData['name'])) {
             $this->modUploadError = "name-can-only-contains-alphanumeric-characters-and-spaces";
-            return true;
+            return false;
         }
 
         if (strlen($this->modData['name']) < 4 || strlen($this->modData['name']) > 30) {
             $this->modUploadError = "name-length-must-be-between-4-and-30";
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
-    private function validateModDescription(): bool {
+    private function isModDescriptionValid(): bool {
         if (empty($this->modData['description'])) {
             $this->modUploadError = "description-cant-be-empty";
-            return true;
+            return false;
         }
 
         if (strlen($this->modData['description']) < 10 || strlen($this->modData['description']) > 200) {
             $this->modUploadError = "description-length-must-be-between-10-and-200";
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
-    private function validateModVersion(): bool {
+    private function isModVersionValid(): bool {
         if (empty($this->modData['version'])) {
             $this->modUploadError = "version-cant-be-empty";
-            return true;
+            return false;
         }
 
         if (!preg_match("/\d+(?:\.\d+){1,2}/", $this->modData['version'])) {
             $this->modUploadError = "invalid-version-format";
-            return true;
+            return false;
         }
     }
 
-    private function validateModFile(): bool {
+    private function isModFileValid(): bool {
         if (empty($this->modData['file'])) {
             $this->modUploadError = "file-cant-be-empty";
-            return true;
+            return false;
         }
 
         if (!in_array($this->modData['file']['ext'], $this->allowedExt['file'])) {
             $this->modUploadError = "file-must-be-zip-or-rar";
-            return true;
+            return false;
         }
 
         if ($this->modData['file']['size'] > 50000000) {
             $this->modUploadError = "file-maximum-size-is-50-mb";
-            return true;
+            return false;
         }
     }
 
-    private function validateModLogo(): bool {
+    private function isModLogoValid(): bool {
         if (empty($this->modData['logo'])) {
             $this->modUploadError = "logo-cant-be-empty";
-            return true;
+            return false;
         }
 
         if (!in_array($this->modData['logo']['ext'], $this->allowedExt['logo'])) {
             $this->modUploadError = "logo-must-be-jpg-or-png";
-            return true;
+            return false;
         }
 
         if ($this->modData['logo']['size'] > 2000000) {
             $this->modUploadError = "logo-maximum-size-is-2-mb";
-            return true;
+            return false;
         }
     }
 
