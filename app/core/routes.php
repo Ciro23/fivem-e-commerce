@@ -7,17 +7,17 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute("GET", "/", "HomeController/index");
 
     // signup, login and logout routes
-    $r->addRoute("GET", "/{type:signup}[/[?{error}]]", "SignupController/index");
-    $r->addRoute("POST", "/{type:signup}/action[/]", "SignupController/signup");
-    $r->addRoute("GET", "/{type:login}[/[?{error}]]", "LoginController/index");
-    $r->addRoute("POST", "/{type:login}/action[/]", "LoginController/login");
+    $r->addRoute("GET", "/signup[/[?{query}]]", "SignupController/index");
+    $r->addRoute("POST", "/signup/action[/]", "SignupController/signup");
+    $r->addRoute("GET", "/login[/[?{query}]]", "LoginController/index");
+    $r->addRoute("POST", "/login/action[/]", "LoginController/login");
     $r->addRoute("GET", "/logout[/]", "LoginController/logout");
 
     // mod routes
-    $r->addRoute("GET", "/mod/{id:\d+}[/[?{error}]]", "ModController/index");
+    $r->addRoute("GET", "/mod/{id:\d+}[/[?{query}]]", "ModController/index");
 
     // mod upload routes
-    $r->addRoute("GET", "/mod/upload[/[?{error}]]", "ModUploadController/index");
+    $r->addRoute("GET", "/mod/upload[/[?{query}]]", "ModUploadController/index");
     $r->addRoute("POST", "/mod/upload/action[/]", "ModUploadController/uploadMod");
 
     // mod approve routes
