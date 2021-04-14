@@ -29,9 +29,9 @@ class SignupModel extends Mvc\Model {
 
         // checks for errors
         if (
-            $this->validateUserEmail($userModel)
-            || $this->validateUsername()
-            || $this->validateUserPassword()
+            !$this->isUserEmailValid($userModel)
+            || !$this->isUsernameValid()
+            || !$this->isUserPasswordValid()
         ) {
             return false;
         }
@@ -49,15 +49,15 @@ class SignupModel extends Mvc\Model {
         return false;
     }
 
-    private function validateUserEmail(UserModel $userModel): bool {
+    private function isUserEmailValid(UserModel $userModel): bool {
         if (empty($this->userData['email'])) {
             $this->signupError = "email-cant-be-empty";
-            return true;
+            return false;
         }
 
         if (!filter_var($this->userData['email'], FILTER_VALIDATE_EMAIL)) {
             $this->signupError = "invalid-email-format";
-            return true;
+            return false;
         }
 
         if ($userModel->doesUserEmailExists($this->userData['email'])) {
@@ -67,48 +67,48 @@ class SignupModel extends Mvc\Model {
             } else {
                 $this->signupError = "email-is-already-registered";
             }
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
-    private function validateUsername(): bool {
+    private function isUsernameValid(): bool {
         if (empty($this->userData['username'])) {
             $this->signupError = "username-cant-be-empty";
-            return true;
+            return false;
         }
 
         if (!preg_match("/^[A-Za-z0-9]+$/", $this->userData['username'])) {
             $this->signupError = "username-can-only-contains-alphanumeric-characters";
-            return true;
+            return false;
         }
 
         if (strlen($this->userData['username']) < 4 || strlen($this->userData['username']) > 20) {
             $this->signupError = "username-length-must-be-between-4-and-20";
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
-    private function validateUserPassword(): bool {
+    private function isUserPasswordValid(): bool {
         if (empty($this->userData['password'])) {
             $this->signupError = "password-cant-be-empty";
-            return true;
+            return false;
         }
 
         if (strlen($this->userData['password']) < 6 || strlen($this->userData['password']) > 72) {
             $this->signupError = "password-length-must-be-between-6-and-72";
-            return true;
+            return false;
         }
 
         if ($this->userData['password'] != $this->userData['rePassword']) {
             $this->signupError = "passwords-do-not-match";
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     private function insertIntoDb(): bool {

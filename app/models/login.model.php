@@ -22,8 +22,8 @@ class LoginModel extends Mvc\Model {
 
         // checks for errors
         if (
-            $this->validateUserEmail()
-            || $this->validateUserPassword()
+            !$this->isUserEmailValid()
+            || !$this->isUserPasswordValid()
         ) {
             return false;
         }
@@ -48,22 +48,22 @@ class LoginModel extends Mvc\Model {
         session_destroy();
     }
 
-    private function validateUserEmail(): bool {
+    private function isUserEmailValid(): bool {
         if (empty($this->userData['email'])) {
             $this->loginError = "email-cant-be-empty";
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
-    private function validateUserPassword(): bool {
+    private function isUserPasswordValid(): bool {
         if (empty($this->userData['password'])) {
             $this->loginError = "password-cant-be-empty";
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     private function areCredentialsCorrect(UserModel $userModel): bool {
