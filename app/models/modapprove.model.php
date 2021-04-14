@@ -32,7 +32,7 @@ class ModApproveModel extends Mvc\Model {
         // checks for error
         if (
             !$this->isUserAdmin($userModel)
-            || $this->validateModStatus()
+            || !$this->isModStatusValid()
         ) {
             return false;
         }
@@ -54,13 +54,13 @@ class ModApproveModel extends Mvc\Model {
         return false;
     }
 
-    private function validateModStatus(): bool {
+    private function isModStatusValid(): bool {
         if (!in_array($this->modData['status'], $this->allowedStatuses)) {
             $this->modApproveError = "invalid-status";
-            return true;
+            return false;
         }
         
-        return false;
+        return true;
     }
 
     private function updateModStatusInDb(): bool {
