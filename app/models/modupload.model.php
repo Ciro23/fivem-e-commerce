@@ -73,7 +73,8 @@ class ModUploadModel extends Mvc\Model {
         
         // in case insertIntoDb() or moveModFiles fails
         // restores previous state
-        $this->rollBack($modModel);
+        //! to rethink, it's completely broken
+        //$this->rollBack($modModel);
 
         // saves the error and returns
         $this->modUploadError = "something-went-wrong";
