@@ -9,7 +9,7 @@ class StringHelper {
      * 
      * @return string the formatted error
      */
-    public static function formatError($error) {
+    public static function formatError(string $error): string {
         return ucfirst(str_replace("-", " ", $error));
     }
 }

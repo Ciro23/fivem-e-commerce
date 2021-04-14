@@ -9,7 +9,7 @@ class FileHelper {
      * 
      * @return string extension
      */
-    public static function getFileExtension($fileName) {
+    public static function getFileExtension(string $fileName): string {
         return pathinfo($fileName)['extension'];
     }
 
@@ -20,7 +20,7 @@ class FileHelper {
      * 
      * @return bool success status
      */
-    public static function deleteFolderAndItsContent($path) {
+    public static function deleteFolderAndItsContent(string $path) {
         //* to do
     }
 }

@@ -18,7 +18,7 @@ class InputHelper {
      * 
      * @return array
      */
-    public static function getFormInput($array, $form) {
+    public static function getFormInput(array $array, array $form): array {
         foreach ($form as $keyForm => $valueForm) {
             foreach ($array as $keyArray => $valueArray) {
                 if ($keyForm == $keyArray) {
