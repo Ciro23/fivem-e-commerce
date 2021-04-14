@@ -128,6 +128,8 @@ class ModUploadModel extends Mvc\Model {
             $this->modUploadError = "invalid-version-format";
             return false;
         }
+
+        return true;
     }
 
     private function isModFileValid(): bool {
@@ -145,6 +147,8 @@ class ModUploadModel extends Mvc\Model {
             $this->modUploadError = "file-maximum-size-is-50-mb";
             return false;
         }
+
+        return true;
     }
 
     private function isModLogoValid(): bool {
@@ -162,6 +166,8 @@ class ModUploadModel extends Mvc\Model {
             $this->modUploadError = "logo-maximum-size-is-2-mb";
             return false;
         }
+
+        return true;
     }
 
     /**
