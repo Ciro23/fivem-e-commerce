@@ -6,7 +6,7 @@ class LoginModel extends Mvc\Model {
 
     private array $userData = [
         "email" => "",
-        "password" => "",
+        "password" => ""
     ];
 
     public function getLoginError(): string {
