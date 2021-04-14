@@ -2,14 +2,8 @@
 
 class ModUploadModel extends Mvc\Model {
 
-    /**
-     * @var string $error
-     */
     private string $modUploadError = "";
 
-    /**
-     * @var array $modData contains all form modData
-     */
     private array $modData = [
         "name" => "",
         "description" => "",
@@ -19,9 +13,6 @@ class ModUploadModel extends Mvc\Model {
         "logo" => ""
     ];
 
-    /**
-     * @var array $allowedExt
-     */
     private array $allowedExt = [
         "file" => [
             'zip',
@@ -34,50 +25,22 @@ class ModUploadModel extends Mvc\Model {
         ]
     ];
 
-    /**
-     * returns the error
-     * 
-     * @return string
-     */
     public function getModUploadError(): string {
         return $this->modUploadError;
     }
 
-    /**
-     * returns the mod name
-     * 
-     * @return string
-     */
     public function getModName(): string {
         return $this->modData['name'];
     }
 
-    /**
-     * returns the mod description
-     * 
-     * @return string
-     */
     public function getModDescription(): string {
         return $this->modData['description'];
     }
 
-    /**
-     * returns the mod version
-     * 
-     * @return string
-     */
     public function getModVersion(): string {
         return $this->modData['version'];
     }
 
-    /**
-     * performs the upload action
-     * 
-     * @param array $inputData
-     * @param object $modModel
-     * 
-     * @return bool success status
-     */
     public function uploadMod(array $inputData, ModModel $modModel): bool {
         // gets the form input
         $this->modData = InputHelper::getFormInput($this->modData, $inputData[0]);
@@ -117,11 +80,6 @@ class ModUploadModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * checks if the name is valid
-     * 
-     * @return bool true on error, false otherwise
-     */
     private function validateModName(ModModel $modModel): bool {
         if (empty($this->modData['name'])) {
             $this->modUploadError = "name-cant-be-empty";
@@ -146,11 +104,6 @@ class ModUploadModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * checks if the description is valid
-     * 
-     * @return bool true on error, false otherwise
-     */
     private function validateModDescription(): bool {
         if (empty($this->modData['description'])) {
             $this->modUploadError = "description-cant-be-empty";
@@ -165,11 +118,6 @@ class ModUploadModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * checks if the version is valid
-     * 
-     * @return bool true on error, false otherwise
-     */
     private function validateModVersion(): bool {
         if (empty($this->modData['version'])) {
             $this->modUploadError = "version-cant-be-empty";
@@ -182,11 +130,6 @@ class ModUploadModel extends Mvc\Model {
         }
     }
 
-    /**
-     * checks if the file is valid
-     * 
-     * @return bool true on error, false otherwise
-     */
     private function validateModFile(): bool {
         if (empty($this->modData['file'])) {
             $this->modUploadError = "file-cant-be-empty";
@@ -204,11 +147,6 @@ class ModUploadModel extends Mvc\Model {
         }
     }
 
-    /**
-     * checks if the logo is valid
-     * 
-     * @return bool true on error, false otherwise
-     */
     private function validateModLogo(): bool {
         if (empty($this->modData['logo'])) {
             $this->modUploadError = "logo-cant-be-empty";
@@ -229,10 +167,6 @@ class ModUploadModel extends Mvc\Model {
     /**
      * moves the uploaded files to the mods folder
      * creates a new folder named as the new mod id and puts in it the mod file and its logo
-     * 
-     * @param int $modId
-     * 
-     * @return bool success status
      */
     private function moveModFiles(int $modId): bool {
         // creates the new mod folder
@@ -258,11 +192,6 @@ class ModUploadModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * insert the modData into the db
-     * 
-     * @return bool success status
-     */
     private function insertIntoDb(): bool {
         $sql = "INSERT INTO mods (name, description, version, size, author, file_ext, logo_ext) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $params = [
@@ -285,8 +214,6 @@ class ModUploadModel extends Mvc\Model {
 
     /**
      * deletes the mod from the db and delete its files from the server
-     * 
-     * @param object $modModel
      */
     private function rollBack(ModModel $modModel): void {
         // deletes mod row from the db

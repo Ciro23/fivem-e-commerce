@@ -67,7 +67,7 @@ class ModModel extends Mvc\Model {
     }
 
     /**
-     * deletes mod row from the db
+     * deletes a mod row from the db
      * 
      * @param int $id
      * 

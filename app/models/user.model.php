@@ -3,7 +3,7 @@
 class UserModel extends Mvc\Model {
 
     /**
-     * gets the user password given the email
+     * gets the user password given their email
      * 
      * @param string $email
      * 
@@ -22,13 +22,6 @@ class UserModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * checks if the email already exists in the db
-     * 
-     * @param string $email
-     * 
-     * @return bool success status
-     */
     public function doesUserEmailExists(string $email): bool {
         $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
         $params = [$email];
@@ -47,7 +40,7 @@ class UserModel extends Mvc\Model {
     }
 
     /**
-     * gets the user id by his email
+     * gets the user id by their email
      * 
      * @param string $email
      * 
@@ -66,13 +59,6 @@ class UserModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * checks if the user is admin
-     * 
-     * @param int $id
-     * 
-     * @return bool success status
-     */
     public function isUserAdmin(int $id): bool {
         if ($this->getUserRole($id) == 1) {
             return true;
@@ -81,7 +67,7 @@ class UserModel extends Mvc\Model {
     }
 
     /**
-     * gets the user role
+     * gets the user role by their id
      * 
      * @param int $id
      * 

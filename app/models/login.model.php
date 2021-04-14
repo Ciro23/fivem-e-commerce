@@ -17,12 +17,6 @@ class LoginModel extends Mvc\Model {
         return $this->userData['email'];
     }
 
-    /**
-     * @param array $inputData
-     * @param object $userModel
-     * 
-     * @return bool success status
-     */
     public function login(array $inputData, UserModel $userModel): bool {
         $this->userData = InputHelper::getFormInput($this->userData, $inputData);
 
@@ -54,9 +48,6 @@ class LoginModel extends Mvc\Model {
         session_destroy();
     }
 
-    /**
-     * @return bool true on error, false otherwise
-     */
     private function validateUserEmail(): bool {
         if (empty($this->userData['email'])) {
             $this->loginError = "email-cant-be-empty";
@@ -66,9 +57,6 @@ class LoginModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * @return bool true on error, false otherwise
-     */
     private function validateUserPassword(): bool {
         if (empty($this->userData['password'])) {
             $this->loginError = "password-cant-be-empty";
@@ -78,11 +66,6 @@ class LoginModel extends Mvc\Model {
         return false;
     }
 
-    /**
-     * @param object $userModel
-     * 
-     * @return bool success status
-     */
     private function areCredentialsCorrect(UserModel $userModel): bool {
         if (password_verify($this->userData['password'], $userModel->getUserPasswordByEmail($this->userData['email']))) {
             return true;

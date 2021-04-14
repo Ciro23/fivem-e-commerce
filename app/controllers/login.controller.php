@@ -20,9 +20,6 @@ class LoginController extends Mvc\Controller {
         }
     }
 
-    /**
-     * performs the login action
-     */
     public function login() {
         $loginModel = $this->model("Login");
         $userModel = $this->model("User");
@@ -38,9 +35,6 @@ class LoginController extends Mvc\Controller {
         }
     }
 
-    /**
-     * performs the logout action
-     */
     public function logout() {
         $loginModel = $this->model("Login");
         $loginModel->logout();
