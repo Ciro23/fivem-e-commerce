@@ -4,8 +4,6 @@ class ModController extends Mvc\Controller {
     
     /**
      * shows the mod page
-     * 
-     * @param int $modId
      */
     public function index(int $modId): void {
         $modModel = $this->model("Mod");

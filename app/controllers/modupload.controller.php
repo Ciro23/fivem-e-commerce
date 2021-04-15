@@ -22,9 +22,6 @@ class ModUploadController extends Mvc\Controller {
         }
     }
 
-    /**
-     * performs the upload action
-     */
     public function uploadMod(): void {
         $modUploadModel = $this->model("ModUpload");
         $modModel = $this->model("Mod");

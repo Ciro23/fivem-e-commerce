@@ -21,9 +21,6 @@ class SignupController extends Mvc\Controller {
         }
     }
 
-    /**
-     * performs the signup action
-     */
     public function signup(): void {
         $signupModel = $this->model("Signup");
         $userModel = $this->model("User");
