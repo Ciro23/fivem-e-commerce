@@ -15,15 +15,6 @@ class ModApproveModel extends Mvc\Model {
         return $this->modApproveError;
     }
 
-    /**
-     * updates the mod status
-     * 
-     * @param int $modId
-     * @param int $status (0 => rejected, 1 => pending, 2 => approved)
-     * @param object $userModel
-     * 
-     * @return bool success status
-     */
     public function updateModStatus(int $modId, int $status, UserModel $userModel): bool {
         // saves the mod id and the status in the class properties
         $this->modData['id'] = intval($modId);
