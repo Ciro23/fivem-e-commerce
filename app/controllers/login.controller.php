@@ -5,7 +5,7 @@ class LoginController extends Mvc\Controller {
     /**
      * shows the login page only if the user is not logged in
      */
-    public function index() {
+    public function index(): void {
         if (!isset($_SESSION['uid'])) {
             // saves the error, the email if something goes wrong
             $data['form']['error'] = $_GET['error'] ?? "";
@@ -20,7 +20,7 @@ class LoginController extends Mvc\Controller {
         }
     }
 
-    public function login() {
+    public function login(): void {
         $loginModel = $this->model("Login");
         $userModel = $this->model("User");
 
@@ -35,7 +35,7 @@ class LoginController extends Mvc\Controller {
         }
     }
 
-    public function logout() {
+    public function logout(): void {
         $loginModel = $this->model("Login");
         $loginModel->logout();
 

@@ -5,7 +5,7 @@ class ModUploadController extends Mvc\Controller {
     /**
      * shows the upload mod page only if the user is logged in
      */
-    public function index() {
+    public function index(): void {
         if (isset($_SESSION['uid'])) {
             // saves the error, and all the form data if something goes wrong
             $data['form']['error'] = $_GET['error'] ?? "";
@@ -25,7 +25,7 @@ class ModUploadController extends Mvc\Controller {
     /**
      * performs the upload action
      */
-    public function uploadMod() {
+    public function uploadMod(): void {
         $modUploadModel = $this->model("ModUpload");
         $modModel = $this->model("Mod");
 

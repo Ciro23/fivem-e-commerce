@@ -5,7 +5,7 @@ class SignupController extends Mvc\Controller {
     /**
      * shows the signup page only if the user is not logged in
      */
-    public function index() {
+    public function index(): void {
         if (!isset($_SESSION['uid'])) {
             // saves the error, the email and the username if something goes wrong
             $data['form']['error'] = $_GET['error'] ?? "";
@@ -24,7 +24,7 @@ class SignupController extends Mvc\Controller {
     /**
      * performs the signup action
      */
-    public function signup() {
+    public function signup(): void {
         $signupModel = $this->model("Signup");
         $userModel = $this->model("User");
 

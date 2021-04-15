@@ -7,7 +7,7 @@ class ModController extends Mvc\Controller {
      * 
      * @param int $modId
      */
-    public function index(int $modId) {
+    public function index(int $modId): void {
         $modModel = $this->model("Mod");
 
         // gets the mod data

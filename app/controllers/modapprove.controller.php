@@ -5,7 +5,7 @@ class ModApproveController extends Mvc\Controller {
     /**
      * shows the mod approve page only if the user is admin
      */
-    public function index() {
+    public function index(): void {
         $userModel = $this->model("User");
 
         // shows the page only if the user is an admin
@@ -32,7 +32,7 @@ class ModApproveController extends Mvc\Controller {
      * @param int $modId
      * @param int $status (0 => rejected, 1 => pending, 2 => approved)
      */
-    public function updateModStatus(int $modId, int $status) {
+    public function updateModStatus(int $modId, int $status): void {
         $modApproveModel = $this->model("ModApprove");
         $userModel = $this->model("User");
 
