@@ -2,7 +2,7 @@
     "require": {
         "vlucas/phpdotenv": "^5.3",
         "nikic/fast-route": "^1.3",
-        "ciro23/mvc-framework": "^2.0"
+        "codeigniter4/framework": "^4.1"
     },
 
     "autoload": {
