@@ -22,9 +22,9 @@ class ModApproveController extends BaseController {
             // saves the admin status
             $data['user']['is_admin'] = true;
 
-            $this->view("modapprove", $data);
+            echo view("modapprove", $data);
         } else {
-            $this->view("pagenotfound");
+            echo view("pagenotfound");
         }
     }
 

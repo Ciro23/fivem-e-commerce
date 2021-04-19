@@ -18,7 +18,7 @@ class ModUploadController extends BaseController {
             // formats the error
             $data['form']['error'] = StringHelper::formatError($data['form']['error']);
 
-            $this->view("modupload", $data);
+            echo view("modupload", $data);
         } else {
             header("Location: /login");
         }

@@ -14,9 +14,9 @@ class ModController extends BaseController {
         $data = $modModel->getModDetails($modId);
 
         if ($data) {
-            $this->view("mod", $data);
+            echo view("mod", $data);
         } else {
-            $this->view("pagenotfound");
+            echo view("pagenotfound");
         }
     }
 }

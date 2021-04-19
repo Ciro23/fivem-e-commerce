@@ -16,7 +16,7 @@ class LoginController extends BaseController {
             // formats the error
             $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
 
-            $this->view("login", $data);
+            echo view("login", $data);
         } else {
             header("Location: /");
         }

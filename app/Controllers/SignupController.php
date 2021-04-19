@@ -17,7 +17,7 @@ class SignupController extends BaseController {
             // formats the error
             $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
 
-            $this->view("signup", $data);
+            echo view("signup", $data);
         } else {
             header("Location: /");
         }
