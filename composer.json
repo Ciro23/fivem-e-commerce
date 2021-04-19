@@ -8,10 +8,9 @@
 
     "autoload": {
         "classmap": [
-            "app/core/",
-            "app/controllers/",
-            "app/models/",
-            "app/helpers"
+            "app/Controllers/",
+            "app/Models/",
+            "app/Helpers"
         ]
     }
 }
