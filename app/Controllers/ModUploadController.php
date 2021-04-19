@@ -1,6 +1,8 @@
 <?php
 
-class ModUploadController extends Mvc\Controller {
+namespace App\Controllers;
+
+class ModUploadController extends BaseController {
 
     /**
      * shows the upload mod page only if the user is logged in

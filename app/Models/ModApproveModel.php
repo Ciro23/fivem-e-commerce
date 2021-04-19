@@ -1,6 +1,10 @@
 <?php
 
-class ModApproveModel extends Mvc\Model {
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class ModApproveModel extends Model {
 
     private string $modApproveError = "";
 

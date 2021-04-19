@@ -1,6 +1,10 @@
 <?php
 
-class UserModel extends Mvc\Model {
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class UserModel extends Model {
 
     /**
      * gets the user password given their email

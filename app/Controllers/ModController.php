@@ -1,6 +1,8 @@
 <?php
 
-class ModController extends Mvc\Controller {
+namespace App\Controllers;
+
+class ModController extends BaseController {
     
     /**
      * shows the mod page

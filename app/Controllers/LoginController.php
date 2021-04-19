@@ -1,6 +1,8 @@
 <?php
 
-class LoginController extends Mvc\Controller {
+namespace App\Controllers;
+
+class LoginController extends BaseController {
 
     /**
      * shows the login page only if the user is not logged in
@@ -12,7 +14,7 @@ class LoginController extends Mvc\Controller {
             $data['form']['email'] = $_GET['email'] ?? "";
 
             // formats the error
-            $data['form']['error'] = StringHelper::formatError($data['form']['error']);
+            $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
 
             $this->view("login", $data);
         } else {

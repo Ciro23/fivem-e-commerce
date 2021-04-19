@@ -1,6 +1,10 @@
 <?php
 
-class SignupModel extends Mvc\Model {
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class SignupModel extends Model {
 
     private string $signupError = "";
 
@@ -25,7 +29,7 @@ class SignupModel extends Mvc\Model {
 
     public function signup(array $inputData, UserModel $userModel): bool {
         // gets the form input
-        $this->userData = InputHelper::getFormInput($this->userData, $inputData);
+        $this->userData = \InputHelper::getFormInput($this->userData, $inputData);
 
         // checks for errors
         if (

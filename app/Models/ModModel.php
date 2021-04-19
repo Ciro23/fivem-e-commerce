@@ -1,6 +1,10 @@
 <?php
 
-class ModModel extends Mvc\Model {
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class ModModel extends Model {
     
     /**
      * gets mod details

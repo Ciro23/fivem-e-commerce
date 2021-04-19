@@ -1,6 +1,10 @@
 <?php
 
-class ModUploadModel extends Mvc\Model {
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class ModUploadModel extends Model {
 
     private string $modUploadError = "";
 
@@ -43,14 +47,14 @@ class ModUploadModel extends Mvc\Model {
 
     public function uploadMod(array $inputData, ModModel $modModel): bool {
         // gets the form input
-        $this->modData = InputHelper::getFormInput($this->modData, $inputData[0]);
-        $this->modData = InputHelper::getFormInput($this->modData, $inputData[1]);
+        $this->modData = \InputHelper::getFormInput($this->modData, $inputData[0]);
+        $this->modData = \InputHelper::getFormInput($this->modData, $inputData[1]);
 
         $this->modData['author'] = $_SESSION['uid'];
 
         // saves the extension of the file and the logo
-        $this->modData['file']['ext'] = FileHelper::getFileExtension($this->modData['file']['name']);
-        $this->modData['logo']['ext'] = FileHelper::getFileExtension($this->modData['logo']['name']);
+        $this->modData['file']['ext'] = \FileHelper::getFileExtension($this->modData['file']['name']);
+        $this->modData['logo']['ext'] = \FileHelper::getFileExtension($this->modData['logo']['name']);
 
         // checks for errors
         if (
@@ -227,6 +231,6 @@ class ModUploadModel extends Mvc\Model {
         $modModel->deleteModFromDb($this->lastInsertId("mods"));
 
         // deletes mod files from the server
-        FileHelper::deleteFolderAndItsContent($this->modData['id']);
+        \FileHelper::deleteFolderAndItsContent($this->modData['id']);
     }
 }

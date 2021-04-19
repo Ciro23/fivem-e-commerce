@@ -1,6 +1,8 @@
 <?php
 
-class ModApproveController extends Mvc\Controller {
+namespace App\Controllers;
+
+class ModApproveController extends BaseController {
 
     /**
      * shows the mod approve page only if the user is admin

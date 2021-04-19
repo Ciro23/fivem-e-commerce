@@ -1,6 +1,10 @@
 <?php
 
-class LoginModel extends Mvc\Model {
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class LoginModel extends Model {
 
     private string $loginError = "";
 
@@ -18,7 +22,7 @@ class LoginModel extends Mvc\Model {
     }
 
     public function login(array $inputData, UserModel $userModel): bool {
-        $this->userData = InputHelper::getFormInput($this->userData, $inputData);
+        $this->userData = \InputHelper::getFormInput($this->userData, $inputData);
 
         // checks for errors
         if (

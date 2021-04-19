@@ -1,6 +1,8 @@
 <?php
 
-class SignupController extends Mvc\Controller {
+namespace App\Controllers;
+
+class SignupController extends BaseController {
 
     /**
      * shows the signup page only if the user is not logged in
@@ -13,7 +15,7 @@ class SignupController extends Mvc\Controller {
             $data['form']['username'] = $_GET['username'] ?? "";
 
             // formats the error
-            $data['form']['error'] = StringHelper::formatError($data['form']['error']);
+            $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
 
             $this->view("signup", $data);
         } else {
