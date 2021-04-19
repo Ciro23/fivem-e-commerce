@@ -2,13 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Models\ModModel;
+use App\Models\ModApproveModel;
+use App\Models\UserModel;
+
 class ModApproveController extends BaseController {
 
     /**
      * shows the mod approve page only if the user is admin
      */
     public function index(): void {
-        $userModel = $this->model("User");
+        $userModel = new UserModel;
 
         // shows the page only if the user is an admin
         if (
@@ -16,7 +20,7 @@ class ModApproveController extends BaseController {
             && $userModel->isUserAdmin($_SESSION['uid'])
         ) {
             // gets the list of mods to approve
-            $modModel = $this->model("Mod");
+            $modModel = new ModModel;
             $data['mods'] = $modModel->getModsByStatus(1);
 
             // saves the admin status
@@ -35,8 +39,8 @@ class ModApproveController extends BaseController {
      * @param int $status (0 => rejected, 1 => pending, 2 => approved)
      */
     public function updateModStatus(int $modId, int $status): void {
-        $modApproveModel = $this->model("ModApprove");
-        $userModel = $this->model("User");
+        $modApproveModel = new ModApproveModel;
+        $userModel = new UserModel;
 
         if ($modApproveModel->updateModStatus($modId, $status, $userModel)) {
             header("Location: /mod/" . $modId);

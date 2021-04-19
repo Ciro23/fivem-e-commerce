@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\LoginModel;
+use App\Models\UserModel;
+
 class LoginController extends BaseController {
 
     /**
@@ -23,8 +26,8 @@ class LoginController extends BaseController {
     }
 
     public function login(): void {
-        $loginModel = $this->model("Login");
-        $userModel = $this->model("User");
+        $loginModel = new LoginModel;
+        $userModel = new UserModel;
 
         // tries to execute LoginModel::login(), which returns true in case of success, false otherwise
         if ($loginModel->login($_POST, $userModel)) {
@@ -38,7 +41,7 @@ class LoginController extends BaseController {
     }
 
     public function logout(): void {
-        $loginModel = $this->model("Login");
+        $loginModel = new LoginModel;
         $loginModel->logout();
 
         header("Location: /");

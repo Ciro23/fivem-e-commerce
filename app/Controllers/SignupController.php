@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\SignupModel;
+use App\Models\UserModel;
+
 class SignupController extends BaseController {
 
     /**
@@ -24,8 +27,8 @@ class SignupController extends BaseController {
     }
 
     public function signup(): void {
-        $signupModel = $this->model("Signup");
-        $userModel = $this->model("User");
+        $signupModel = new SignupModel;
+        $userModel = new UserModel;
 
         // tries to execute SignupModel::signup(), which returns true in case of success, false otherwise
         if ($signupModel->signup($_POST, $userModel)) {

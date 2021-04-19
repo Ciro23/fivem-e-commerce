@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\ModModel;
+use App\Models\ModUploadModel;
+
 class ModUploadController extends BaseController {
 
     /**
@@ -25,8 +28,8 @@ class ModUploadController extends BaseController {
     }
 
     public function uploadMod(): void {
-        $modUploadModel = $this->model("ModUpload");
-        $modModel = $this->model("Mod");
+        $modUploadModel = new ModUploadModel;
+        $modModel = new ModModel;
 
         // tries to execute ModUpload::upload(), which returns true in case of success, false otherwise
         if ($modUploadModel->uploadMod([$_POST, $_FILES], $modModel)) {

@@ -2,13 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Models\ModModel;
+
 class ModController extends BaseController {
     
     /**
      * shows the mod page
      */
     public function index(int $modId): void {
-        $modModel = $this->model("Mod");
+        $modModel = new ModModel;
 
         // gets the mod data
         $data = $modModel->getModDetails($modId);
