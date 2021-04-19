@@ -19,7 +19,7 @@ class ModUploadController extends BaseController {
             $data['form']['version'] = $_GET['version'] ?? "";
 
             // formats the error
-            $data['form']['error'] = StringHelper::formatError($data['form']['error']);
+            $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
 
             echo view("modupload", $data);
         } else {
