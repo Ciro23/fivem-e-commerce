@@ -34,6 +34,17 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// mod routes
+$routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes) {
+	$routes->get("(:num)", "ModController::index/$1");
+
+	$routes->get("mod/upload/", "ModUploadController::index");
+	$routes->post("mod/upload/action", "ModUploadController::uploadMod");
+
+	$routes->get("mod/approve", "ModApproveController::index");
+	$routes->get("mod/approve/(:num)/update-status/(:num)", "ModApproveController::updateModStatus/$1/$2");
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
