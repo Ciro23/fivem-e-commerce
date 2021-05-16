@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Mod;
 
+use App\Controllers\BaseController;
 use App\Models\ModModel;
 
 class ModController extends BaseController {
