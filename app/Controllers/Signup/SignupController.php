@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\SignupModel;
-use App\Models\UserModel;
+// use App\Models\SignupModel;
+// use App\Models\UserModel;
 
 class SignupController extends BaseController {
 
@@ -12,15 +12,14 @@ class SignupController extends BaseController {
      */
     public function index(): void {
         if (!isset($_SESSION['uid'])) {
-            // saves the error, the email and the username if something goes wrong
-            $data['form']['error'] = $_GET['error'] ?? "";
-            $data['form']['email'] = $_GET['email'] ?? "";
-            $data['form']['username'] = $_GET['username'] ?? "";
+            helper("form");
+            library("form_validation");
 
-            // formats the error
-            $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
-
-            echo view("signup", $data);
+            if ($this->form_validation->run() === false) {
+                echo view("signup");
+            } else {
+                echo "success!";
+            }
         } else {
             header("Location: /");
         }
