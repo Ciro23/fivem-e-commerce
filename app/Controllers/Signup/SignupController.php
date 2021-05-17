@@ -3,8 +3,8 @@
 namespace App\Controllers\Signup;
 
 use App\Controllers\BaseController;
-// use App\Models\SignupModel;
-// use App\Models\UserModel;
+use App\Models\SignupModel;
+use App\Models\UserModel;
 
 class SignupController extends BaseController {
 
