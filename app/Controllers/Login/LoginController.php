@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Login;
 
+use App\Controllers\BaseController;
 use App\Models\LoginModel;
 use App\Models\UserModel;
 
