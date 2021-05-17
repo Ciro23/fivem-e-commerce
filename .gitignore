@@ -1,4 +1,4 @@
 vendor/
 .env
-test/
+tests/
 mods_files/
