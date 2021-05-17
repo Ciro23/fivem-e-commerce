@@ -34,6 +34,12 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// signup routes
+$routes->group("signup", ["namespace" => "App\Controllers\Signup"], function ($routes) {
+	$routes->get("/signup", "SignupController::index");
+	$routes->post("/signup/action", "SignupController::signup");
+});
+
 // mod routes
 $routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes) {
 	$routes->get("(:num)", "ModController::index/$1");
