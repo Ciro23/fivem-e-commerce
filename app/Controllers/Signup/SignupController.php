@@ -13,14 +13,15 @@ class SignupController extends BaseController {
      */
     public function index(): void {
         if (!isset($_SESSION['uid'])) {
-            helper("form");
-            library("form_validation");
+            // saves the error, the email and the username if something goes wrong
+            $data['form']['error'] = $_GET['error'] ?? "";
+            $data['form']['email'] = $_GET['email'] ?? "";
+            $data['form']['username'] = $_GET['username'] ?? "";
 
-            if ($this->form_validation->run() === false) {
-                echo view("signup");
-            } else {
-                echo "success!";
-            }
+            // formats the error
+            $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
+
+            echo view("signup", $data);
         } else {
             header("Location: /");
         }
