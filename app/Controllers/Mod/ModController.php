@@ -3,7 +3,7 @@
 namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
-use App\Models\ModModel;
+use App\Models\Mod\ModModel;
 
 class ModController extends BaseController {
     

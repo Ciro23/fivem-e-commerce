@@ -3,8 +3,8 @@
 namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
-use App\Models\ModModel;
-use App\Models\ModApproveModel;
+use App\Models\Mod\ModModel;
+use App\Models\Mod\ModApproveModel;
 use App\Models\UserModel;
 
 class ModApproveController extends BaseController {
