@@ -6,13 +6,6 @@ use Config\Database;
 use CodeIgniter\Model;
 
 class ModModel extends Model {
-    
-    private object $conn;
-
-    public function __construct() {
-        parent::__construct();
-        $this->conn = Database::connect();
-    }
 
     /**
      * gets mod details
@@ -22,7 +15,7 @@ class ModModel extends Model {
      * @return object|null first contains mod data, false in case of error
      */
     public function getModDetails(int $id): object|null {
-        $builder = $this->conn->table("mods")
+        $builder = $this->db->table("mods")
                               ->select("*")
                               ->where("id", $id);
 
@@ -39,7 +32,7 @@ class ModModel extends Model {
      * @return array
      */
     public function getModsByApprovedStatus(int $is_approved): array {
-        $builder = $this->conn->table("mods")
+        $builder = $this->db->table("mods")
                               ->select("*")
                               ->where("is_approved", $is_approved);
 
@@ -54,7 +47,7 @@ class ModModel extends Model {
      * @param int $id
      */
     public function deleteModFromDb(int $id): void {
-        $builder = $this->conn->table("mods");
+        $builder = $this->db->table("mods");
         $builder->where("id", $id);
         $builder->delete();
     }
