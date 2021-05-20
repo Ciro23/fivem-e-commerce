@@ -7,6 +7,13 @@ use CodeIgniter\Model;
 
 class ModModel extends Model {
     
+    private object $conn;
+
+    public function __construct() {
+        parent::__construct();
+        $this->conn = Database::connect();
+    }
+
     /**
      * gets mod details
      * 
@@ -15,8 +22,7 @@ class ModModel extends Model {
      * @return array|false first contains mod data, false in case of error
      */
     public function getModDetails(int $id): array|false {
-        $db = Database::connect();
-        $builder = $db->table("mods");
+        $builder = $this->conn->table("mods");
         $builder->where("id", $id);
 
         if ($query = $builder->get()) {
@@ -33,8 +39,7 @@ class ModModel extends Model {
      * @return array|false first contains mod list, false in case of error
      */
     public function getModsByStatus(int $status): array|false {
-        $db = Database::connect();
-        $builder = $db->table("mods");
+        $builder = $this->conn->table("mods");
         $builder->where("is_approved", $status);
 
         if ($query = $builder->get()) {
