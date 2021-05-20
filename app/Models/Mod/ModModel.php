@@ -19,14 +19,14 @@ class ModModel extends Model {
      * 
      * @param int $id
      * 
-     * @return array|false first contains mod data, false in case of error
+     * @return object|false first contains mod data, false in case of error
      */
-    public function getModDetails(int $id): array|false {
+    public function getModDetails(int $id): object|false {
         $builder = $this->conn->table("mods");
         $builder->where("id", $id);
 
         if ($query = $builder->get()) {
-            return $query->getResult();
+            return $query->getRow();
         }
         return false;
     }
