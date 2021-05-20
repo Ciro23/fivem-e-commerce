@@ -49,30 +49,6 @@ class ModModel extends Model {
     }
 
     /**
-     * checks if the mod name already exists in the db
-     * 
-     * @param string $name
-     * 
-     * @return bool success status
-     */
-    public function doesModNameExists(string $name): bool {
-        $sql = "SELECT COUNT(*) FROM mods WHERE name = ?";
-        $params = [$name];
-        $query = $this->executeStmt($sql, $params);
-
-        // tries to run the query
-        if ($query) {
-            // checks if the email is already registered
-            if ($query->fetch(PDO::FETCH_COLUMN) == 1) {
-                return true;
-            }
-            return false;
-        }
-        
-        return false;
-    }
-
-    /**
      * deletes a mod row from the db
      * 
      * @param int $id
