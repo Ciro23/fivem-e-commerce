@@ -32,20 +32,20 @@ class ModModel extends Model {
     }
 
     /**
-     * gets mod list by their status
+     * gets all mods based on whether they are approved or not
      * 
-     * @param int $status (0 => rejected, 1 => pending, 2 => approved)
+     * @param int $is_approved
      * 
-     * @return array|false first contains mod list, false in case of error
+     * @return array
      */
-    public function getModsByStatus(int $status): array|false {
-        $builder = $this->conn->table("mods");
-        $builder->where("is_approved", $status);
+    public function getModsByApprovedStatus(int $is_approved): array {
+        $builder = $this->conn->table("mods")
+                              ->select("*")
+                              ->where("is_approved", $is_approved);
 
-        if ($query = $builder->get()) {
-            return $query->getResult();
-        }
-        return false;
+        $query = $builder->get();
+        
+        return $query->getResult();
     }
 
     /**
