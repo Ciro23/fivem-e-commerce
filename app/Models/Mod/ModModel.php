@@ -22,13 +22,13 @@ class ModModel extends Model {
      * @return object|null first contains mod data, false in case of error
      */
     public function getModDetails(int $id): object|null {
-        $builder = $this->conn->table("mods");
-        $builder->where("id", $id);
+        $builder = $this->conn->table("mods")
+                              ->select("*")
+                              ->where("id", $id);
 
-        if ($query = $builder->get()) {
-            return $query->getRow();
-        }
-        return false;
+        $query = $builder->get();
+
+        return $query->getRow();
     }
 
     /**
