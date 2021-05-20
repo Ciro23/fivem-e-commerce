@@ -2,6 +2,7 @@
 
 namespace App\Models\Mod;
 
+use Config\Database;
 use CodeIgniter\Model;
 
 class ModModel extends Model {
@@ -14,14 +15,12 @@ class ModModel extends Model {
      * @return array|false first contains mod data, false in case of error
      */
     public function getModDetails(int $id): array|false {
-        $sql = "SELECT * FROM mods WHERE id = ?";
-        $params = [$id];
-        $query = $this->executeStmt($sql, $params);
+        $db = Database::connect();
+        $builder = $db->table("mods");
+        $builder->where("id", $id);
 
-        // tries to run the query
-        if ($query) {
-            // returns an associative array with the mod data
-            return $query->fetch(PDO::FETCH_ASSOC);
+        if ($query = $builder->get()) {
+            return $query->getResult();
         }
         return false;
     }
