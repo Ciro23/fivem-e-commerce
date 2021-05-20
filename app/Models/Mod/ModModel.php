@@ -49,20 +49,13 @@ class ModModel extends Model {
     }
 
     /**
-     * deletes a mod row from the db
+     * deletes a mod from the mods table
      * 
      * @param int $id
-     * 
-     * @return bool success status
      */
-    public function deleteModFromDb(int $id): bool {
-        $sql = "DELETE FROM mods WHERE id = ?";
-        $params = [$id];
-
-        if ($this->executeStmt($sql, $params)) {
-            return true;
-        }
-        
-        return false;
+    public function deleteModFromDb(int $id): void {
+        $builder = $this->conn->table("mods");
+        $builder->where("id", $id);
+        $builder->delete();
     }
 }
