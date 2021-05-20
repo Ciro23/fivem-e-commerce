@@ -19,9 +19,9 @@ class ModModel extends Model {
      * 
      * @param int $id
      * 
-     * @return object|false first contains mod data, false in case of error
+     * @return object|null first contains mod data, false in case of error
      */
-    public function getModDetails(int $id): object|false {
+    public function getModDetails(int $id): object|null {
         $builder = $this->conn->table("mods");
         $builder->where("id", $id);
 
