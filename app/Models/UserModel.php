@@ -27,20 +27,12 @@ class UserModel extends Model {
     }
 
     public function doesUserEmailExists(string $email): bool {
-        $sql = "SELECT COUNT(*) FROM users WHERE email = ?";
-        $params = [$email];
-        $query = $this->executeStmt($sql, $params);
-
-        // tries to run the query
-        if ($query) {
-            // checks if the email is already registered
-            if ($query->fetch(PDO::FETCH_COLUMN) == 1) {
-                return true;
-            }
-            return false;
-        }
-        
-        return false;
+        $builder = $this->db->table("users")
+                            ->select("email")
+                            ->where("email", $email)
+                            ->countAllResults();
+                            
+        return $builder > 0;
     }
 
     /**
