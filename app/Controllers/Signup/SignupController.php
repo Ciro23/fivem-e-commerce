@@ -27,6 +27,7 @@ class SignupController extends BaseController {
             if ($this->validateAndSignup()) {
                 $this->session->set([
                     "is_logged_in" => true,
+                    "email" => $this->request->getVar("email"),
                 ]);
             } else {
                 $data['validator'] = $this->validator->listErrors();
