@@ -3,6 +3,7 @@
 namespace App\Controllers\Signup;
 
 use App\Controllers\BaseController;
+use Config\Services;
 use App\Models\SignupModel;
 use App\Models\UserModel;
 
@@ -12,35 +13,33 @@ class SignupController extends BaseController {
      * shows the signup page only if the user is not logged in
      */
     public function index(): void {
-        if (!isset($_SESSION['uid'])) {
-            // saves the error, the email and the username if something goes wrong
-            $data['form']['error'] = $_GET['error'] ?? "";
-            $data['form']['email'] = $_GET['email'] ?? "";
-            $data['form']['username'] = $_GET['username'] ?? "";
+        $session = session();
+        helper("form");
 
-            // formats the error
-            $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
+        // in case the user is already logged in
+        if (isset($session->uid)) {
+            redirect()->to("/");
+        }
 
-            echo view("signup", $data);
+        if ($this->signup()) {
+            echo view("home");
         } else {
-            header("Location: /");
+            echo view("signup", [
+                "validator" => $this->validator->listErrors()
+            ]);
         }
     }
 
-    public function signup(): void {
-        $signupModel = new SignupModel;
-        $userModel = new UserModel;
+    /**
+     * checks if the user input meets the signup rules
+     */
+    public function signup(): bool {
+        if ($this->validate("signup")) {
+            $signupModel = new SignupModel;
+            $signupModel->signup();
 
-        // tries to execute SignupModel::signup(), which returns true in case of success, false otherwise
-        if ($signupModel->signup($_POST, $userModel)) {
-            header("Location: /");
-        } else {
-            header("Location: /signup/?error="
-                . $signupModel->getSignupError()
-                . "&email="
-                . $signupModel->getUserEmail()
-                . "&username="
-                . $signupModel->getUsername());
+            return true;
         }
+        return false;
     }
 }
