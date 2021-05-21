@@ -13,11 +13,10 @@ class SignupController extends BaseController {
      * shows the signup page only if the user is not logged in
      */
     public function index(): void {
-        $session = session();
         helper("form");
 
         // in case the user is already logged in
-        if ($session->is_logged_in) {
+        if ($this->session->is_logged_in) {
             redirect()->to("/");
         }
 
@@ -26,7 +25,7 @@ class SignupController extends BaseController {
         // in case of post request
         if ($this->request->getMethod() == "post") {
             if ($this->validateAndSignup()) {
-                $session->set([
+                $this->session->set([
                     "is_logged_in" => true,
                 ]);
             } else {
