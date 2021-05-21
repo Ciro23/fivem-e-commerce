@@ -39,7 +39,7 @@ class SignupController extends BaseController {
     /**
      * checks if the user input meets the signup rules
      */
-    public function validateAndSignup(): bool {
+    private function validateAndSignup(): bool {
         if ($this->validate("signup")) {
             $signupModel = new SignupModel;
             $signupModel->signup($_POST);
