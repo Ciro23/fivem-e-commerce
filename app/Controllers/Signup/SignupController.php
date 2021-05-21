@@ -14,13 +14,12 @@ class SignupController extends BaseController {
      */
     public function index(): void {
         helper("form");
+        $data = [];
 
         // in case the user is already logged in
         if ($this->session->is_logged_in) {
             redirect()->to("/");
         }
-
-        $data = [];
 
         // in case of post request
         if ($this->request->getMethod() == "post") {
