@@ -2,6 +2,6 @@
 
 namespace App\Validation;
 
-class CustomRules {
+class UserRules {
     
 }
