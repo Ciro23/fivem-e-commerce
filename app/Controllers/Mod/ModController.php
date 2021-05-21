@@ -14,12 +14,16 @@ class ModController extends BaseController {
         $modModel = new ModModel;
 
         // gets the mod data
-        $data = $modModel->getModDetails($modId);
+        $data['mod'] = $modModel->getModDetails($modId);
 
-        if ($data) {
-            echo view("mod", $data);
-        } else {
-            echo view("pagenotfound");
+        $this->view($data);
+    }
+
+    private function view($data) {
+        if ($data['mod'] === null) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException();
         }
+
+        echo view("mod", $data);
     }
 }
