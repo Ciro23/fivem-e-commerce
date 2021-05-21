@@ -21,13 +21,20 @@ class SignupController extends BaseController {
             redirect()->to("/");
         }
 
-        if ($this->validateAndSignup()) {
-            echo view("home");
-        } else {
-            echo view("signup", [
-                "validator" => $this->validator->listErrors()
-            ]);
+        $data = [];
+
+        // in case of post request
+        if ($this->request->getMethod() == "post") {
+            if ($this->validateAndSignup()) {
+                $session->set([
+                    "is_logged_in" => true,
+                ]);
+            } else {
+                $data['validator'] = $this->validator->listErrors();
+            }
         }
+
+        echo view("signup", $data);
     }
 
     /**
@@ -36,7 +43,7 @@ class SignupController extends BaseController {
     public function validateAndSignup(): bool {
         if ($this->validate("signup")) {
             $signupModel = new SignupModel;
-            $signupModel->signup();
+            $signupModel->signup($_POST);
 
             return true;
         }
