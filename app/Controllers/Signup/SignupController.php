@@ -17,7 +17,7 @@ class SignupController extends BaseController {
         helper("form");
 
         // in case the user is already logged in
-        if (isset($session->uid)) {
+        if ($session->is_logged_in) {
             redirect()->to("/");
         }
 
