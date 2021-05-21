@@ -26,12 +26,17 @@ class UserModel extends Model {
         return false;
     }
 
-    public function doesUserEmailExists(string $email): bool {
+    public function doesUserExists(string $field, string $value): bool {
+        // email and username are the only two primary key fields in the users table
+        if (!in_array($field, ["email", "username"])) {
+            return false;
+        }
+
         $builder = $this->db->table("users")
-                            ->select("email")
-                            ->where("email", $email)
+                            ->select($field)
+                            ->where($field, $value)
                             ->countAllResults();
-                            
+
         return $builder > 0;
     }
 
