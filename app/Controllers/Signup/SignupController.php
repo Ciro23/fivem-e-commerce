@@ -30,7 +30,7 @@ class SignupController extends BaseController {
                     "email" => $this->request->getVar("email"),
                 ]);
             } else {
-                $data['validator'] = $this->validator->listErrors();
+                $data['validator'] = $this->validator;
             }
         }
 
