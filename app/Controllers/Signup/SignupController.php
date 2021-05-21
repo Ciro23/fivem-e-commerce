@@ -21,7 +21,7 @@ class SignupController extends BaseController {
             redirect()->to("/");
         }
 
-        if ($this->signup()) {
+        if ($this->validateAndSignup()) {
             echo view("home");
         } else {
             echo view("signup", [
@@ -33,7 +33,7 @@ class SignupController extends BaseController {
     /**
      * checks if the user input meets the signup rules
      */
-    public function signup(): bool {
+    public function validateAndSignup(): bool {
         if ($this->validate("signup")) {
             $signupModel = new SignupModel;
             $signupModel->signup();
