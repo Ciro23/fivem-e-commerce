@@ -36,8 +36,7 @@ class LoginController extends BaseController {
     }
 
     public function logout(): void {
-        $loginModel = new LoginModel;
-        $loginModel->logout();
+        $this->session->destroy();
 
         redirect()->to("/");
     }
