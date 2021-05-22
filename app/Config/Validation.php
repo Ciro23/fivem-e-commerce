@@ -49,4 +49,9 @@ class Validation
 		"password" => "required|min_length[6]|max_length[72]",
 		"confirm_password" => "required|matches[password]"
 	];
+
+	public $login = [
+		"email" => "required",
+		"password" => "required|are_credentials_correct[email, password]",
+	];
 }
