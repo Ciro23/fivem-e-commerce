@@ -11,19 +11,16 @@ class UserModel extends Model {
      * 
      * @param string $email
      * 
-     * @return string|false the email or false on failure
+     * @return string
      */
     public function getUserPasswordByEmail(string $email): string|false {
-        $sql = "SELECT password FROM users WHERE email = ?";
-        $params = [$email];
-        $query = $this->executeStmt($sql, $params);
-
-        // tries to run the query
-        if ($query) {
-            return $query->fetch(PDO::FETCH_COLUMN);
-        }
+        $builder = $this->db->table("users")
+                            ->select("password")
+                            ->where("email", $email);
         
-        return false;
+        $query = $builder->get();
+
+        return $query->getRow();
     }
 
     /**
