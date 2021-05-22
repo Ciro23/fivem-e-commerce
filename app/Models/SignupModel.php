@@ -29,6 +29,11 @@ class SignupModel extends Model {
         $this->insertIntoDb($data);
     }
 
+    /**
+     * creates a new row in the users table
+     * 
+     * @param array $data
+     */
     private function insertIntoDb(array $data): void {
         $builder = $this->db->table("users")
                             ->insert($data);
