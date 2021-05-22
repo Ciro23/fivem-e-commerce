@@ -16,8 +16,8 @@ class ModModel extends Model {
      */
     public function getModDetails(int $id): object|null {
         $builder = $this->db->table("mods")
-                              ->select("*")
-                              ->where("id", $id);
+                            ->select("*")
+                            ->where("id", $id);
 
         $query = $builder->get();
 
@@ -33,8 +33,8 @@ class ModModel extends Model {
      */
     public function getModsByApprovedStatus(int $is_approved): array {
         $builder = $this->db->table("mods")
-                              ->select("*")
-                              ->where("is_approved", $is_approved);
+                            ->select("*")
+                            ->where("is_approved", $is_approved);
 
         $query = $builder->get();
         
