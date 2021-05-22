@@ -13,7 +13,7 @@ class UserModel extends Model {
      * 
      * @return string
      */
-    public function getUserPasswordByEmail(string $email): string|false {
+    public function getUserPasswordByEmail(string $email): string {
         $builder = $this->db->table("users")
                             ->select("password")
                             ->where("email", $email);
@@ -52,7 +52,7 @@ class UserModel extends Model {
      * 
      * @return int
      */
-    public function getUserIdByEmail(string $email): int|false {
+    public function getUserIdByEmail(string $email): int {
         $builder = $this->db->table("users")
                             ->select("id")
                             ->where("email", $email);
