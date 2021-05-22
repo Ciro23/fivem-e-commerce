@@ -81,18 +81,15 @@ class UserModel extends Model {
      * 
      * @param int $id
      * 
-     * @return int|false role in case of success, false otherwise
+     * @return bool
      */
-    public function getUserRole(int $id): int|false {
-        $sql = "SELECT role FROM users WHERE id = ?";
-        $params = [$id];
-        $query = $this->executeStmt($sql, $params);
+    public function getUserRole(int $id): bool {
+        $builder = $this->db->table("users")
+                            ->select("role")
+                            ->where("id", $id);
 
-        // tries to run the query
-        if ($query) {
-            return $query->fetch(PDO::FETCH_COLUMN);
-        }
-        
-        return false;
+        $query = $builder->get();
+
+        return $query->getRow() > 0;
     }
 }
