@@ -10,7 +10,6 @@ class SignupModel extends Model {
         "email" => "",
         "username" => "",
         "password" => "",
-        "rePassword" => ""
     ];
 
     /**
