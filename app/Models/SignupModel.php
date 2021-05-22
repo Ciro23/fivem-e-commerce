@@ -20,16 +20,16 @@ class SignupModel extends Model {
         // hashes the password
         $this->userData['password'] = password_hash($this->userData['password'], PASSWORD_BCRYPT);
 
-        $this->insertIntoDb();
-    }
-
-    private function insertIntoDb(): void {
         $data = [
             "email" => $this->userData['email'],
             "username" => $this->userData['username'],
             "password" => $this->userData['password']
         ];
+        
+        $this->insertIntoDb($data);
+    }
 
+    private function insertIntoDb(array $data): void {
         $builder = $this->db->table("users")
                             ->insert($data);
     }
