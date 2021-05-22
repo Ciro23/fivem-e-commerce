@@ -39,6 +39,11 @@ $routes->group("signup", ["namespace" => "App\Controllers\Signup"], function ($r
 	$routes->add("", "SignupController::index");
 });
 
+// login routes
+$routes->group("login", ["namespace" => "App\Controllers\Login"], function ($routes) {
+	$routes->add("", "LoginController::index");
+});
+
 // mod routes
 $routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes) {
 	$routes->get("(:num)", "ModController::index/$1");
