@@ -12,39 +12,46 @@ class LoginController extends BaseController {
      * shows the login page only if the user is not logged in
      */
     public function index(): void {
-        if (!isset($_SESSION['uid'])) {
-            // saves the error, the email if something goes wrong
-            $data['form']['error'] = $_GET['error'] ?? "";
-            $data['form']['email'] = $_GET['email'] ?? "";
+        helper("form");
+        $data = [];
 
-            // formats the error
-            $data['form']['error'] = \StringHelper::formatError($data['form']['error']);
-
-            echo view("login", $data);
-        } else {
-            header("Location: /");
+        // in case the user is already logged in
+        if ($this->session->is_logged_in) {
+            redirect()->to("/");
         }
+
+        // in case of post request
+        if ($this->request->getMethod() == "post") {
+            if ($this->validateAndLogin()) {
+                $this->session->set([
+                    "is_logged_in" => true,
+                    "email" => $this->request->getVar("email"),
+                ]);
+            } else {
+                $data['validator'] = $this->validator;
+            }
+        }
+
+        echo view("login", $data);
     }
 
-    public function login(): void {
-        $loginModel = new LoginModel;
-        $userModel = new UserModel;
+    /**
+     * checks if the user input meets the validation rules
+     */
+    private function validateAndLogin(): bool {
+        if ($this->validate("login")) {
+            $signupModel = new LoginModel;
+            $signupModel->login($_POST);
 
-        // tries to execute LoginModel::login(), which returns true in case of success, false otherwise
-        if ($loginModel->login($_POST, $userModel)) {
-            header("Location: /");
-        } else {
-            header("Location: /login/?error="
-                . $loginModel->getLoginError()
-                . "&email="
-                . $loginModel->getUserEmail());
+            return true;
         }
+        return false;
     }
 
     public function logout(): void {
         $loginModel = new LoginModel;
         $loginModel->logout();
 
-        header("Location: /");
+        redirect()->to("/");
     }
 }
