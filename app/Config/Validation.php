@@ -50,6 +50,16 @@ class Validation
 		"confirm_password" => "required|do_password_match[password]",
 	];
 
+	public $signup_errors = [
+		"email" => [
+			"is_unique" => "The email is already registered",
+		],
+
+		"username" => [
+			"is_unique" => "The username is already taken",
+		],
+	];
+
 	public $login = [
 		"email" => "required",
 		"password" => "required|are_credentials_correct[email, password]",
