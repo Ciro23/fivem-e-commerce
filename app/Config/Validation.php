@@ -47,7 +47,7 @@ class Validation
 		"email" => "required|valid_email|is_unique['email', email]",
 		"username" => "required|min_length[4]|max_length[20]|is_unique['username', username]",
 		"password" => "required|min_length[6]|max_length[72]",
-		"confirm_password" => "required|do_password_match[password]",
+		"confirm_password" => "required|matches[password]",
 	];
 
 	public $signup_errors = [
