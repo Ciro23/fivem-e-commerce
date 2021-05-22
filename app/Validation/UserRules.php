@@ -5,7 +5,7 @@ namespace App\Validation;
 use App\Models\UserModel;
 
 class UserRules {
-    
+
     /**
      * checks if a specified user field is unique
      * 
