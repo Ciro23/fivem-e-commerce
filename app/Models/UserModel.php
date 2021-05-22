@@ -20,7 +20,7 @@ class UserModel extends Model {
         
         $query = $builder->get();
 
-        return $query->getRow();
+        return $query->getRow()->password;
     }
 
     /**
@@ -59,7 +59,7 @@ class UserModel extends Model {
 
         $query = $builder->get();
 
-        return $query->getRow();
+        return $query->getRow()->id;
     }
 
     /**
@@ -90,6 +90,6 @@ class UserModel extends Model {
 
         $query = $builder->get();
 
-        return $query->getRow() > 0;
+        return $query->getRow()->role > 0;
     }
 }
