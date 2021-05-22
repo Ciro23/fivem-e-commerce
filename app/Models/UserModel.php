@@ -50,19 +50,16 @@ class UserModel extends Model {
      * 
      * @param string $email
      * 
-     * @return int|false id in case of success, false otherwise
+     * @return int
      */
     public function getUserIdByEmail(string $email): int|false {
-        $sql = "SELECT id FROM users WHERE email = ?";
-        $params = [$email];
-        $query = $this->executeStmt($sql, $params);
+        $builder = $this->db->table("users")
+                            ->select("id")
+                            ->where("email", $email);
 
-        // tries to run the query
-        if ($query) {
-            return $query->fetch(PDO::FETCH_COLUMN);
-        }
-        
-        return false;
+        $query = $builder->get();
+
+        return $query->getRow();
     }
 
     public function isUserAdmin(int $id): bool {
