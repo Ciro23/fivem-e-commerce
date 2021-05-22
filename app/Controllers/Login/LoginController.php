@@ -3,21 +3,20 @@
 namespace App\Controllers\Login;
 
 use App\Controllers\BaseController;
-use App\Models\LoginModel;
-use App\Models\UserModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class LoginController extends BaseController {
 
     /**
      * shows the login page only if the user is not logged in
      */
-    public function index(): void {
+    public function index(): RedirectResponse {
         helper("form");
         $data = [];
 
         // in case the user is already logged in
         if ($this->session->is_logged_in) {
-            redirect()->to("/");
+            return redirect()->to("/");
         }
 
         // in case of post request
@@ -35,9 +34,9 @@ class LoginController extends BaseController {
         echo view("login", $data);
     }
 
-    public function logout(): void {
+    public function logout(): RedirectResponse {
         $this->session->destroy();
 
-        redirect()->to("/");
+        return redirect()->to("/");
     }
 }

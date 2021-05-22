@@ -3,22 +3,21 @@
 namespace App\Controllers\Signup;
 
 use App\Controllers\BaseController;
-use Config\Services;
 use App\Models\SignupModel;
-use App\Models\UserModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class SignupController extends BaseController {
 
     /**
      * shows the signup page only if the user is not logged in
      */
-    public function index(): void {
+    public function index(): RedirectResponse {
         helper("form");
         $data = [];
 
         // in case the user is already logged in
         if ($this->session->is_logged_in) {
-            redirect()->to("/");
+            return redirect()->to("/");
         }
 
         // in case of post request
