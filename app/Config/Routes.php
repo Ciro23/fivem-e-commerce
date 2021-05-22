@@ -37,7 +37,6 @@ $routes->get('/', 'Home::index');
 // signup routes
 $routes->group("signup", ["namespace" => "App\Controllers\Signup"], function ($routes) {
 	$routes->add("", "SignupController::index");
-	$routes->post("/signup/action", "SignupController::signup");
 });
 
 // mod routes
