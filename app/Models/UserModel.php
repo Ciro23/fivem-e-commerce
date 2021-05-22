@@ -26,6 +26,14 @@ class UserModel extends Model {
         return false;
     }
 
+    /**
+     * checks if a user already exists given its username or email
+     * 
+     * @param string $field user email or username
+     * @param string $value the value of the field
+     * 
+     * @return bool
+     */
     public function doesUserExists(string $field, string $value): bool {
         // email and username are the only two primary key fields in the users table
         if (!in_array($field, ["email", "username"])) {
