@@ -64,4 +64,10 @@ class Validation
 		"email" => "required",
 		"password" => "required|are_credentials_correct[email, password]",
 	];
+
+	public $login_errors = [
+		"password" => [
+			"are_credentials_correct" => "Credentials are not correct",
+		],
+	];
 }
