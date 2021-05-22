@@ -17,7 +17,7 @@ class UserRules {
     public function is_unique(string $parameter, string $value): bool {
         $userModel = new UserModel;
 
-        return $userModel->doesUserExists($parameter, $value);
+        return !$userModel->doesUserExists($parameter, $value);
     }
 
     /**
