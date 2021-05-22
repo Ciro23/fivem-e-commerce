@@ -22,7 +22,7 @@ class LoginController extends BaseController {
 
         // in case of post request
         if ($this->request->getMethod() == "post") {
-            if ($this->validateAndLogin()) {
+            if ($this->validate("login")) {
                 $this->session->set([
                     "is_logged_in" => true,
                     "email" => $this->request->getVar("email"),
@@ -33,19 +33,6 @@ class LoginController extends BaseController {
         }
 
         echo view("login", $data);
-    }
-
-    /**
-     * checks if the user input meets the validation rules
-     */
-    private function validateAndLogin(): bool {
-        if ($this->validate("login")) {
-            $signupModel = new LoginModel;
-            $signupModel->login($_POST);
-
-            return true;
-        }
-        return false;
     }
 
     public function logout(): void {
