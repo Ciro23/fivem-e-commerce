@@ -13,6 +13,11 @@ class SignupModel extends Model {
         "rePassword" => ""
     ];
 
+    /**
+     * gets the input, hashes the password and insert the data into the db
+     * 
+     * @param array $inputData
+     */
     public function signup(array $inputData): void {
         // gets the form input
         $this->userData = \InputHelper::getFormInput($this->userData, $inputData);
