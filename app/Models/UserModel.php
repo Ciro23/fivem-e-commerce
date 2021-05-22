@@ -62,6 +62,13 @@ class UserModel extends Model {
         return $query->getRow();
     }
 
+    /**
+     * checks if the user is an admin
+     * 
+     * @param int $id
+     * 
+     * @return bool
+     */
     public function isUserAdmin(int $id): bool {
         if ($this->getUserRole($id) == 1) {
             return true;
