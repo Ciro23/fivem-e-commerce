@@ -11,7 +11,7 @@ class SignupController extends BaseController {
     /**
      * shows the signup page only if the user is not logged in
      */
-    public function index(): RedirectResponse {
+    public function index() {
         helper("form");
         $data = [];
 

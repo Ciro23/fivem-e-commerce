@@ -10,7 +10,7 @@ class LoginController extends BaseController {
     /**
      * shows the login page only if the user is not logged in
      */
-    public function index(): RedirectResponse {
+    public function index() {
         helper("form");
         $data = [];
 
