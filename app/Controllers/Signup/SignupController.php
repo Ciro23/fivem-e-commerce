@@ -27,6 +27,8 @@ class SignupController extends BaseController {
                     "is_logged_in" => true,
                     "email" => $this->request->getVar("email"),
                 ]);
+                
+                return redirect()->to("/");
             } else {
                 $data['validator'] = $this->validator;
             }
