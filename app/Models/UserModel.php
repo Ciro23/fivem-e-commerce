@@ -14,6 +14,8 @@ class UserModel extends Model {
 
     protected $validationRules = ["signup"];
 
+    protected $beforeInsert = ["hashPassword"];
+
     /**
      * signup a new user
      * 
