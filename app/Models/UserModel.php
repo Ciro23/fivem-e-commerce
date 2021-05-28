@@ -15,18 +15,6 @@ class UserModel extends Model {
     protected $validationRules = ["signup"];
 
     protected $beforeInsert = ["hashPassword"];
-
-    /**
-     * signup a new user
-     * 
-     * @param array $data an associative array of insert values
-     * 
-     *  @return bool
-     */
-    public function signupNewUser(array $data): bool {
-        return $this->db->table("users")
-                        ->insert($data);
-    }
     
     /**
      * hashes the user password with the bcrypt algorithm
