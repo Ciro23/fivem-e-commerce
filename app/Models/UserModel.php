@@ -6,6 +6,14 @@ use CodeIgniter\Model;
 
 class UserModel extends Model {
 
+    protected $table = "users";
+
+    protected $useSoftDelete = true;
+
+    protected $allowedFields = ["email", "username", "password"];
+
+    protected $validationRules = ["signup"];
+
     /**
      * gets the user password given their email
      * 
