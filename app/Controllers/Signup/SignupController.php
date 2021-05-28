@@ -21,6 +21,9 @@ class SignupController extends BaseController {
         }
 
         // in case of post request
+        // tries to validate the user input
+        // in case of success, creates the session and redirect
+        // otherwise save the validator object in the data array
         if ($this->request->getMethod() == "post") {
             if ($this->validateAndSignup()) {
                 $this->session->set([
