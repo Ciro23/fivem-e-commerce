@@ -42,6 +42,8 @@ class SignupController extends BaseController {
 
     /**
      * checks if the user input meets the validation rules
+     * 
+     * @return bool
      */
     private function validateAndSignup(): bool {
         if ($this->validate("signup")) {
