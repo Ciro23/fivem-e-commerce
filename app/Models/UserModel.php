@@ -27,6 +27,19 @@ class UserModel extends Model {
     }
     
     /**
+     * hashes the user password with the bcrypt algorithm
+     * 
+     * @param array $data
+     * 
+     * @return array
+     */
+    public function hashPassword(array $data) {
+        $data['data']['hashed_password'] = password_hash($data['data']['password'], PASSWORD_BCRYPT);
+
+        return $data;
+    }
+
+    /**
      * gets the user password given their email
      * 
      * @param string $email
