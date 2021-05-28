@@ -15,6 +15,18 @@ class UserModel extends Model {
     protected $validationRules = ["signup"];
 
     /**
+     * signup a new user
+     * 
+     * @param array $data an associative array of insert values
+     * 
+     *  @return bool
+     */
+    public function signupNewUser(array $data): bool {
+        return $this->db->table("users")
+                        ->insert($data);
+    }
+    
+    /**
      * gets the user password given their email
      * 
      * @param string $email
