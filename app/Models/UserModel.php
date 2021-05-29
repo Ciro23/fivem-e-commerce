@@ -23,7 +23,7 @@ class UserModel extends Model {
      * 
      * @return array
      */
-    public function hashPassword(array $data) {
+    public function hashPassword(array $data): array {
         $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_BCRYPT);
 
         return $data;
