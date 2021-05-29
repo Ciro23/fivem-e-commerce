@@ -39,6 +39,13 @@ class BaseController extends Controller
 	protected $helpers = [];
 
 	/**
+	 * contains the session object created in BaseController::initController()
+	 * 
+	 * @var object
+	 */
+	protected $session;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param RequestInterface  $request
