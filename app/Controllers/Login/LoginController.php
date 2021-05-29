@@ -8,30 +8,37 @@ use CodeIgniter\HTTP\RedirectResponse;
 class LoginController extends BaseController {
 
     /**
-     * shows the login page only if the user is not logged in
+     * called on a get request
+     * shows the login page
      */
     public function index() {
+        echo view("login");
+    }
+
+    /**
+     * called on a post request
+     * tries to login the user, if it fails shows the login page with errors messages
+     */
+    public function login() {
         helper("form");
         $data = [];
 
-        // in case the user is already logged in
-        if ($this->session->is_logged_in) {
-            return redirect()->to("/");
-        }
+        if ($this->validate("login")) {
+            $this->createSession($this->request->getVar("email"));
 
-        // in case of post request
-        if ($this->request->getMethod() == "post") {
-            if ($this->validate("login")) {
-                $this->session->set([
-                    "is_logged_in" => true,
-                    "email" => $this->request->getVar("email"),
-                ]);
-            } else {
-                $data['validator'] = $this->validator;
-            }
+            return redirect()->to("/");
+        } else {
+            $data['validator'] = $this->validator;
         }
 
         echo view("login", $data);
+    }
+
+    private function createSession(string $email): void {
+        $this->session->set([
+            "is_logged_in" => true,
+            "email" => $email,
+        ]);
     }
 
     public function logout(): RedirectResponse {
