@@ -3,7 +3,7 @@
 namespace App\Controllers\Signup;
 
 use App\Controllers\BaseController;
-use App\Models\SignupModel;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
 class SignupController extends BaseController {
@@ -25,33 +25,32 @@ class SignupController extends BaseController {
         // in case of success, creates the session and redirect
         // otherwise save the validator object in the data array
         if ($this->request->getMethod() == "post") {
-            if ($this->validateAndSignup()) {
-                $this->session->set([
-                    "is_logged_in" => true,
-                    "email" => $this->request->getVar("email"),
-                ]);
-                
+            if ($this->tryToValidateAndSignup()) {
+                $this->createSession($this->request->getVar("email"));
                 return redirect()->to("/");
-            } else {
-                $data['validator'] = $this->validator;
             }
+            $data['validator'] = $this->validator;
         }
 
         echo view("signup", $data);
     }
 
-    /**
-     * checks if the user input meets the validation rules
-     * 
-     * @return bool
-     */
-    private function validateAndSignup(): bool {
-        if ($this->validate("signup")) {
-            $signupModel = new SignupModel;
-            $signupModel->signup($_POST);
-
+    private function tryToValidateAndSignup(): bool {
+        if ($this->validate("user")) {
+            $userModel = new UserModel;
+            $userModel->save($this->request->getPost());
+            
             return true;
+        } else {
+            return false;
         }
-        return false;
+    }
+
+    // ! REPLACE EMAIL WITH ID WHEN PHP-DI WILL BE IMPLEMENTED
+    private function createSession(string $email): void {
+        $this->session->set([
+            "is_logged_in" => true,
+            "email" => $email,
+        ]);
     }
 }
