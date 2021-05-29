@@ -17,7 +17,7 @@ class UserModel extends Model {
     protected $beforeInsert = ["hashPassword"];
 
     /**
-     * hashes the user password with the bcrypt algorithm
+     * this method is called before every insert action invoked by this class
      * 
      * @param array $data
      * 
