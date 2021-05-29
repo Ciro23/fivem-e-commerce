@@ -37,9 +37,8 @@ class UserModel extends Model {
      * @return string
      */
     public function getUserPasswordByEmail(string $email): string {
-        $builder = $this->db->table("users")
-                            ->select("password")
-                            ->where("email", $email);
+        $builder = $this->select("password")
+                        ->where("email", $email);
         
         $query = $builder->get();
 
@@ -60,10 +59,9 @@ class UserModel extends Model {
             return false;
         }
 
-        $builder = $this->db->table("users")
-                            ->select($field)
-                            ->where($field, $value)
-                            ->countAllResults();
+        $builder = $this->select($field)
+                        ->where($field, $value)
+                        ->countAllResults();
 
         return $builder > 0;
     }
@@ -76,9 +74,8 @@ class UserModel extends Model {
      * @return int
      */
     public function getUserIdByEmail(string $email): int {
-        $builder = $this->db->table("users")
-                            ->select("id")
-                            ->where("email", $email);
+        $builder = $this->select("id")
+                        ->where("email", $email);
 
         $query = $builder->get();
 
@@ -107,9 +104,8 @@ class UserModel extends Model {
      * @return bool
      */
     public function getUserRole(int $id): bool {
-        $builder = $this->db->table("users")
-                            ->select("role")
-                            ->where("id", $id);
+        $builder = $this->select("role")
+                        ->where("id", $id);
 
         $query = $builder->get();
 
