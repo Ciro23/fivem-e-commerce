@@ -12,15 +12,10 @@ class UserModel extends Model {
 
     protected $allowedFields = ["email", "username", "password"];
 
-    protected $validationRules = [
-		"email" => "required|valid_email|is_unique[users.email]",
-		"username" => "required|min_length[4]|max_length[20]|is_unique[users.username]",
-		"password" => "required|min_length[6]|max_length[72]",
-		"confirm_password" => "required|matches[password]",
-	];
+    protected $validationRules = "user";
 
     protected $beforeInsert = ["hashPassword"];
-    
+
     /**
      * hashes the user password with the bcrypt algorithm
      * 
