@@ -51,8 +51,8 @@ class Validation
 	];
 
 	public $login = [
-		"email" => "required",
-		"password" => "required|are_credentials_correct[email, password]",
+		"email" => "required|are_credentials_correct[password]",
+		"password" => "required",
 	];
 
 	public $login_errors = [
