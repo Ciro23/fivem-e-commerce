@@ -46,6 +46,9 @@ $routes->group("login", ["namespace" => "App\Controllers\Login"], function ($rou
 	$routes->post("", "LoginController::login");
 });
 
+// logout route
+$routes->get("/logout", "Login\LoginController::logout");
+
 // mod routes
 $routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes) {
 	$routes->get("(:num)", "ModController::index/$1");
