@@ -15,6 +15,8 @@
         echo "<link rel='stylesheet' href='/assets/styles/css/" . $style . ".css'>";
     }
     ?>
+
+    <title><?= $title ?></title>
 </head>
 <body>
     <div class="mega-box">
