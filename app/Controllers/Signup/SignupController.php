@@ -37,7 +37,7 @@ class SignupController extends BaseController {
             return redirect()->to("/");
         }
 
-        $this->data['validator'] = $this->validator;
+        $this->data['errors'] = $this->validator->listErrors();
 
         $this->view();
     }
