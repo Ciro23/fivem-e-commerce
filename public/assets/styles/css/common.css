@@ -10,7 +10,13 @@ html {
   background-color: #fcfcfc;
 }
 
+body {
+  min-height: 100vh;
+}
+
 .mega-box {
+  margin: 0 auto;
   max-width: 110rem;
+  min-height: 100vh;
   border-radius: 0.5rem;
 }
