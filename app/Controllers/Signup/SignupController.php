@@ -8,12 +8,17 @@ use CodeIgniter\HTTP\RedirectResponse;
 
 class SignupController extends BaseController {
 
+    private array $data = [
+        "styles" => ["login-signup"],
+        "title" => "Signup",
+    ];
+
     /**
      * called on a get request
      * shows the signup page only if the user is not logged in
      */
     public function index(): void {
-        echo view("signup");
+        $this->view();
     }
 
     /**
@@ -22,7 +27,6 @@ class SignupController extends BaseController {
      */
     public function signup() {
         helper("form");
-        $data = [];
 
         if ($this->validate("user")) {
             $userModel = new UserModel;
@@ -33,9 +37,9 @@ class SignupController extends BaseController {
             return redirect()->to("/");
         }
 
-        $data['validator'] = $this->validator;
+        $this->data['validator'] = $this->validator;
 
-        echo view("signup", $data);
+        $this->view();
     }
 
     // ! REPLACE EMAIL WITH ID WHEN PHP-DI WILL BE IMPLEMENTED
@@ -44,5 +48,11 @@ class SignupController extends BaseController {
             "is_logged_in" => true,
             "email" => $email,
         ]);
+    }
+
+    private function view(): void {
+        echo view("templates/header", $this->data);
+        echo view("signup");
+        echo view("templates/footer");
     }
 }
