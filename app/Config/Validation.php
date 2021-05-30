@@ -47,7 +47,10 @@ class Validation
 		"email" => "required|valid_email|is_unique[users.email]",
 		"username" => "required|min_length[4]|max_length[20]|is_unique[users.username]",
 		"password" => "required|min_length[6]|max_length[72]",
-		"confirm_password" => "required|matches[password]",
+		"confirm_password" => [
+			"rules" => "required|matches[password]",
+			"label" => "confirm password",
+		],
 	];
 
 	public $login = [
