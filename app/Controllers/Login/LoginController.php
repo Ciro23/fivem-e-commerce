@@ -17,7 +17,7 @@ class LoginController extends BaseController {
      * shows the login page
      */
     public function index() {
-        $this->view($this->data);
+        $this->view();
     }
 
     /**
@@ -33,10 +33,10 @@ class LoginController extends BaseController {
 
             return redirect()->to("/");
         } else {
-            $this->data['validator'] = $this->validator;
+            $this->data['errors'] = $this->validator->listErrors();
         }
 
-        $this->view($this->data);
+        $this->view();
     }
 
     private function createSession(string $email): void {
@@ -46,8 +46,8 @@ class LoginController extends BaseController {
         ]);
     }
 
-    private function view(array $data): void {
-        echo view("templates/header", $data);
+    private function view(): void {
+        echo view("templates/header", $this->data);
         echo view("login");
         echo view("templates/footer");
     }
