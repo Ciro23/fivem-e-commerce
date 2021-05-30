@@ -26,7 +26,6 @@ class LoginController extends BaseController {
      */
     public function login() {
         helper("form");
-        $data = [];
 
         if ($this->validate("login")) {
             $this->createSession($this->request->getVar("email"));
