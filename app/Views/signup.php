@@ -1,21 +1,31 @@
-<?php include_once __DIR__ . "/../included/header.included.php" ?>
+<div class="login-signup">
+    <form method="POST">
+        <h2>Signup</h2>
 
-    <!-- this page's css -->
-    <link rel="stylesheet" href="/assets/styles/css/login-signup.style.css">
+        <?php 
+        if (isset($errors)) {
+            echo $errors;
+        }
+        ?>
 
-    <title>Signup - <?= $_ENV['site_name'] ?></title>
-</head>
-<body>
-    <?php include_once __DIR__ . "/../included/navbar.included.php" ?>
-    
-    <div class="login-signup">
-        <form action="/signup/action" method="POST">
-            <input type="text" placeholder="email" name="email">
-            <input type="text" placeholder="username" name="username">
-            <input type="password" placeholder="password" name="password">
-            <input type="password" placeholder="confirm password" name="rePassword">
-            <input type="submit" value="signup">
-        </form>
-    </div>
-</body>
-</html>
+        <div class="form-columns">
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email">
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+
+                <label for="confirm_password">Confirm password</label>
+                <input type="confirm_password" id="confirm_password" name="confirm_password">
+            </div>
+        </div>
+        
+        <input type="submit" value="Signup">
+    </form>
+</div>
