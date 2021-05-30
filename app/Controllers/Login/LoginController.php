@@ -7,12 +7,17 @@ use CodeIgniter\HTTP\RedirectResponse;
 
 class LoginController extends BaseController {
 
+    private array $data = [
+        "styles" => ["login-signup"],
+        "title" => "Login",
+    ];
+
     /**
      * called on a get request
      * shows the login page
      */
     public function index() {
-        echo view("login");
+        $this->view($this->data);
     }
 
     /**
@@ -31,7 +36,7 @@ class LoginController extends BaseController {
             $data['validator'] = $this->validator;
         }
 
-        echo view("login", $data);
+        $this->view($this->data);
     }
 
     private function createSession(string $email): void {
@@ -39,6 +44,12 @@ class LoginController extends BaseController {
             "is_logged_in" => true,
             "email" => $email,
         ]);
+    }
+
+    private function view(array $data): void {
+        echo view("templates/header", $data);
+        echo view("login");
+        echo view("templates/footer");
     }
 
     public function logout(): RedirectResponse {
