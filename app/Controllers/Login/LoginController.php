@@ -33,7 +33,7 @@ class LoginController extends BaseController {
 
             return redirect()->to("/");
         } else {
-            $data['validator'] = $this->validator;
+            $this->data['validator'] = $this->validator;
         }
 
         $this->view($this->data);
