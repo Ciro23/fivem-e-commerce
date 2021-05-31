@@ -59,7 +59,7 @@ class Validation
 	];
 
 	public $login_errors = [
-		"password" => [
+		"email" => [
 			"are_credentials_correct" => "Credentials are not correct",
 		],
 	];
