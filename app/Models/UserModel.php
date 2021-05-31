@@ -97,6 +97,7 @@ class UserModel extends Model {
         if ($this->getUserRole($id) == 1) {
             return true;
         }
+        
         return false;
     }
 
