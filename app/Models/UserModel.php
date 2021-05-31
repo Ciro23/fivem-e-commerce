@@ -34,15 +34,17 @@ class UserModel extends Model {
      * 
      * @param string $email
      * 
-     * @return string
+     * @return string|null
      */
-    public function getUserPasswordByEmail(string $email): string {
+    public function getUserPasswordByEmail(string $email): string|null {
         $builder = $this->select("password")
                         ->where("email", $email);
         
-        $query = $builder->get();
+        if ($builder->countAllResults(false)) {
+            return $builder->get()->getRow()->password;
+        }
 
-        return $query->getRow()->password;
+        return null;
     }
 
     /**
@@ -71,15 +73,17 @@ class UserModel extends Model {
      * 
      * @param string $email
      * 
-     * @return int
+     * @return int|null
      */
-    public function getUserIdByEmail(string $email): int {
+    public function getUserIdByEmail(string $email): int|null {
         $builder = $this->select("id")
                         ->where("email", $email);
 
-        $query = $builder->get();
-
-        return $query->getRow()->id;
+        if ($builder->countAllResults(false) > 0) {
+            return $builder->get()->getRow()->id;
+        }
+        
+        return null;
     }
 
     /**
@@ -101,14 +105,16 @@ class UserModel extends Model {
      * 
      * @param int $id
      * 
-     * @return bool
+     * @return int|null
      */
-    public function getUserRole(int $id): bool {
+    public function getUserRole(int $id): int|null {
         $builder = $this->select("role")
                         ->where("id", $id);
 
-        $query = $builder->get();
+        if ($builder->countAllResults(false) > 0) {
+            return $builder->get()->getRow()->role;
+        }
 
-        return $query->getRow()->role > 0;
+        return null;
     }
 }
