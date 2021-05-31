@@ -54,7 +54,7 @@ class ModModel extends Model {
      * 
      * @param int $id
      */
-    public function deleteModFromDb(int $id): void {
+    public function deleteMod(int $id): void {
         $builder = $this->delete(['id' => $id]);
     }
 }
