@@ -12,16 +12,18 @@ class ModModel extends Model {
      * 
      * @param int $id
      * 
-     * @return object|null first contains mod data, false in case of error
+     * @return object|null
      */
     public function getModDetails(int $id): object|null {
         $builder = $this->db->table("mods")
                             ->select("*")
                             ->where("id", $id);
 
-        $query = $builder->get();
-
-        return $query->getRow();
+        if ($builder->countAllResults(false) > 0) {
+            return $builder->get()->getRow();
+        }
+        
+        return null;
     }
 
     /**
@@ -29,16 +31,18 @@ class ModModel extends Model {
      * 
      * @param int $is_approved
      * 
-     * @return array
+     * @return object|null
      */
-    public function getModsByApprovedStatus(int $is_approved): array {
+    public function getModsByApprovedStatus(int $is_approved): object|null {
         $builder = $this->db->table("mods")
                             ->select("*")
                             ->where("is_approved", $is_approved);
 
-        $query = $builder->get();
+        if ($builder->countAllResults(false) > 0) {
+            return $builder->get()->getResult();
+        }
         
-        return $query->getResult();
+        return null;
     }
 
     /**
