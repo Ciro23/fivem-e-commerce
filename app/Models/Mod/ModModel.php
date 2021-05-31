@@ -7,6 +7,12 @@ use CodeIgniter\Model;
 
 class ModModel extends Model {
 
+    protected $table = "mods";
+
+    protected $useSoftDelete = true;
+
+    protected $allowedFields = ["name", "description", "version"];
+
     /**
      * gets mod details
      * 
@@ -15,9 +21,8 @@ class ModModel extends Model {
      * @return object|null
      */
     public function getModDetails(int $id): object|null {
-        $builder = $this->db->table("mods")
-                            ->select("*")
-                            ->where("id", $id);
+        $builder = $this->select("*")
+                        ->where("id", $id);
 
         if ($builder->countAllResults(false) > 0) {
             return $builder->get()->getRow();
@@ -34,9 +39,8 @@ class ModModel extends Model {
      * @return array|null
      */
     public function getModsByApprovedStatus(int $is_approved): array|null {
-        $builder = $this->db->table("mods")
-                            ->select("*")
-                            ->where("is_approved", $is_approved);
+        $builder = $this->select("*")
+                        ->where("is_approved", $is_approved);
 
         if ($builder->countAllResults(false) > 0) {
             return $builder->get()->getResult();
@@ -51,8 +55,6 @@ class ModModel extends Model {
      * @param int $id
      */
     public function deleteModFromDb(int $id): void {
-        $builder = $this->db->table("mods");
-        $builder->where("id", $id);
-        $builder->delete();
+        $builder = $this->delete(['id' => $id]);
     }
 }
