@@ -24,6 +24,6 @@ class ModController extends BaseController {
             throw new \CodeIgniter\Exceptions\PageNotFoundException();
         }
 
-        echo view("mod", $data);
+        echo view("mod/mod", $data);
     }
 }
