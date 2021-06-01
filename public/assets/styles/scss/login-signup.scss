@@ -1,9 +1,9 @@
 .login-signup {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   min-height: 100vh;
-   background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
 }
 
 form {
@@ -11,7 +11,7 @@ form {
     flex-direction: column;
     gap: 1.3rem;
     padding: 3rem;
-    box-shadow: 0px 0px 4px 0px rgba(235,235,235,1);
+    box-shadow: 0px 0px 4px 0px rgba(235, 235, 235, 1);
     border-radius: 0.4rem;
 }
 
@@ -53,10 +53,10 @@ form input {
     border: solid 0.1rem #e6e6e6;
 }
 
-form input[type=submit] {
+form input[type="submit"] {
     cursor: pointer;
     padding: 0.9rem;
-    background-color: #FE7200;
+    background-color: #fe7200;
     color: white;
     border: none;
     width: 100%;
