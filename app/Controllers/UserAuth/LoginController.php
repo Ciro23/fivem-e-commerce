@@ -8,7 +8,7 @@ use CodeIgniter\HTTP\RedirectResponse;
 class LoginController extends BaseController {
 
     private array $data = [
-        "styles" => ["login-signup"],
+        "styles" => ["form_page"],
         "title" => "Login",
     ];
 
