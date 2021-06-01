@@ -1,4 +1,4 @@
-<div class="login-signup">
+<div class="container">
     <div>
         <form method="POST">
             <h2>Login</h2>
