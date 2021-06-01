@@ -12,7 +12,9 @@ class ModUploadController extends BaseController {
      * shows the upload mod page only if the user is logged in
      */
     public function index(): void {
+        echo view("templates/header");
         echo view("mod/mod_upload");
+        echo view("templates/footer");
     }
 
     public function uploadMod(): void {
