@@ -8,6 +8,11 @@ use App\Models\Mod\ModUploadModel;
 
 class ModUploadController extends BaseController {
 
+    private array $data = [
+        "styles" => ["form_page"],
+        "title" => "Upload a mod",
+    ];
+
     /**
      * shows the upload mod page only if the user is logged in
      */
