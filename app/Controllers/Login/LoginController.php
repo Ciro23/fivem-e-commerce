@@ -47,7 +47,7 @@ class LoginController extends BaseController {
 
     private function view(): void {
         echo view("templates/header", $this->data);
-        echo view("login");
+        echo view("user_auth/login");
         echo view("templates/footer");
     }
 
