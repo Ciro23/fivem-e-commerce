@@ -1,48 +1,43 @@
 <?php
 
-namespace App\Controllers\Signup;
+namespace App\Controllers\UserAuth;
 
 use App\Controllers\BaseController;
-use App\Models\UserModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
-class SignupController extends BaseController {
+class LoginController extends BaseController {
 
     private array $data = [
         "styles" => ["login-signup"],
-        "title" => "Signup",
+        "title" => "Login",
     ];
 
     /**
      * called on a get request
-     * shows the signup page only if the user is not logged in
+     * shows the login page
      */
-    public function index(): void {
+    public function index() {
         $this->view();
     }
 
     /**
      * called on a post request
-     * tries to signup the user, if it fails shows the signup page with errors messages
+     * tries to login the user, if it fails shows the login page with errors messages
      */
-    public function signup() {
+    public function login() {
         helper("form");
 
-        if ($this->validate("user")) {
-            $userModel = new UserModel;
-            $userModel->save($this->request->getPost());
-
+        if ($this->validate("login")) {
             $this->createSession($this->request->getVar("email"));
 
             return redirect()->to("/");
+        } else {
+            $this->data['errors'] = $this->validator->listErrors();
         }
-
-        $this->data['errors'] = $this->validator->listErrors();
 
         $this->view();
     }
 
-    // ! REPLACE EMAIL WITH ID WHEN PHP-DI WILL BE IMPLEMENTED
     private function createSession(string $email): void {
         $this->session->set([
             "is_logged_in" => true,
@@ -52,7 +47,13 @@ class SignupController extends BaseController {
 
     private function view(): void {
         echo view("templates/header", $this->data);
-        echo view("user_auth/signup");
+        echo view("user_auth/login");
         echo view("templates/footer");
+    }
+
+    public function logout(): RedirectResponse {
+        $this->session->destroy();
+
+        return redirect()->to("/");
     }
 }

@@ -35,19 +35,19 @@ $routes->setAutoRoute(false);
 $routes->get('/', 'Home::index');
 
 // signup routes
-$routes->group("signup", ["namespace" => "App\Controllers\Signup"], function ($routes) {
+$routes->group("signup", ["namespace" => "App\Controllers\UserAuth"], function ($routes) {
 	$routes->get("", "SignupController::index");
 	$routes->post("", "SignupController::signup");
 });
 
 // login routes
-$routes->group("login", ["namespace" => "App\Controllers\Login"], function ($routes) {
+$routes->group("login", ["namespace" => "App\Controllers\UserAuth"], function ($routes) {
 	$routes->get("", "LoginController::index");
 	$routes->post("", "LoginController::login");
 });
 
 // logout route
-$routes->get("/logout", "Login\LoginController::logout");
+$routes->get("/logout", "UserAuth\LoginController::logout");
 
 // mod routes
 $routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes) {
