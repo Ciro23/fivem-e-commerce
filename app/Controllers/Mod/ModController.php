@@ -7,6 +7,12 @@ use App\Models\Mod\ModModel;
 
 class ModController extends BaseController {
     
+    private array $data = [
+        "styles" => ["mod"],
+        "title" => "",
+        "mod" => null,
+    ];
+
     /**
      * shows the mod page
      */
@@ -14,17 +20,17 @@ class ModController extends BaseController {
         $modModel = new ModModel;
 
         // gets the mod data
-        $data['mod'] = $modModel->getModDetails($modId);
+        $this->data['mod'] = $modModel->getModDetails($modId);
 
-        $this->view($data);
+        $this->view();
     }
 
-    private function view($data) {
-        if ($data['mod'] === null) {
+    private function view() {
+        if ($this->data['mod'] === null) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException();
         }
 
-        echo view("templates/header", $data);
+        echo view("templates/header", $this->data);
         echo view("mod/mod");
         echo view("templates/footer");
     }
