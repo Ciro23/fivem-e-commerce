@@ -15,9 +15,6 @@
 
                 <label for="price">Price</label>
                 <input type="number" id="price" name="price">
-
-                <label for="version">Version</label>
-                <input type="text" id="version" name="version">
             </div>
 
             <div>
