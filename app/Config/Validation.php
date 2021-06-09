@@ -63,4 +63,17 @@ class Validation
 			"are_credentials_correct" => "Credentials are not correct",
 		],
 	];
+
+	public $mod = [
+		"name" => "required|alpha_numeric_space|min_length[4]|max_length[30]|is_unique[mods.name]",
+		"description" => "required|min_length[10]|max_length[3000]",
+		"file" => [
+			"rules" => "uploaded[file]|max_size[file,50000]|ext_in[file,zip,rar]",
+			"label" => "Mod file",
+		],
+		"image" => [
+			"rules" => "max_size[image,3000]|is_image[image]",
+			"label" => "Mod image",
+		]
+	];
 }
