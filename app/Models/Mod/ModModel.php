@@ -14,6 +14,23 @@ class ModModel extends Model {
     protected $allowedFields = ["name", "description", "version"];
 
     /**
+     * gets the last uploaded mod id
+     * 
+     * @return int|null
+     */
+    public function getLastId(): int|null {
+        $builder = $this->select("id")
+                        ->orderBy("id", "DESC")
+                        ->limit(1);
+
+        if ($builder->countAllResults(false) > 0) {
+            return $builder->get()->getRow()->id;
+        }
+        
+        return null;
+    }
+
+    /**
      * gets mod details
      * 
      * @param int $id
