@@ -22,23 +22,37 @@ class ModUploadController extends BaseController {
         echo view("templates/footer");
     }
 
-    public function uploadMod(): void {
-        $modUploadModel = new ModUploadModel;
-        $modModel = new ModModel;
+    /**
+     * called on post request
+     * tries to upload the mod, if it fails shows mod upload page with errors messages
+     */
+    public function uploadMod() {
+        helper("form");
 
-        // tries to execute ModUpload::upload(), which returns true in case of success, false otherwise
-        if ($modUploadModel->uploadMod([$_POST, $_FILES], $modModel)) {
-            header("Location: /");
-        } else {
-            header("Location: /mod/upload/?error="
-                . $modUploadModel->getModUploadError()
-                . "&name="
-                . $modUploadModel->getModName()
-                . "&version="
-                . $modUploadModel->getModVersion()
-                . "&description="
-                . $modUploadModel->getModDescription());
+        if ($this->validate("mod")) {
+            $modModel = new ModModel;
+
+            $id = $modModel->getLastId() + 1;
+
+            $file = $this->request->getFile("file");
+            $image = $this->request->getFile("image");
+
+            if ($file->isValid() && !$file->hasMoved()) {
+                $file->move(WRITEPATH . "uploads/mods/" . $id, "file." . $file->getExtension());
+            }
+
+            if ($image->isValid() && !$image->hasMoved()) {
+                $image->move(WRITEPATH . "uploads/mods/" . $id, "image." . $image->getExtension());
+            }
+
+            $modModel->save($this->request->getPost());
+
+            return redirect()->to("/");
         }
+
+        $this->data['errors'] = $this->validator->listErrors();
+
+        $this->view();
     }
 
     private function view(): void {
