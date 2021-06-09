@@ -15,12 +15,12 @@
                     <input type="text" id="email" name="email" placeholder="example@gmail.com">
 
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="4-20 alpha numeric chars">
+                    <input type="text" id="username" name="username" placeholder="4-20 chars (a-z, 0-9)">
                 </div>
 
                 <div>
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="6-72 chars">
+                    <input type="password" id="password" name="password" placeholder="6-72 characters">
 
                     <label for="confirm_password">Confirm password</label>
                     <input type="password" id="confirm_password" name="confirm_password">
