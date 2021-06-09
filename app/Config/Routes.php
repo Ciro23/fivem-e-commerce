@@ -53,8 +53,8 @@ $routes->get("/logout", "UserAuth\LoginController::logout");
 $routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes) {
 	$routes->get("(:num)", "ModController::index/$1");
 
-	$routes->get("upload/", "ModUploadController::index");
-	$routes->post("upload/action", "ModUploadController::uploadMod");
+	$routes->get("upload", "ModUploadController::index");
+	$routes->post("upload", "ModUploadController::uploadMod");
 
 	$routes->get("approve", "ModApproveController::index");
 	$routes->get("approve/(:num)/update-status/(:num)", "ModApproveController::updateModStatus/$1/$2");
