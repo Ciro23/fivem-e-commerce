@@ -14,6 +14,7 @@ class ModUploadController extends BaseController {
     ];
 
     /**
+     * called on get request
      * shows the upload mod page only if the user is logged in
      */
     public function index(): void {
