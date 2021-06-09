@@ -44,7 +44,8 @@ class ModUploadController extends BaseController {
                 $image->move(WRITEPATH . "uploads/mods/" . $id, "image." . $image->getExtension());
             }
 
-            $modModel->save($this->request->getPost());
+            $data = array_merge($this->request->getPost(), ["author" => $this->session->uid]);
+            $modModel->save($data);
 
             return redirect()->to("/");
         }
