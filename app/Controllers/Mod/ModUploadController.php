@@ -17,9 +17,7 @@ class ModUploadController extends BaseController {
      * shows the upload mod page only if the user is logged in
      */
     public function index(): void {
-        echo view("templates/header", $this->data);
-        echo view("mod/mod_upload");
-        echo view("templates/footer");
+        $this->view();
     }
 
     /**
