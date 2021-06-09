@@ -8,20 +8,29 @@
         }
         ?>
 
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name">
+        <div class="form-columns">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
 
-        <label for="description">description</label>
-        <input type="text" id="description" name="description">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price">
 
-        <label for="version">Version</label>
-        <input type="text" id="version" name="version">
+                <label for="version">Version</label>
+                <input type="text" id="version" name="version">
+            </div>
 
-        <label for="file">File</label>
-        <input type="file" id="file" name="file">
+            <div>
+                <label for="file">File</label>
+                <input type="file" id="file" name="file">
 
-        <label for="image">Image</label>
-        <input type="file" id="image" name="image">
+                <label for="image">Image</label>
+                <input type="file" id="image" name="image">
+            </div>
+        </div>
+
+        <label for="description">Description</label>
+        <textarea name="description" id="description" rows="5"></textarea>
 
         <input type="submit" value="Upload mod">
     </form>
