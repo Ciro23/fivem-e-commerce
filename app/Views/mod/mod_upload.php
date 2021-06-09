@@ -13,7 +13,7 @@
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="4-30 chars (a-z, 0-9, spaces)">
 
-                <label for="price">Price</label>
+                <label for="price">Price in Euros</label>
                 <input type="number" id="price" name="price" placeholder="9,99">
             </div>
 
