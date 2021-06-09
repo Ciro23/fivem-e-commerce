@@ -45,7 +45,7 @@ class Validation
 
 	public $user = [
 		"email" => "required|valid_email|is_unique[users.email]",
-		"username" => "required|min_length[4]|max_length[20]|is_unique[users.username]",
+		"username" => "required|alpha_numeric|min_length[4]|max_length[20]|is_unique[users.username]",
 		"password" => "required|min_length[6]|max_length[72]",
 		"confirm_password" => [
 			"rules" => "required|matches[password]",
