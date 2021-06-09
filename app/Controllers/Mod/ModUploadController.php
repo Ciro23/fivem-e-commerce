@@ -40,4 +40,10 @@ class ModUploadController extends BaseController {
                 . $modUploadModel->getModDescription());
         }
     }
+
+    private function view(): void {
+        echo view("templates/header", $this->data);
+        echo view("mod/mod_upload");
+        echo view("templates/footer");
+    }
 }
