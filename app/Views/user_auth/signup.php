@@ -29,6 +29,6 @@
             
             <input type="submit" value="Signup">
         </form>
-        <a href="/signup">Already registered? Login</a>
+        <a href="/login">Already registered? Login</a>
     </div>
 </div>
