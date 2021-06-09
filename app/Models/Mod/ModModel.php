@@ -11,7 +11,7 @@ class ModModel extends Model {
 
     protected $useSoftDelete = true;
 
-    protected $allowedFields = ["name", "description", "version"];
+    protected $allowedFields = ["author", "name", "description", "version"];
 
     /**
      * gets the last uploaded mod id
