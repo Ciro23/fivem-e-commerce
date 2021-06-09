@@ -32,7 +32,7 @@ class SignupController extends BaseController {
             $userModel = new UserModel;
             $userModel->save($this->request->getPost());
 
-            $this->createSession($this->request->getVar("email"));
+            $this->createSession($userModel->getInsertID());
 
             return redirect()->to("/");
         }
@@ -42,11 +42,10 @@ class SignupController extends BaseController {
         $this->view();
     }
 
-    // ! REPLACE EMAIL WITH ID WHEN PHP-DI WILL BE IMPLEMENTED
-    private function createSession(string $email): void {
+    private function createSession(int $uid): void {
         $this->session->set([
             "is_logged_in" => true,
-            "email" => $email,
+            "uid" => $uid,
         ]);
     }
 

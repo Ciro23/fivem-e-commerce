@@ -4,6 +4,7 @@ namespace App\Controllers\UserAuth;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\RedirectResponse;
+use App\Models\UserModel;
 
 class LoginController extends BaseController {
 
@@ -28,7 +29,10 @@ class LoginController extends BaseController {
         helper("form");
 
         if ($this->validate("login")) {
-            $this->createSession($this->request->getVar("email"));
+            $userModel = new UserModel;
+
+            $uid = $userModel->getUserIdByEmail($this->request->getVar("email"));
+            $this->createSession($uid);
 
             return redirect()->to("/");
         } else {
@@ -38,10 +42,10 @@ class LoginController extends BaseController {
         $this->view();
     }
 
-    private function createSession(string $email): void {
+    private function createSession(int $uid): void {
         $this->session->set([
             "is_logged_in" => true,
-            "email" => $email,
+            "uid" => $uid,
         ]);
     }
 
