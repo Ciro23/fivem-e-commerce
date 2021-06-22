@@ -64,6 +64,6 @@ class Filters extends BaseConfig
 	 */
 	public $filters = [
 		'is_not_logged_in' => ['before' => ['/signup', '/login']],
-		'id_admin' => ['before' => ['/mod/approve']],
+		'is_admin' => ['before' => ['/mod/approve']],
 	];
 }
