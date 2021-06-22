@@ -9,7 +9,7 @@ class ModModel extends Model {
 
     protected $table = "mods";
 
-    protected $useSoftDelete = true;
+    protected $useSoftDeletes = true;
 
     protected $allowedFields = ["author", "name", "description", "version", "is_approved"];
 
