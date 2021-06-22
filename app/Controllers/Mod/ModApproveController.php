@@ -22,23 +22,23 @@ class ModApproveController extends BaseController {
     }
 
     /**
-     * updates the mod status
+     * update is_approved status to true
      * 
      * @param int $modId
-     * @param int $status (0 => rejected, 1 => pending, 2 => approved)
      */
-    public function updateModStatus(int $modId, int $status): void {
-        $modApproveModel = new ModApproveModel;
-        $userModel = new UserModel;
+    public function approve($modId): void {
+        $modModel = new ModModel();
+        $modModel->approveMod($modId);
+    }
 
-        if ($modApproveModel->updateModStatus($modId, $status, $userModel)) {
-            header("Location: /mod/" . $modId);
-        } else {
-            header("Location: /mod/"
-                . $modId
-                . "/?error="
-                . $modApproveModel->getModApproveError());
-        }
+    /**
+     * soft deletes the specified mod
+     * 
+     * @param int $modId
+     */
+    public function deny($modId) {
+        $modModel = new ModModel();
+        $modModel->deleteMod($modId);
     }
 
     private function view() {
