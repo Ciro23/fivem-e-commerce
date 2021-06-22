@@ -16,9 +16,9 @@ class ModModel extends Model {
     /**
      * gets the last uploaded mod id
      * 
-     * @return int|null
+     * @return int
      */
-    public function getLastId(): int|null {
+    public function getLastId(): int {
         $builder = $this->select("id")
                         ->orderBy("id", "DESC")
                         ->limit(1);
@@ -27,7 +27,7 @@ class ModModel extends Model {
             return $builder->get()->getRow()->id;
         }
         
-        return null;
+        return 0;
     }
 
     /**
