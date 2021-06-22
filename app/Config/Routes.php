@@ -57,7 +57,7 @@ $routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes)
 	$routes->post("upload", "ModUploadController::uploadMod");
 
 	$routes->get("approve", "ModApproveController::index");
-	$routes->get("approve/(:num)/update-status/(:num)", "ModApproveController::updateModStatus/$1/$2");
+	$routes->get("(:num)/update-status/(:num)", "ModApproveController::updateModStatus/$1/$2");
 });
 
 /*
