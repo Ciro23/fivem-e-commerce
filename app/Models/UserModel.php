@@ -8,6 +8,8 @@ class UserModel extends Model {
 
     protected $table = "users";
 
+    protected $useTimestamps = true;
+
     protected $useSoftDeletes = true;
 
     protected $allowedFields = ["email", "username", "password"];
