@@ -11,7 +11,7 @@ class ModModel extends Model {
 
     protected $useSoftDelete = true;
 
-    protected $allowedFields = ["author", "name", "description", "version"];
+    protected $allowedFields = ["author", "name", "description", "version", "is_approved"];
 
     /**
      * gets the last uploaded mod id
@@ -64,6 +64,15 @@ class ModModel extends Model {
         }
         
         return null;
+    }
+
+    /**
+     * update is_approve status to true
+     * 
+     * @param int $id
+     */
+    public function approveMod(int $id): void {
+        $builder = $this->update($id, ['is_approved' => 1]);
     }
 
     /**
