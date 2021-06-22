@@ -7,6 +7,7 @@ use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use App\Filters\IsNotLoggedIn;
+use App\Filters\IsAdmin;
 
 class Filters extends BaseConfig
 {
@@ -21,6 +22,7 @@ class Filters extends BaseConfig
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
 		'is_not_logged_in' => IsNotLoggedIn::class,
+		'is_admin' => IsAdmin::class,
 	];
 
 	/**
@@ -61,6 +63,7 @@ class Filters extends BaseConfig
 	 * @var array
 	 */
 	public $filters = [
-		'is_not_logged_in' => ['before' => ['/signup', '/login']]
+		'is_not_logged_in' => ['before' => ['/signup', '/login']],
+		'id_admin' => ['before' => ['/mod/approve']],
 	];
 }
