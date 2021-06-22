@@ -32,13 +32,24 @@ class ModApproveController extends BaseController {
     }
 
     /**
-     * soft deletes the specified mod
+     * deletes the specified mod
      * 
      * @param int $modId
      */
     public function deny($modId) {
+        helper("filesystem");
+
+        // deletes the mod from the db
         $modModel = new ModModel();
         $modModel->deleteMod($modId);
+
+        $modFilesPath = WRITEPATH . "uploads/mods/" . $modId;
+
+        // deletes all the files inside the mod folder
+        delete_files($modFilesPath);
+
+        // deletes the empty mod folder
+        rmdir($modFilesPath);
     }
 
     private function view() {
