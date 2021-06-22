@@ -9,28 +9,16 @@ use App\Models\UserModel;
 
 class ModApproveController extends BaseController {
 
+    private array $data = [
+        "styles" => ["mod_approve"],
+        "title" => "Approve mods",
+    ];
+
     /**
      * shows the mod approve page only if the user is admin
      */
     public function index(): void {
-        $userModel = new UserModel;
-
-        // shows the page only if the user is an admin
-        if (
-            isset($_SESSION['uid'])
-            && $userModel->isUserAdmin($_SESSION['uid'])
-        ) {
-            // gets the list of mods to approve
-            $modModel = new ModModel;
-            $data['mods'] = $modModel->getModsByStatus(1);
-
-            // saves the admin status
-            $data['user']['is_admin'] = true;
-
-            echo view("modapprove", $data);
-        } else {
-            echo view("pagenotfound");
-        }
+        echo $this->view();
     }
 
     /**
@@ -51,5 +39,11 @@ class ModApproveController extends BaseController {
                 . "/?error="
                 . $modApproveModel->getModApproveError());
         }
+    }
+
+    private function view() {
+        echo view("templates/header", $this->data);
+        echo view("mod/approve");
+        echo view("templates/footer");
     }
 }
