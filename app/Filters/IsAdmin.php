@@ -13,7 +13,7 @@ class IsAdmin implements FilterInterface {
         $session = session();
         $userModel = new UserModel();
 
-        if (!$userModel->isUserAdmin($session->uid)) {
+        if (!$userModel->isUserAdmin($session->uid ?? 0)) {
             return redirect()->to("/");
         }
     }
