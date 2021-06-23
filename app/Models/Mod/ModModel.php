@@ -51,17 +51,13 @@ class ModModel extends Model {
      * 
      * @param int $is_approved
      * 
-     * @return array|null
+     * @return array
      */
-    public function getModsByApprovedStatus(int $is_approved): array|null {
+    public function getModsByApprovedStatus(int $is_approved): array {
         $builder = $this->select("*")
                         ->where("is_approved", $is_approved);
 
-        if ($builder->countAllResults(false) > 0) {
-            return $builder->get()->getResult();
-        }
-        
-        return null;
+        return $builder->get()->getResult();
     }
 
     /**
