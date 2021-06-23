@@ -6,6 +6,7 @@ use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
+use App\Filters\IsLoggedIn;
 use App\Filters\IsNotLoggedIn;
 use App\Filters\IsAdmin;
 
@@ -21,6 +22,7 @@ class Filters extends BaseConfig
 		'csrf'     => CSRF::class,
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
+		'is_logged_in' => IsLoggedIn::class,
 		'is_not_logged_in' => IsNotLoggedIn::class,
 		'is_admin' => IsAdmin::class,
 	];
