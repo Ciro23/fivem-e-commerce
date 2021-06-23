@@ -4,6 +4,7 @@ namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
 use App\Models\Mod\ModModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class ModController extends BaseController {
     
@@ -27,7 +28,7 @@ class ModController extends BaseController {
 
     private function view() {
         if ($this->data['mod'] === null) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException();
+            throw new PageNotFoundException();
         }
 
         echo view("templates/header", $this->data);
