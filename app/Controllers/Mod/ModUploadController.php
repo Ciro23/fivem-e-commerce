@@ -35,12 +35,15 @@ class ModUploadController extends BaseController {
             $file = $this->request->getFile("file");
             $image = $this->request->getFile("image");
 
+            $fileExt = $file->getExtension();
+            $imageExt = $image->getExtension();
+
             if ($file->isValid() && !$file->hasMoved()) {
-                $file->move(WRITEPATH . "uploads/mods/" . $id, "file." . $file->getExtension());
+                $file->move(WRITEPATH . "uploads/mods_files/" . $id, "file." . $fileExt);
             }
 
             if ($image->isValid() && !$image->hasMoved()) {
-                $image->move(WRITEPATH . "uploads/mods/" . $id, "image." . $image->getExtension());
+                $image->move(ROOTPATH . "/public/uploads/mods_images/" . $id, "image." . $imageExt);
             }
 
             $data = array_merge($this->request->getPost(), ["author" => $this->session->uid]);
