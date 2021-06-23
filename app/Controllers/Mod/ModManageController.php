@@ -4,10 +4,10 @@ namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
 use App\Models\Mod\ModModel;
-use App\Models\Mod\ModApproveModel;
+use App\Models\Mod\ModManageModel;
 use App\Models\UserModel;
 
-class ModApproveController extends BaseController {
+class ModManageController extends BaseController {
 
     private array $data = [
         "styles" => ["mod_approve"],
