@@ -46,7 +46,13 @@ class ModUploadController extends BaseController {
                 $image->move(ROOTPATH . "/public/uploads/mods_images/" . $id, "image." . $imageExt);
             }
 
-            $data = array_merge($this->request->getPost(), ["author" => $this->session->uid]);
+            $additionalData = [
+                "author" => $this->session->uid,
+                "file_ext" => $fileExt,
+                "image_ext" => $imageExt,
+            ];
+
+            $data = array_merge($this->request->getPost(), $additionalData);
             $modModel->save($data);
 
             return redirect()->to("/");
