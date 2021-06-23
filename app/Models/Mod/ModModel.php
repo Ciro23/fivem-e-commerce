@@ -43,11 +43,7 @@ class ModModel extends Model {
         $builder = $this->select("*")
                         ->where("id", $id);
 
-        if ($builder->countAllResults(false) > 0) {
-            return $builder->get()->getRow();
-        }
-        
-        return null;
+        return $builder->get()->getRow();
     }
 
     /**
