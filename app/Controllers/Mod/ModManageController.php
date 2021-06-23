@@ -55,7 +55,7 @@ class ModManageController extends BaseController {
 
     private function view() {
         echo view("templates/header", $this->data);
-        echo view("mod/approve");
+        echo view("mod/manage");
         echo view("templates/footer");
     }
 }
