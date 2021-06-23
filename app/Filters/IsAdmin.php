@@ -3,6 +3,7 @@
 namespace App\Filters;
 
 use App\Models\User\UserModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
@@ -14,7 +15,7 @@ class IsAdmin implements FilterInterface {
         $userModel = new UserModel();
 
         if (!$userModel->isUserAdmin($session->uid ?? 0)) {
-            return redirect()->to("/");
+            throw new PageNotFoundException();
         }
     }
 
