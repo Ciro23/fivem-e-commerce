@@ -4,8 +4,6 @@ namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
 use App\Models\Mod\ModModel;
-use App\Models\Mod\ModManageModel;
-use App\Models\UserModel;
 
 class ModManageController extends BaseController {
 

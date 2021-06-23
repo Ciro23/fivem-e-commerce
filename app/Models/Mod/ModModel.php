@@ -2,7 +2,6 @@
 
 namespace App\Models\Mod;
 
-use Config\Database;
 use CodeIgniter\Model;
 
 class ModModel extends Model {

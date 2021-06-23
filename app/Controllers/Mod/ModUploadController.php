@@ -4,7 +4,6 @@ namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
 use App\Models\Mod\ModModel;
-use App\Models\Mod\ModUploadModel;
 
 class ModUploadController extends BaseController {
 
