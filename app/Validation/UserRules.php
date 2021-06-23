@@ -2,7 +2,7 @@
 
 namespace App\Validation;
 
-use App\Models\UserModel;
+use App\Models\User\UserModel;
 
 class UserRules {
 

@@ -3,7 +3,7 @@
 namespace App\Controllers\UserAuth;
 
 use App\Controllers\BaseController;
-use App\Models\UserModel;
+use App\Models\User\UserModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
 class SignupController extends BaseController {

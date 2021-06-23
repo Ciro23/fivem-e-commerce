@@ -4,7 +4,7 @@ namespace App\Controllers\UserAuth;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\RedirectResponse;
-use App\Models\UserModel;
+use App\Models\User\UserModel;
 
 class LoginController extends BaseController {
 

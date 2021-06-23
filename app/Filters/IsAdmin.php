@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 
-use App\Models\UserModel;
+use App\Models\User\UserModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
