@@ -43,7 +43,7 @@ class ModUploadController extends BaseController {
             }
 
             if ($image->isValid() && !$image->hasMoved()) {
-                $image->move(ROOTPATH . "/public/uploads/mods_images/" . $id, "image." . $imageExt);
+                $image->move(ROOTPATH . "/public/assets/mods_images/" . $id, "image." . $imageExt);
             }
 
             $additionalData = [
