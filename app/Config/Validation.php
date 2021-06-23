@@ -67,7 +67,7 @@ class Validation
 	public $mod = [
 		"name" => "required|alpha_numeric_space|min_length[4]|max_length[30]|is_unique[mods.name]",
 		"description" => "required|min_length[10]|max_length[3000]",
-		"price" => "required|numeric|less_than_equal_to[25]",
+		"price" => "required|numeric|greater_than_equal_to[0]|less_than_equal_to[25]",
 		"file" => [
 			"rules" => "uploaded[file]|max_size[file,50000]|ext_in[file,zip,rar]",
 			"label" => "Mod file",
