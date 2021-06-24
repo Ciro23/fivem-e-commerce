@@ -27,7 +27,7 @@
         </div>
 
         <label for="description">Description</label>
-        <textarea name="description" id="description" rows="5" placeholder="10-3000 characters" minlength="10" maxlength="3000"></textarea>
+        <textarea name="description" id="description" rows="5" placeholder="10-10000 characters" minlength="10" maxlength="10000"></textarea>
 
         <input type="submit" value="Upload mod">
     </form>
