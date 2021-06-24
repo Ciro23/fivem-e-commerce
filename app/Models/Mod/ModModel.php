@@ -12,7 +12,7 @@ class ModModel extends Model {
 
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ["author", "name", "description", "price", "version", "is_approved", "file_ext", "image_ext"];
+    protected $allowedFields = ["author", "name", "description", "price", "size", "is_approved", "file_ext", "image_ext"];
 
     /**
      * gets the last uploaded mod id
@@ -41,7 +41,7 @@ class ModModel extends Model {
     public function getModDetails(int $id): object|null {
         $builder = $this->select("mods.*, users.username as author_name")
                         ->join("users", "mods.author = users.id")
-                        ->where("id", $id);
+                        ->where("mods.id", $id);
 
         return $builder->get()->getRow();
     }
