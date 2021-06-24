@@ -14,7 +14,7 @@
                 <input type="text" id="name" name="name" placeholder="4-30 chars (a-z, 0-9, spaces)">
 
                 <label for="price">Price in Euros</label>
-                <input type="number" id="price" name="price" placeholder="9,99">
+                <input type="number" id="price" name="price" placeholder="9,99" min="0" max="25">
             </div>
 
             <div>
@@ -27,7 +27,7 @@
         </div>
 
         <label for="description">Description</label>
-        <textarea name="description" id="description" rows="5" placeholder="10-3000 characters"></textarea>
+        <textarea name="description" id="description" rows="5" placeholder="10-3000 characters" minlength="10" maxlength="3000"></textarea>
 
         <input type="submit" value="Upload mod">
     </form>
