@@ -55,8 +55,8 @@ class ModModel extends Model {
      */
     public function getModsByApprovedStatus(int $is_approved): array {
         $builder = $this->select("mods.*, users.username as author_name")
-                        ->where("is_approved", $is_approved)
-                        ->join("users", "mods.author = users.id");
+                        ->join("users", "mods.author = users.id")
+                        ->where("is_approved", $is_approved);
 
         return $builder->get()->getResult();
     }
