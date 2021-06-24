@@ -38,6 +38,8 @@ class ModUploadController extends BaseController {
             $fileExt = $file->getExtension();
             $imageExt = $image->getExtension();
 
+            $fileSize = $file->getSize();
+
             if ($file->isValid() && !$file->hasMoved()) {
                 $file->move(WRITEPATH . "uploads/mods_files/" . $id, "file." . $fileExt);
             }
@@ -48,6 +50,7 @@ class ModUploadController extends BaseController {
 
             $additionalData = [
                 "author" => $this->session->uid,
+                "size" => $fileSize,
                 "file_ext" => $fileExt,
                 "image_ext" => $imageExt,
             ];
