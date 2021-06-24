@@ -39,7 +39,8 @@ class ModModel extends Model {
      * @return object|null
      */
     public function getModDetails(int $id): object|null {
-        $builder = $this->select("*")
+        $builder = $this->select("mods.*, users.username as author_name")
+                        ->join("users", "mods.author = users.id")
                         ->where("id", $id);
 
         return $builder->get()->getRow();
