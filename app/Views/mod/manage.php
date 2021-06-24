@@ -2,21 +2,21 @@
     <h1>List of all pending mods</h1>
     <?php
     $i = 0;
-    foreach ($mods as $mod):
+    foreach ($mods as $mod) :
         // alternates mods with a different background color
         $i++;
         $alternativeColor = "";
         if ($i % 2 == 0) {
             $alternativeColor = "alternative-color";
         }
-        ?>
+    ?>
 
 
         <div class="mod <?= $alternativeColor ?>">
             <a href="/mod/<?= $mod->id ?>">
                 <img src="/public/assets/mods_images/<?= $mod->id . "/image." . $mod->image_ext ?>">
             </a>
-            
+
             <div class="info">
                 <div>
                     <a href="/mod/<?= $mod->id ?>">

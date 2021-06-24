@@ -17,7 +17,7 @@ class UserRules {
     public function are_credentials_correct(string $email, string $fields, array $data): bool {
         $userModel = new UserModel;
         $hashedPassword = $userModel->getUserPasswordByEmail($email);
-        
+
         return password_verify($data['password'], $hashedPassword);
     }
 }

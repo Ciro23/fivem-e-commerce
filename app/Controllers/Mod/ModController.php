@@ -7,7 +7,7 @@ use App\Models\Mod\ModModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class ModController extends BaseController {
-    
+
     private array $data = [
         "styles" => ["mod"],
         "title" => "",

@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 
 class IsLoggedIn implements FilterInterface {
-    
+
     public function before(RequestInterface $request, $arguments = null) {
         $session = session();
         if ($session->is_logged_in !== true) {
@@ -15,5 +15,6 @@ class IsLoggedIn implements FilterInterface {
         }
     }
 
-    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {}
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {
+    }
 }
