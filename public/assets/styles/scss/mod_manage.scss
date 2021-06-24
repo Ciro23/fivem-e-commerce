@@ -1,0 +1,69 @@
+.container {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+h1 {
+    font-size: 2.3rem;
+    font-weight: 500;
+    margin-left: 1.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.mod {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+    width: 100%;
+}
+
+.alternative-color {
+    background-color: #f0f0f0;
+}
+
+.mod img {
+    width: 12rem;
+    border-radius: 0.3rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info div:last-child {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.info div:last-child p,
+.buttons a {
+    padding: 0.7rem;
+    border-radius: 0.2rem;
+}
+
+.info div:last-child p {
+    background-color: #dbdbdb;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.buttons a:first-child {
+    background-color: #42f55d;
+}
+
+.buttons a:last-child {
+    background-color: #f54242;
+}
