@@ -22,6 +22,7 @@ class ModController extends BaseController {
 
         // gets the mod data
         $this->data['mod'] = $modModel->getModDetails($modId);
+        $this->data['title'] = $this->data['mod']->name . " mod";
 
         $this->view();
     }
