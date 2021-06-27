@@ -1,4 +1,4 @@
-<div class="container">
+<div class="mega-box">
     <form method="POST" enctype="multipart/form-data">
         <h2>Upload a mod</h2>
 

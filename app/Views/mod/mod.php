@@ -1,44 +1,46 @@
-<div class="container">
-    <div class="heading">
-        <img src="/public/assets/mods_images/<?= $mod->id ?>/image.<?= $mod->image_ext ?>">
-        <h1><?= $mod->name ?></h1>
+<div class="container distance max-w-5xl mx-auto flex flex-col space-y-6">
+    <div class="p-6 shadow rounded-lg flex flex-wrap content-center">
+        <div class="flex space-x-4">
+            <img src="/public/assets/mods_images/<?= $mod->id ?>/image.<?= $mod->image_ext ?>" class="w-32 rounded-md">
+            <h1><?= $mod->name ?></h1>
+        </div>
 
-        <div class="buttons">
-            <a href="<?= $mod->id ?>/download">Download</a>
+        <div class="ml-auto">
+            <a class="px-5 py-2.5 text-sm rounded bg-yellow-500 text-white" href="<?= $mod->id ?>/download">Download</a>
         </div>
     </div>
 
-    <div class="info">
-        <div class="description">
-            <h3>Description</h3>
+    <div class="flex justify-between space-x-6">
+        <div class="p-6 shadow rounded-lg w-4/6">
+            <h3 class="text-lg font-semibold">Description</h3>
             <p><?= $mod->description ?></p>
         </div>
 
-        <div class="about">
-            <h4>About this mod</h4>
+        <div class="p-6 shadow rounded-lg w-1/3">
+            <h4 class="text-lg font-semibold">About this mod</h4>
 
             <ul>
-                <li>    
+                <li class="flex justify-between">    
                     <p>Author:</p>
                     <p><?= $mod->author_name ?></p>
                 </li>
 
-                <li>
+                <li class="flex justify-between">
                     <p>Price:</p>
                     <p><?= $mod->price == 0 ? "Free" : $mod->price . "€"; ?></p>
                 </li>
 
-                <li>
+                <li class="flex justify-between">
                     <p>Uploaded at:</p>
                     <p><?= date("j M, Y", strtotime($mod->created_at)) ?></p>
                 </li>
 
-                <li>
+                <li class="flex justify-between">
                     <p>Last update:</p>
                     <p><?= date("j M, Y", strtotime($mod->updated_at)) ?></p>
                 </li>
 
-                <li>
+                <li class="flex justify-between">
                     <p>Mod size:</p>
                     <p><?= $mod->size ?> bytes</p>
                 </li>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="mega-box">
     <div>
         <form method="POST">
             <h2>Signup</h2>
