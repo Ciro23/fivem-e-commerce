@@ -61,7 +61,7 @@ class ModUploadController extends BaseController {
             return redirect()->to("/");
         }
 
-        $this->data['errors'] = $this->validator->listErrors();
+        $this->data['errors'] = $this->validator->listErrors("custom_errors");
 
         $this->view();
     }

@@ -37,6 +37,7 @@ class Validation
 	public $templates = [
 		'list'   => 'CodeIgniter\Validation\Views\list',
 		'single' => 'CodeIgniter\Validation\Views\single',
+		'custom_errors' => '_error_list',
 	];
 
 	//--------------------------------------------------------------------

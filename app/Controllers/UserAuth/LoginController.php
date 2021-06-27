@@ -36,7 +36,7 @@ class LoginController extends BaseController {
 
             return redirect()->to("/");
         } else {
-            $this->data['errors'] = $this->validator->listErrors();
+            $this->data['errors'] = $this->validator->listErrors("custom_errors");
         }
 
         $this->view();
