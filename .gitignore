@@ -129,3 +129,5 @@ nb-configuration.xml
 
 # uploaded images
 /public/assets/mods_images
+
+node_modules
