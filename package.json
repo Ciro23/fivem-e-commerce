@@ -5,6 +5,6 @@
         "tailwindcss": "^2.2.4"
     },
     "scripts": {
-        "build-css": "tailwindcss build style.css -o public/assets/styles/css/styles.css"
+        "build-css": "tailwindcss build -i public/assets/styles/css/styles.css -o public/assets/styles/css/compiled.css"
     }
 }
