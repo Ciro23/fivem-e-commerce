@@ -49,17 +49,17 @@ $routes->group("login", ["namespace" => "App\Controllers\UserAuth"], function ($
 $routes->get("/logout", "UserAuth\LoginController::logout");
 
 // mod routes
-$routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes) {
-	$routes->get("(:num)", "ModController::index/$1", ['filter' => 'is_mod_approved']);
+$routes->group("", ["namespace" => "App\Controllers\Mod"], function ($routes) {
+	$routes->get("/mod/(:num)", "ModController::index/$1");
 
-	$routes->get("upload", "ModUploadController::index");
-	$routes->post("upload", "ModUploadController::uploadMod");
+	$routes->get("/upload/mod", "ModUploadController::index");
+	$routes->post("/upload/mod", "ModUploadController::uploadMod");
 
-	$routes->get("manage", "ModManageController::index");
-	$routes->get("approve/(:num)", "ModManageController::approve/$1");
-	$routes->get("deny/(:num)", "ModManageController::deny/$1");
+	$routes->get("/manage/mods", "ModManageController::index");
+	$routes->get("/approve/mod/(:num)", "ModManageController::approve/$1");
+	$routes->get("/deny/mod/(:num)", "ModManageController::deny/$1");
 
-	$routes->get("download/(:num)", "ModDownloadController::download/$1");
+	$routes->get("/download/mod/(:num)", "ModDownloadController::download/$1");
 });
 
 /*

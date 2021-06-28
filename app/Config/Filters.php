@@ -68,9 +68,10 @@ class Filters extends BaseConfig {
 	 * @var array
 	 */
 	public $filters = [
-		'is_user_logged_in' => ['before' => ['/mod/upload', '/mod/manage', '/mod/download/*', '/mod/approve/*', '/mod/deny/*']],
+		'is_user_logged_in' => ['before' => ['/upload/mod', '/manage/mods', '/mod/download/*', '/approve/mod/*', '/deny/mod/*']],
 		'is_user_not_logged_in' => ['before' => ['/signup', '/login']],
-		'is_user_admin' => ['before' => ['/mod/manage', '/mod/approve/*', '/mod/deny/*']],
-		'is_mod_approved' => ['before' => ['/mod/download/*']],
+		'is_user_admin' => ['before' => ['/manage/mods', '/approve/mod/*', '/deny/mod/*']],
+		'does_mod_exist' => ['before' => ['/mod/*', '/download/mod/*']],
+		'is_mod_approved' => ['before' => ['/mod/*', '/download/mod/*']],
 	];
 }
