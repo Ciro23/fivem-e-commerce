@@ -65,9 +65,8 @@ class UserModel extends Model {
 
         $builder = $this->select($field);
         $builder->where($field, $value);
-        $builder->countAllResults();
 
-        return $builder > 0;
+        return $builder->countAllResults() > 0;
     }
 
     /**
