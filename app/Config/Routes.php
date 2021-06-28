@@ -50,7 +50,7 @@ $routes->get("/logout", "UserAuth\LoginController::logout");
 
 // mod routes
 $routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes) {
-	$routes->get("(:num)", "ModController::index/$1", ['filter' => ['is_mod_approved']]);
+	$routes->get("(:num)", "ModController::index/$1", ['filter' => 'is_mod_approved']);
 
 	$routes->get("upload", "ModUploadController::index");
 	$routes->post("upload", "ModUploadController::uploadMod");
