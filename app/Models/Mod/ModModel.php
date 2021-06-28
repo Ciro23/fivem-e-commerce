@@ -30,6 +30,20 @@ class ModModel extends Model {
     }
 
     /**
+     * checks whether a mod exists or not
+     * 
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function doesModExist(int $id) {
+        $builder = $this->select("id");
+        $builder->where("id", $id);
+
+        return $builder->countAllResults();
+    }
+
+    /**
      * gets mod details
      * 
      * @param int $id
