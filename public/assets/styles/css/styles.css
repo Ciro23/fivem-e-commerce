@@ -10,6 +10,7 @@
 
     .distance {
         @apply mt-24;
+        @apply mb-24;
     }
 
     .mega-box {
