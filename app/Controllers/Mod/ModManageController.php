@@ -29,9 +29,11 @@ class ModManageController extends BaseController {
      * 
      * @param int $modId
      */
-    public function approve($modId): void {
+    public function approve($modId) {
         $modModel = new ModModel();
         $modModel->approveMod($modId);
+
+        return redirect()->to("/mod/" . $modId);
     }
 
     /**
@@ -53,6 +55,8 @@ class ModManageController extends BaseController {
 
         // deletes the empty mod folder
         rmdir($modFilesPath);
+
+        return redirect()->to("/mod/manage");
     }
 
     private function view() {
