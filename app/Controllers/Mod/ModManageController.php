@@ -48,7 +48,7 @@ class ModManageController extends BaseController {
         $modModel = new ModModel();
         $modModel->deleteMod($modId);
 
-        $modFilesPath = WRITEPATH . "uploads/mods/" . $modId;
+        $modFilesPath = WRITEPATH . "uploads/mods_files/" . $modId;
 
         // deletes all the files inside the mod folder
         delete_files($modFilesPath);
