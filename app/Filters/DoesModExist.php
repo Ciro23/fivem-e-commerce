@@ -15,7 +15,11 @@ class DoesModExist implements FilterInterface {
         $uri = &$request->uri;
         $segments = array_filter($uri->getSegments());
 
-        $id = $segments[2];
+        for ($i = 0; $i < count($segments); $i++) {
+            if ($segments[$i] == "mod") {
+                $id = $segments[$i + 1];
+            }
+        }
 
         $modModel = new ModModel();
 
