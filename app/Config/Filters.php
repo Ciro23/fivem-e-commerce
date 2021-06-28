@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\IsModApproved;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -10,8 +11,7 @@ use App\Filters\IsUserLoggedIn;
 use App\Filters\IsUserNotLoggedIn;
 use App\Filters\IsUserAdmin;
 
-class Filters extends BaseConfig
-{
+class Filters extends BaseConfig {
 	/**
 	 * Configures aliases for Filter classes to
 	 * make reading things nicer and simpler.
@@ -25,6 +25,7 @@ class Filters extends BaseConfig
 		'is_user_logged_in' => IsUserLoggedIn::class,
 		'is_user_not_logged_in' => IsUserNotLoggedIn::class,
 		'is_user_admin' => IsUserAdmin::class,
+		'is_mod_approved' => IsModApproved::class,
 	];
 
 	/**
