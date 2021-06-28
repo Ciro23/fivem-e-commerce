@@ -20,7 +20,7 @@
             <h4 class="text-lg font-semibold">About this mod</h4>
 
             <ul>
-                <li class="flex justify-between">    
+                <li class="flex justify-between">
                     <p>Author:</p>
                     <p><?= $mod->author_name ?></p>
                 </li>
@@ -44,7 +44,6 @@
                     <p>Mod size:</p>
                     <p><?= $mod->size ?> bytes</p>
                 </li>
-            </div>
         </div>
     </div>
 </div>

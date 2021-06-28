@@ -3,7 +3,7 @@
         <form method="POST">
             <h2>Signup</h2>
 
-            <?php 
+            <?php
             if (isset($errors)) {
                 echo $errors;
             }
@@ -26,7 +26,7 @@
                     <input type="password" id="confirm_password" name="confirm_password">
                 </div>
             </div>
-            
+
             <input type="submit" value="Signup">
         </form>
         <a href="/login">Already registered? Login</a>

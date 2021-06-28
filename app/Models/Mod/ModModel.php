@@ -20,14 +20,14 @@ class ModModel extends Model {
      * @return int
      */
     public function getLastId(): int {
-        $builder = $this->select("id")
-                        ->orderBy("id", "DESC")
-                        ->limit(1);
+        $builder = $this->select("id");
+        $builder->orderBy("id", "DESC");
+        $builder->limit(1);
 
         if ($builder->countAllResults(false) > 0) {
             return $builder->get()->getRow()->id;
         }
-        
+
         return 0;
     }
 
@@ -39,9 +39,9 @@ class ModModel extends Model {
      * @return object|null
      */
     public function getModDetails(int $id): object|null {
-        $builder = $this->select("mods.*, users.username as author_name")
-                        ->join("users", "mods.author = users.id")
-                        ->where("mods.id", $id);
+        $builder = $this->select("mods.*, users.username as author_name");
+        $builder->join("users", "mods.author = users.id");
+        $builder->where("mods.id", $id);
 
         return $builder->get()->getRow();
     }
@@ -54,9 +54,9 @@ class ModModel extends Model {
      * @return array
      */
     public function getModsByApprovedStatus(int $is_approved): array {
-        $builder = $this->select("mods.*, users.username as author_name")
-                        ->join("users", "mods.author = users.id")
-                        ->where("is_approved", $is_approved);
+        $builder = $this->select("mods.*, users.username as author_name");
+        $builder->join("users", "mods.author = users.id");
+        $builder->where("is_approved", $is_approved);
 
         return $builder->get()->getResult();
     }
@@ -69,8 +69,8 @@ class ModModel extends Model {
      * @return int
      */
     public function isApproved(int $id): int {
-        $builder = $this->select("is_approved")
-                        ->where("id", $id);
+        $builder = $this->select("is_approved");
+        $builder->where("id", $id);
 
         return $builder->get()->getRow()->is_approved;
     }
