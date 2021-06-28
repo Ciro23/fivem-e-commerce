@@ -41,7 +41,11 @@ class ModModel extends Model {
         $builder->join("users", "mods.author = users.id");
         $builder->where("mods.id", $id);
 
-        return $builder->get()->getRow();
+        if ($builder->countAllResults(false)) {
+            return $builder->get()->getRow();
+        }
+
+        return null;
     }
 
     /**
