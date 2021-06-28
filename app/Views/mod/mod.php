@@ -6,7 +6,7 @@
         </div>
 
         <div class="ml-auto">
-            <a class="px-5 py-2.5 text-sm rounded bg-yellow-500 text-white" href="<?= $mod->id ?>/mod/download/<?= $mod->id ?>">Download</a>
+            <a class="px-5 py-2.5 text-sm rounded bg-yellow-500 text-white" href="/mod/download/<?= $mod->id ?>">Download</a>
         </div>
     </div>
 
