@@ -56,7 +56,11 @@ class ModModel extends Model {
         $builder->join("users", "mods.author = users.id");
         $builder->where("is_approved", $is_approved);
 
-        return $builder->get()->getResult();
+        if ($builder->countAllResults(false)) {
+            return $builder->get()->getResult();
+        }
+
+        return [];
     }
 
     /**
