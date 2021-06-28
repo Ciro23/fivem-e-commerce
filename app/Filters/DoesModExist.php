@@ -11,11 +11,11 @@ use CodeIgniter\Filters\FilterInterface;
 class DoesModExist implements FilterInterface {
 
     public function before(RequestInterface $request, $arguments = null) {
-        // $segments will be something like ['mod', '10']
+        // $segments will be something like ['download', 'mod', '10']
         $uri = &$request->uri;
         $segments = array_filter($uri->getSegments());
 
-        $id = $segments[1];
+        $id = $segments[2];
 
         $modModel = new ModModel();
 
