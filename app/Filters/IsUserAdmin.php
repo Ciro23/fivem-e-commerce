@@ -8,7 +8,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 
-class IsAdmin implements FilterInterface {
+class IsUserAdmin implements FilterInterface {
 
     public function before(RequestInterface $request, $arguments = null) {
         $session = session();
