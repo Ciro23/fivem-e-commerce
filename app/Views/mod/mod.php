@@ -1,7 +1,7 @@
 <div class="container distance max-w-5xl mx-auto flex flex-col space-y-6">
     <div class="p-6 shadow rounded-lg flex flex-wrap content-center">
         <div class="flex space-x-4">
-            <img src="/public/assets/mods_images/<?= $mod->id ?>/image.<?= $mod->image_ext ?>" class="w-32 rounded-md">
+            <img src="/assets/mods_images/<?= $mod->id ?>/image.<?= $mod->image_ext ?>" class="w-32 rounded-md">
             <h1 class="font-medium"><?= $mod->name ?></h1>
         </div>
 

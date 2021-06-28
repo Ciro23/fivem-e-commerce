@@ -8,7 +8,7 @@
         <div class="flex h-52 shadow-md rounded p-6">
             <div class="flex space-x-6">
                 <a href="/mod/<?= $mod->id ?>" class="w-32">
-                    <img src="/public/assets/mods_images/<?= $mod->id . "/image." . $mod->image_ext ?>" class="rounded">
+                    <img src="/assets/mods_images/<?= $mod->id . "/image." . $mod->image_ext ?>" class="rounded">
                 </a>
 
                 <div class="flex flex-col w-3/4 justify-between space-y-5">
