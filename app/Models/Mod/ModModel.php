@@ -78,7 +78,11 @@ class ModModel extends Model {
         $builder = $this->select("is_approved");
         $builder->where("id", $id);
 
-        return $builder->get()->getRow()->is_approved;
+        if ($builder->countAllResults(false)) {
+            return $builder->get()->getRow()->is_approved;
+        }
+
+        return 0;
     }
 
     /**
