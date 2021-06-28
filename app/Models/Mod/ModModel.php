@@ -20,12 +20,10 @@ class ModModel extends Model {
      * @return int
      */
     public function getLastId(): int {
-        $builder = $this->select("id");
-        $builder->orderBy("id", "DESC");
-        $builder->limit(1);
+        $query = $this->db->query("select id from mods order by id desc limit 1");
 
-        if ($builder->countAllResults(false) > 0) {
-            return $builder->get()->getRow()->id;
+        if ($query->getNumRows() > 0) {
+            return $query->getRow()->id;
         }
 
         return 0;
