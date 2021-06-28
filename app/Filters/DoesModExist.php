@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Filters;
+
+use App\Models\Mod\ModModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Filters\FilterInterface;
+
+class DoesModExist implements FilterInterface {
+
+    public function before(RequestInterface $request, $arguments = null) {
+        // $segments will be something like ['mod', '10']
+        $uri = &$request->uri;
+        $segments = array_filter($uri->getSegments());
+
+        $id = $segments[1];
+
+        $modModel = new ModModel();
+
+        if (!$modModel->doesModExist($id)) {
+            throw new PageNotFoundException();
+        }
+    }
+
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {
+    }
+}
