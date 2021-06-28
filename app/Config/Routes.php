@@ -57,10 +57,10 @@ $routes->group("mod", ["namespace" => "App\Controllers\Mod"], function ($routes)
 	$routes->post("upload", "ModUploadController::uploadMod");
 
 	$routes->get("manage", "ModManageController::index");
-	$routes->get("(:num)/approve", "ModManageController::approve/$1");
-	$routes->get("(:num)/deny", "ModManageController::deny/$1");
+	$routes->get("approve/(:num)", "ModManageController::approve/$1");
+	$routes->get("deny/(:num)", "ModManageController::deny/$1");
 
-	$routes->get("(:num)/download", "ModDownloadController::download/$1");
+	$routes->get("download/(:num)", "ModDownloadController::download/$1");
 });
 
 /*

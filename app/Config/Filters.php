@@ -65,8 +65,8 @@ class Filters extends BaseConfig
 	 * @var array
 	 */
 	public $filters = [
-		'is_user_logged_in' => ['before' => ['/mod/upload', '/mod/manage']],
+		'is_user_logged_in' => ['before' => ['/mod/upload', '/mod/manage', '/mod/download/*', '/mod/approve/*', '/mod/deny/*']],
 		'is_user_not_logged_in' => ['before' => ['/signup', '/login']],
-		'is_user_admin' => ['before' => ['/mod/manage']],
+		'is_user_admin' => ['before' => ['/mod/manage', '/mod/approve/*', '/mod/deny/*']],
 	];
 }
