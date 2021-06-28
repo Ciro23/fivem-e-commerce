@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\DoesModExist;
 use App\Filters\IsModApproved;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -25,6 +26,7 @@ class Filters extends BaseConfig {
 		'is_user_logged_in' => IsUserLoggedIn::class,
 		'is_user_not_logged_in' => IsUserNotLoggedIn::class,
 		'is_user_admin' => IsUserAdmin::class,
+		'does_mod_exist' => DoesModExist::class,
 		'is_mod_approved' => IsModApproved::class,
 	];
 
