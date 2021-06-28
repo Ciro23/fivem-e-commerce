@@ -62,6 +62,20 @@ class ModModel extends Model {
     }
 
     /**
+     * returns 1 if the mod is approved, 0 otherwise
+     * 
+     * @param int $id
+     * 
+     * @return int
+     */
+    public function isApproved(int $id): int {
+        $builder = $this->select("is_approved")
+                        ->where("id", $id);
+
+        return $builder->get()->getRow()->is_approved;
+    }
+
+    /**
      * update is_approve status to true
      * 
      * @param int $id
