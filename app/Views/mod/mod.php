@@ -2,7 +2,7 @@
     <div class="p-6 shadow rounded-lg flex flex-wrap content-center">
         <div class="flex space-x-4">
             <img src="/public/assets/mods_images/<?= $mod->id ?>/image.<?= $mod->image_ext ?>" class="w-32 rounded-md">
-            <h1><?= $mod->name ?></h1>
+            <h1 class="font-medium"><?= $mod->name ?></h1>
         </div>
 
         <div class="ml-auto">
