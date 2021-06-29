@@ -49,12 +49,14 @@ class ModManageController extends BaseController {
         $modModel->deleteMod($modId);
 
         $modFilesPath = WRITEPATH . "uploads/mods_files/" . $modId;
+        $modImagePath = ROOTPATH . "/public/assets/mods_images/" . $modId;
 
-        // deletes all the files inside the mod folder
         delete_files($modFilesPath);
+        delete_files($modImagePath);
 
-        // deletes the empty mod folder
+        // deletes the empty mod folders
         rmdir($modFilesPath);
+        rmdir($modImagePath);
 
         return redirect()->to("/mod/manage");
     }
