@@ -8,7 +8,6 @@ use App\Models\Mod\ModModel;
 class ModManageController extends BaseController {
 
     private array $data = [
-        "styles" => ["mod_manage"],
         "title" => "Approve mods",
     ];
 

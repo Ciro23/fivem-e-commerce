@@ -8,7 +8,6 @@ use App\Models\Mod\ModModel;
 class ModUploadController extends BaseController {
 
     private array $data = [
-        "styles" => ["form_page"],
         "title" => "Upload a mod",
     ];
 

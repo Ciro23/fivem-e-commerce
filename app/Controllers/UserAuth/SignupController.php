@@ -9,7 +9,6 @@ use CodeIgniter\HTTP\RedirectResponse;
 class SignupController extends BaseController {
 
     private array $data = [
-        "styles" => ["form_page"],
         "title" => "Signup",
     ];
 

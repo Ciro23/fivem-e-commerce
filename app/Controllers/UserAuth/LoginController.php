@@ -9,7 +9,6 @@ use App\Models\User\UserModel;
 class LoginController extends BaseController {
 
     private array $data = [
-        "styles" => ["form_page"],
         "title" => "Login",
     ];
 

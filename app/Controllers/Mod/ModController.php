@@ -10,7 +10,6 @@ use Exception;
 class ModController extends BaseController {
 
     private array $data = [
-        "styles" => ["mod"],
         "title" => "",
         "mod" => null,
     ];
