@@ -32,7 +32,7 @@ class LoginController extends BaseController {
             $uid = $userModel->getUserIdByEmail($this->request->getVar("email"));
             $this->createSession($uid);
 
-            return redirect()->to("/");
+            return redirect("home");
         } else {
             $this->data['errors'] = $this->validator->listErrors("custom_errors");
         }
@@ -56,6 +56,6 @@ class LoginController extends BaseController {
     public function logout() {
         $this->session->destroy();
 
-        return redirect()->to("/");
+        return redirect("home");
     }
 }

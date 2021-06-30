@@ -32,7 +32,7 @@ class SignupController extends BaseController {
 
             $this->createSession($userModel->getInsertID());
 
-            return redirect()->to("/");
+            return redirect("home");
         }
 
         $this->data['errors'] = $this->validator->listErrors("custom_errors");

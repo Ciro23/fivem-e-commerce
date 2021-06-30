@@ -57,7 +57,7 @@ class ModUploadController extends BaseController {
             $data = array_merge($this->request->getPost(), $additionalData);
             $modModel->save($data);
 
-            return redirect()->to("/");
+            return redirect("home");
         }
 
         $this->data['errors'] = $this->validator->listErrors("custom_errors");

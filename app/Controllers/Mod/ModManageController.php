@@ -57,7 +57,7 @@ class ModManageController extends BaseController {
         rmdir($modFilesPath);
         rmdir($modImagePath);
 
-        return redirect()->to("/mod/manage");
+        return redirect("manage_mods");
     }
 
     private function view() {
