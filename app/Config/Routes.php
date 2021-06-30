@@ -31,7 +31,10 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->group("", ["namespace" => "App\Controllers\Home"], function ($routes) {
+	$routes->get("/", "HomeController::index");
+	$routes->get("search", "HomeController::search");
+});
 
 // signup routes
 $routes->group("signup", ["namespace" => "App\Controllers\UserAuth"], function ($routes) {
