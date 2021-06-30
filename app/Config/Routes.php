@@ -32,33 +32,33 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->group("", ["namespace" => "App\Controllers\Home"], function ($routes) {
-	$routes->get("/", "HomeController::index");
-	$routes->get("search", "HomeController::search");
+	$routes->get("/", "HomeController::index", ["as" => "home"]);
+	$routes->get("search", "HomeController::search", ["as" => "search"]);
 });
 
 // signup routes
 $routes->group("signup", ["namespace" => "App\Controllers\UserAuth"], function ($routes) {
-	$routes->get("", "SignupController::index");
+	$routes->get("", "SignupController::index", ["as" => "signup"]);
 	$routes->post("", "SignupController::signup");
 });
 
 // login routes
 $routes->group("login", ["namespace" => "App\Controllers\UserAuth"], function ($routes) {
-	$routes->get("", "LoginController::index");
+	$routes->get("", "LoginController::index", ["as" => "login"]);
 	$routes->post("", "LoginController::login");
 });
 
 // logout route
-$routes->get("/logout", "UserAuth\LoginController::logout");
+$routes->get("/logout", "UserAuth\LoginController::logout", ["as" => "logout"]);
 
 // mod routes
 $routes->group("", ["namespace" => "App\Controllers\Mod"], function ($routes) {
 	$routes->get("mod/(:num)", "ModController::index/$1");
 
-	$routes->get("upload/mod", "ModUploadController::index");
+	$routes->get("upload/mod", "ModUploadController::index", ["as" => "upload_mod"]);
 	$routes->post("upload/mod", "ModUploadController::uploadMod");
 
-	$routes->get("manage/mods", "ModManageController::index");
+	$routes->get("manage/mods", "ModManageController::index", ["as" => "manage_mods"]);
 	$routes->get("approve/mod/(:num)", "ModManageController::approve/$1");
 	$routes->get("deny/mod/(:num)", "ModManageController::deny/$1");
 
