@@ -30,7 +30,10 @@ class SignupController extends BaseController {
             $userModel = new UserModel;
             $userModel->save($this->request->getPost());
 
-            $this->createSession($userModel->getInsertID());
+            $this->session->set([
+                "is_logged_in" => true,
+                "uid" => $userModel->getInsertID(),
+            ]);
 
             return redirect("home");
         }
@@ -38,13 +41,6 @@ class SignupController extends BaseController {
         $this->data['errors'] = $this->validator->listErrors("custom_errors");
 
         $this->view();
-    }
-
-    private function createSession(int $uid): void {
-        $this->session->set([
-            "is_logged_in" => true,
-            "uid" => $uid,
-        ]);
     }
 
     private function view(): void {

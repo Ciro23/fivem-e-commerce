@@ -30,7 +30,10 @@ class LoginController extends BaseController {
             $userModel = new UserModel;
 
             $uid = $userModel->getUserIdByEmail($this->request->getVar("email"));
-            $this->createSession($uid);
+            $this->session->set([
+                "is_logged_in" => true,
+                "uid" => $uid,
+            ]);
 
             return redirect("home");
         } else {
@@ -38,13 +41,6 @@ class LoginController extends BaseController {
         }
 
         $this->view();
-    }
-
-    private function createSession(int $uid): void {
-        $this->session->set([
-            "is_logged_in" => true,
-            "uid" => $uid,
-        ]);
     }
 
     private function view(): void {
