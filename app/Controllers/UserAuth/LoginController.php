@@ -3,7 +3,6 @@
 namespace App\Controllers\UserAuth;
 
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\RedirectResponse;
 use App\Models\User\UserModel;
 
 class LoginController extends BaseController {
@@ -54,7 +53,7 @@ class LoginController extends BaseController {
         echo view("templates/footer");
     }
 
-    public function logout(): RedirectResponse {
+    public function logout() {
         $this->session->destroy();
 
         return redirect()->to("/");
