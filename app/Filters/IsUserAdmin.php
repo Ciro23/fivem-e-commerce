@@ -4,9 +4,9 @@ namespace App\Filters;
 
 use App\Models\User\UserModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\Filters\FilterInterface;
 
 class IsUserAdmin implements FilterInterface {
 

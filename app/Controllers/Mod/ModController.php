@@ -5,7 +5,6 @@ namespace App\Controllers\Mod;
 use App\Controllers\BaseController;
 use App\Models\Mod\ModModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
-use Exception;
 
 class ModController extends BaseController {
 
