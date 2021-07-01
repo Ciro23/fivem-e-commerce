@@ -76,7 +76,6 @@ user_guide_src/build/*
 #-------------------------
 # Test Files
 #-------------------------
-tests/
 
 # Don't save phpunit under version control.
 phpunit
