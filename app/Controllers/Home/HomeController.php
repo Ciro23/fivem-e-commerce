@@ -2,9 +2,9 @@
 
 namespace App\Controllers\Home;
 
-use CodeIgniter\Controller;
+use App\Controllers\BaseController;
 
-class HomeController extends Controller {
+class HomeController extends BaseController {
 
     private array $data = [
         "title" => "Home",
