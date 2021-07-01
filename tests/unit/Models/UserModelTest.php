@@ -13,12 +13,6 @@ class UserModelTest extends CIUnitTestCase {
         $this->userModel = new UserModel();
     }
 
-    public function test_get_id() {
-        $id = $this->userModel->getUserIdByEmail("prova@prova.it");
-
-        $this->assertSame(2, $id);
-    }
-
     public function test_get_user_password_by_email() {
         $password = $this->userModel->getUserPasswordByEmail("asd@gmail.com");
 
