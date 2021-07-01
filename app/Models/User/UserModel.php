@@ -42,7 +42,7 @@ class UserModel extends Model {
         $builder = $this->select("password");
         $builder->where("email", $email);
 
-        if ($builder->countAllResults(false)) {
+        if ($builder->countAllResults(false) == 1) {
             return $builder->get()->getRow()->password;
         }
 
@@ -66,7 +66,7 @@ class UserModel extends Model {
         $builder = $this->select($field);
         $builder->where($field, $value);
 
-        return $builder->countAllResults() > 0;
+        return $builder->countAllResults() == 1;
     }
 
     /**
@@ -80,7 +80,7 @@ class UserModel extends Model {
         $builder = $this->select("id");
         $builder->where("email", $email);
 
-        if ($builder->countAllResults(false) > 0) {
+        if ($builder->countAllResults(false) == 1) {
             return $builder->get()->getRow()->id;
         }
 
@@ -109,7 +109,7 @@ class UserModel extends Model {
         $builder = $this->select("role");
         $builder->where("id", $id);
 
-        if ($builder->countAllResults(false) > 0) {
+        if ($builder->countAllResults(false) == 1) {
             return $builder->get()->getRow()->role;
         }
 

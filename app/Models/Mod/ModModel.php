@@ -74,7 +74,7 @@ class ModModel extends Model {
         $builder->join("users", "mods.author = users.id");
         $builder->where("is_approved", $is_approved);
 
-        if ($builder->countAllResults(false)) {
+        if ($builder->countAllResults(false) > 0) {
             return $builder->get()->getResult();
         }
 
@@ -92,7 +92,7 @@ class ModModel extends Model {
         $builder = $this->select("is_approved");
         $builder->where("id", $id);
 
-        if ($builder->countAllResults(false)) {
+        if ($builder->countAllResults(false) == 1) {
             return $builder->get()->getRow()->is_approved;
         }
 
