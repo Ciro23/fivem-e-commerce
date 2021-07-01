@@ -40,7 +40,7 @@ class ModModel extends Model {
         $builder = $this->select("id");
         $builder->where("id", $id);
 
-        return $builder->countAllResults();
+        return $builder->countAllResults() == 1;
     }
 
     /**
