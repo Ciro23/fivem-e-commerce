@@ -18,8 +18,5 @@ class ModDownloadController extends BaseController {
         $download->setFileName($mod->name . "." . $mod->file_ext);
 
         return $download;
-
-        // close the browser window of the download
-        echo "<script>window.close();</script>";
     }
 }
