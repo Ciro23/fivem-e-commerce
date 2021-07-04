@@ -117,7 +117,7 @@ class ModModel extends Model {
      * 
      * @param int $id
      */
-    public function approveMod(int $id): void {
+    public function approve(int $id): void {
         $builder = $this->update($id, ['is_approved' => 1]);
     }
 
@@ -126,7 +126,7 @@ class ModModel extends Model {
      * 
      * @param int $id
      */
-    public function deleteMod(int $id): void {
+    public function remove(int $id): void {
         $builder = $this->delete(['id' => $id]);
     }
 }

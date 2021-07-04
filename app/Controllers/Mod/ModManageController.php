@@ -30,7 +30,7 @@ class ModManageController extends BaseController {
      */
     public function approve($modId) {
         $modModel = new ModModel();
-        $modModel->approveMod($modId);
+        $modModel->approve($modId);
 
         return redirect()->to("/mod/" . $modId);
     }
@@ -45,7 +45,7 @@ class ModManageController extends BaseController {
 
         // deletes the mod from the db
         $modModel = new ModModel();
-        $modModel->deleteMod($modId);
+        $modModel->remove($modId);
 
         $modFilesPath = WRITEPATH . "uploads/mods_files/" . $modId;
         $modImagePath = ROOTPATH . "/public/assets/mods_images/" . $modId;
