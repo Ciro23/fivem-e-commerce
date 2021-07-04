@@ -52,12 +52,12 @@ class ModModelTest extends CIUnitTestCase {
     public function test_is_approved() {
         $isApproved = $this->mod->isApproved(3);
 
-        $this->assertEquals(1, $isApproved);
+        $this->assertTrue($isApproved);
     }
 
     public function test_is_not_approved() {
         $response = $this->mod->isApproved(2);
 
-        $this->assertEquals(0, $response);
+        $this->assertFalse($response);
     }
 }

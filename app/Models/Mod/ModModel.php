@@ -82,21 +82,23 @@ class ModModel extends Model {
     }
 
     /**
-     * returns 1 if the mod is approved, 0 otherwise
+     * checks if the mod is approved or not
      * 
      * @param int $id
      * 
-     * @return int
+     * @return bool
      */
-    public function isApproved(int $id): int {
+    public function isApproved(int $id): bool {
         $builder = $this->select("is_approved");
         $builder->where("id", $id);
 
         if ($builder->countAllResults(false) == 1) {
-            return $builder->get()->getRow()->is_approved;
+            if ($builder->get()->getRow()->is_approved == 1) {
+                return true;
+            }
         }
 
-        return 0;
+        return false;
     }
 
     public function search(string $query): array {
