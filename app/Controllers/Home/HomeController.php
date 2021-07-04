@@ -24,8 +24,8 @@ class HomeController extends BaseController {
     }
 
     private function view() {
-        view("templates/header", $this->data);
-        view("home/home");
-        view("templates/footer");
+        echo view("templates/header", $this->data);
+        echo view("home/home");
+        echo view("templates/footer");
     }
 }
