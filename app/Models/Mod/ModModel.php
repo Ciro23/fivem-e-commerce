@@ -99,6 +99,17 @@ class ModModel extends Model {
         return 0;
     }
 
+    public function search(string $query): array {
+        $builder = $this->select();
+        $builder->like("name", $query);
+
+        if ($builder->countAllResults(false) > 0) {
+            return $builder->get()->getResult();
+        }
+
+        return [];
+    }
+
     /**
      * update is_approve status to true
      * 

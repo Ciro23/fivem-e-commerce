@@ -33,7 +33,7 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->group("", ["namespace" => "App\Controllers\Home"], function ($routes) {
 	$routes->get("/", "HomeController::index", ["as" => "home"]);
-	$routes->get("search", "HomeController::search", ["as" => "search"]);
+	$routes->get("search/(:alpha)", "HomeController::search/$1", ["as" => "search"]);
 });
 
 // signup routes
