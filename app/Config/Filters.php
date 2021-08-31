@@ -23,11 +23,30 @@ class Filters extends BaseConfig {
 		'csrf'     => CSRF::class,
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
-		'is_user_logged_in' => IsUserLoggedIn::class,
-		'is_user_not_logged_in' => IsUserNotLoggedIn::class,
-		'is_user_admin' => IsUserAdmin::class,
-		'does_mod_exist' => DoesModExist::class,
-		'is_mod_approved' => IsModApproved::class,
+
+		'can_login_or_signup' => [
+			IsUserNotLoggedIn::class,
+		],
+
+		'can_upload_mod' => [
+			IsUserLoggedIn::class,
+		],
+
+		'can_manage_mods' => [
+			IsUserLoggedIn::class,
+			IsUserAdmin::class,
+		],
+
+		'can_view_mod' => [
+			DoesModExist::class,
+			IsModApproved::class,
+		],
+
+		'can_download_mod' => [
+			DoesModExist::class,
+			IsModApproved::class,
+			IsUserLoggedIn::class,
+		],
 	];
 
 	/**
@@ -67,11 +86,5 @@ class Filters extends BaseConfig {
 	 *
 	 * @var array
 	 */
-	public $filters = [
-		'is_user_logged_in' => ['before' => ['/upload/mod', '/manage/mods', '/mod/download/*', '/approve/mod/*', '/deny/mod/*']],
-		'is_user_not_logged_in' => ['before' => ['/signup', '/login']],
-		'is_user_admin' => ['before' => ['/manage/mods', '/approve/mod/*', '/deny/mod/*']],
-		'does_mod_exist' => ['before' => ['/mod/*', '/download/mod/*']],
-		'is_mod_approved' => ['before' => ['/mod/*', '/download/mod/*']],
-	];
+	public $filters = [];
 }
