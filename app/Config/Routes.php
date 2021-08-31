@@ -55,14 +55,14 @@ $routes->get("/logout", "UserAuth\LoginController::logout", ["as" => "logout"]);
 $routes->group("", ["namespace" => "App\Controllers\Mod"], function ($routes) {
 	$routes->get("mod/(:num)", "ModController::index/$1");
 
-	$routes->get("upload/mod", "ModUploadController::index", ["as" => "upload_mod"]);
-	$routes->post("upload/mod", "ModUploadController::uploadMod");
+	$routes->get("upload-mod", "ModUploadController::index", ["as" => "upload_mod"]);
+	$routes->post("upload-mod", "ModUploadController::uploadMod");
 
-	$routes->get("manage/mods", "ModManageController::index", ["as" => "manage_mods"]);
-	$routes->get("approve/mod/(:num)", "ModManageController::approve/$1");
-	$routes->get("deny/mod/(:num)", "ModManageController::deny/$1");
+	$routes->get("manage-mods", "ModManageController::index", ["as" => "manage_mods"]);
+	$routes->get("mod/(:num)/approve", "ModManageController::approve/$1");
+	$routes->get("mod/(:num)/deny", "ModManageController::deny/$1");
 
-	$routes->get("download/mod/(:num)", "ModDownloadController::download/$1");
+	$routes->get("mod/(:num)/download", "ModDownloadController::download/$1");
 });
 
 /*
