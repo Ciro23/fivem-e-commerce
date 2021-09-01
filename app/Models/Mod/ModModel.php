@@ -40,7 +40,7 @@ class ModModel extends Model {
         $builder = $this->select("id");
         $builder->where("id", $id);
 
-        return $builder->countAllResults() == 1;
+        return $builder->countAllResults() === 1;
     }
 
     /**
@@ -92,8 +92,8 @@ class ModModel extends Model {
         $builder = $this->select("is_approved");
         $builder->where("id", $id);
 
-        if ($builder->countAllResults(false) == 1) {
-            if ($builder->get()->getRow()->is_approved == 1) {
+        if ($builder->countAllResults(false) === 1) {
+            if ($builder->get()->getRow()->is_approved === "1") {
                 return true;
             }
         }
