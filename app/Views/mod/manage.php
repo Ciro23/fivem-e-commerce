@@ -7,11 +7,15 @@
 
         <div class="flex h-48 shadow-md rounded p-6">
             <div class="flex space-x-6">
-                <img src="/assets/mods_images/<?= $mod->id . "/image." . $mod->image_ext ?>" class="rounded">
+                <a href="/mod/<?= $mod->id ?>" class="w-36">
+                    <img src="/assets/mods_images/<?= $mod->id . "/image." . $mod->image_ext ?>" class="rounded">
+                </a>
 
                 <div class="flex flex-col w-3/4 justify-between space-y-5">
                     <div>
-                        <h2 class="font-semibold"><?= $mod->name ?></h2>
+                        <a href="/mod/<?= $mod->id ?>">
+                            <h2 class="font-semibold"><?= $mod->name ?></h2>
+                        </a>
                         <p class="text-sm"><?= character_limiter($mod->description, 300) ?></p>
                     </div>
 
