@@ -58,7 +58,7 @@ class UserModel extends Model {
      * @return bool
      */
     public function doesUserExists(string $field, string $value): bool {
-        // email and username are the only two primary key fields in the users table
+        // email and username are the only two primary key fields in the users table (except id)
         if (!in_array($field, ["email", "username"])) {
             return false;
         }
