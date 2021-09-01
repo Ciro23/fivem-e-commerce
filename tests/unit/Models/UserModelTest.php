@@ -26,31 +26,31 @@ class UserModelTest extends CIUnitTestCase {
     }
 
     public function test_does_user_exists_correct_email() {
-        $response = $this->userModel->doesUserExists("email", "prova@prova.it");
+        $response = $this->userModel->doesUserExist("email", "prova@prova.it");
 
         $this->assertTrue($response);
     }
 
     public function test_does_user_exists_wrong_email() {
-        $response = $this->userModel->doesUserExists("email", "a.caso@casaccio.it");
+        $response = $this->userModel->doesUserExist("email", "a.caso@casaccio.it");
 
         $this->assertFalse($response);
     }
 
     public function test_does_user_exists_correct_username() {
-        $response = $this->userModel->doesUserExists("username", "asdasd");
+        $response = $this->userModel->doesUserExist("username", "asdasd");
 
         $this->assertTrue($response);
     }
 
     public function test_does_user_exists_wrong_username() {
-        $response = $this->userModel->doesUserExists("username", "username_doesnt_exist_xxx");
+        $response = $this->userModel->doesUserExist("username", "username_doesnt_exist_xxx");
 
         $this->assertFalse($response);
     }
 
     public function test_does_user_exists_wrong_field() {
-        $response = $this->userModel->doesUserExists("xxx", "random@random.xxx.it");
+        $response = $this->userModel->doesUserExist("xxx", "random@random.xxx.it");
 
         $this->assertFalse($response);
     }
