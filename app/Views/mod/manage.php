@@ -5,7 +5,7 @@
     ?>
 
 
-        <div class="flex h-52 shadow-md rounded p-6">
+        <div class="flex h-48 shadow-md rounded p-6">
             <div class="flex space-x-6">
                 <img src="/assets/mods_images/<?= $mod->id . "/image." . $mod->image_ext ?>" class="rounded">
 
@@ -24,8 +24,8 @@
             </div>
 
             <div class="ml-auto flex flex-col space-y-3 text-white text-sm text-center">
-                <a href="/approve/mod/<?= $mod->id ?>" class="rounded px-3 py-2 bg-green-500">Approve</a>
-                <a href="/deny/mod/<?= $mod->id ?>" class="rounded px-3 py-2 bg-red-500">Deny</a>
+                <a href="/approve/mod/<?= $mod->id ?>" class="rounded px-3 py-1.5 bg-green-500">Approve</a>
+                <a href="/deny/mod/<?= $mod->id ?>" class="rounded px-3 py-1.5 bg-red-500">Deny</a>
             </div>
         </div>
     <?php endforeach ?>
