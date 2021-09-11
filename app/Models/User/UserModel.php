@@ -88,6 +88,24 @@ class UserModel extends Model {
     }
 
     /**
+     * gets the user details by their id
+     * 
+     * @param int $id
+     * 
+     * @return object|null
+     */
+    public function getUserDetails(int $id): object|null {
+        $builder = $this->select();
+        $builder->where("id", $id);
+
+        if ($builder->countAllResults(false) === 1) {
+            return $builder->get()->getRow();
+        }
+
+        return null;
+    }
+
+    /**
      * checks if the user is an admin
      * 
      * @param int $id
