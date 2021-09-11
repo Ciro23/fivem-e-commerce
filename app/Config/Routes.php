@@ -110,6 +110,15 @@ $routes->get(
 	]
 );
 
+// user profile
+$routes->get(
+	"user/(:num)",
+	"UserController::index/$1",
+	[
+		"namespace" => "App\Controllers\User",
+	]
+);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
