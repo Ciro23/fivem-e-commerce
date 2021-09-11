@@ -18,7 +18,7 @@ class ModManageController extends BaseController {
         helper("text");
 
         $modModel = new ModModel();
-        $this->data['mods'] = $modModel->getModsByApprovedStatus(0);
+        $this->data['mods'] = $modModel->getModsList(0);
 
         echo $this->view();
     }

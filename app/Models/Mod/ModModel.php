@@ -66,14 +66,19 @@ class ModModel extends Model {
      * gets all mods based on whether they are approved or not
      * 
      * @param int $is_approved
+     * @param int $userId [optional]
      * 
      * @return array
      */
-    public function getModsByApprovedStatus(int $is_approved): array {
+    public function getModsList(int $is_approved, int $userId = null): array {
         $builder = $this->select("mods.*, users.username as author_name");
         $builder->join("users", "mods.author = users.id");
         $builder->where("is_approved", $is_approved);
 
+        if ($userId !== null) {
+            $builder->where("users.id", $userId);
+        }
+        
         if ($builder->countAllResults(false) > 0) {
             return $builder->get()->getResult();
         }

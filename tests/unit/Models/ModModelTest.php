@@ -38,13 +38,13 @@ class ModModelTest extends CIUnitTestCase {
     }
 
     public function test_get_mods_by_approved_status() {
-        $mods = $this->mod->getModsByApprovedStatus(1);
+        $mods = $this->mod->getModsList(1);
 
         $this->assertIsArray($mods);
     }
 
     public function test_get_mods_by_wrong_approved_status() {
-        $mods = $this->mod->getModsByApprovedStatus(2);
+        $mods = $this->mod->getModsList(2);
 
         $this->assertSame([], $mods);
     }
