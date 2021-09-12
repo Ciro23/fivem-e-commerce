@@ -3,7 +3,7 @@
     <?php foreach ($mods as $mod) : ?>
 
 
-        <div class="flex h-48 shadow-md rounded p-6">
+        <div class="flex h-42 shadow-md rounded p-6">
             <div class="flex space-x-6">
                 <a href="/mod/<?= $mod->id ?>" class="w-36">
                     <img src="/assets/mods_images/<?= $mod->id . "/image." . $mod->image_ext ?>" class="rounded">
