@@ -31,7 +31,7 @@
             <ul>
                 <li class="flex justify-between">
                     <p>Author:</p>
-                    <p><?= $mod->author_name ?></p>
+                    <a href="/user/<?= $mod->author ?>"><?= $mod->author_name ?></a>
                 </li>
 
                 <li class="flex justify-between">
