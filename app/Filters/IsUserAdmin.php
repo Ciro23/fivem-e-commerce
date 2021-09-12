@@ -14,7 +14,7 @@ class IsUserAdmin implements FilterInterface {
         $session = session();
         $userModel = new UserModel();
 
-        if (!$userModel->isUserAdmin($session->uid)) {
+        if ($session->has("uid") && !$userModel->isUserAdmin($session->uid)) {
             throw new PageNotFoundException();
         }
     }
