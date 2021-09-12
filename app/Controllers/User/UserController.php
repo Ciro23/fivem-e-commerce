@@ -14,6 +14,8 @@ class UserController extends BaseController {
     ];
 
     public function index(int $userId): void {
+        helper("text");
+
         $modModel = new ModModel();
         $userModel = new UserModel();
 
