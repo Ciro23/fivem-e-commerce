@@ -12,18 +12,18 @@ class HomeController extends BaseController {
         "mods" => [],
     ];
 
-    public function index() {
+    public function index(): void {
         $this->view();
     }
 
-    public function search($query) {
+    public function search($query): void {
         $modModel = new ModModel();
         $this->data['mods'] = $modModel->search($query);
 
         $this->view();
     }
 
-    private function view() {
+    private function view(): void {
         echo view("templates/header", $this->data);
         echo view("home/home");
         echo view("templates/footer");

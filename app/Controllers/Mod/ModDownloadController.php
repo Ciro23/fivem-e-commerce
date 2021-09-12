@@ -4,13 +4,14 @@ namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
 use App\Models\Mod\ModModel;
+use CodeIgniter\HTTP\DownloadResponse;
 
 class ModDownloadController extends BaseController {
 
     /**
      * downloads the specified mod file
      */
-    public function download(int $modId) {
+    public function download(int $modId): DownloadResponse {
         $modModel = new ModModel();
         $mod = $modModel->getModDetails($modId);
 

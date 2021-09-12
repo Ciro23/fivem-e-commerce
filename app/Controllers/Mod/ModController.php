@@ -30,7 +30,7 @@ class ModController extends BaseController {
         $this->view();
     }
 
-    private function view() {
+    private function view(): void {
         echo view("templates/header", $this->data);
         echo view("mod/mod");
         echo view("templates/footer");

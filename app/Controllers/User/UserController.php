@@ -26,7 +26,7 @@ class UserController extends BaseController {
         $this->view();
     }
 
-    private function view() {
+    private function view(): void {
         echo view("templates/header", $this->data);
         echo view("user/user");
         echo view("templates/footer");

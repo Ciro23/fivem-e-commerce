@@ -60,7 +60,7 @@ class ModManageController extends BaseController {
         return redirect("manage_mods");
     }
 
-    private function view() {
+    private function view(): void {
         echo view("templates/header", $this->data);
         echo view("mod/manage");
         echo view("templates/footer");

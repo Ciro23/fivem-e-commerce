@@ -36,7 +36,7 @@ class ModModel extends Model {
      * 
      * @return bool
      */
-    public function doesModExist(int $id) {
+    public function doesModExist(int $id): bool {
         $builder = $this->select("id");
         $builder->where("id", $id);
 
