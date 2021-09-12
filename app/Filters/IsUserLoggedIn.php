@@ -11,6 +11,7 @@ class IsUserLoggedIn implements FilterInterface {
 
     public function before(RequestInterface $request, $arguments = null) {
         $session = session();
+        
         if ($session->is_logged_in !== true) {
             throw new PageNotFoundException();
         }
