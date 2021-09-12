@@ -39,7 +39,6 @@ class Filters extends BaseConfig {
 
 		'can_view_mod' => [
 			DoesModExist::class,
-			IsUserLoggedIn::class,
 			IsUserAdmin::class,
 		],
 
