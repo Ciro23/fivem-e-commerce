@@ -15,8 +15,6 @@ class ModManageController extends BaseController {
      * shows the mod approve page only if the user is admin
      */
     public function index(): void {
-        helper("text");
-
         $modModel = new ModModel();
         $this->data['mods'] = $modModel->getModsList(0);
 
