@@ -26,8 +26,8 @@
             </div>
 
             <div class="ml-auto flex flex-col space-y-3 text-white text-sm text-center">
-                <a href="/approve/mod/<?= $mod->id ?>" class="rounded px-3 py-1.5 bg-green-500">Approve</a>
-                <a href="/deny/mod/<?= $mod->id ?>" class="rounded px-3 py-1.5 bg-red-500">Deny</a>
+                <a href="/mod/<?= $mod->id ?>/approve" class="rounded px-3 py-1.5 bg-green-500">Approve</a>
+                <a href="/mod/<?= $mod->id ?>/deny" class="rounded px-3 py-1.5 bg-red-500">Deny</a>
             </div>
         </div>
     <?php endforeach ?>
