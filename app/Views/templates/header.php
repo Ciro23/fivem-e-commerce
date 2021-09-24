@@ -9,7 +9,7 @@
     <!-- common css for all the pages -->
     <link rel="stylesheet" href="/assets/styles/css/compiled.css">
 
-    <title><?= $title ?></title>
+    <title><?= esc($title) ?></title>
 </head>
 
 <body>
