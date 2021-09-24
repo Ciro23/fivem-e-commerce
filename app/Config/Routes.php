@@ -75,7 +75,6 @@ $routes->get(
 );
 
 // mod search
-// mod search
 $routes->get(
 	"/search/(:alphanum)",
 	"ModSearchController::search/$1",
