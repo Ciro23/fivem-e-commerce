@@ -26,4 +26,12 @@
             <a href="/mod/<?= esc($mod->id) ?>/deny" class="rounded px-3 py-1.5 bg-red-500">Deny</a>
         </div>
     <?php endif ?>
+
+    <?php if ($edit ?? false) : ?>
+        <div class="ml-auto flex flex-col space-y-3 text-white text-sm text-center">
+            <a href="/mod/<?= esc($mod->id) ?>/edit" class="rounded px-3 py-1.5">
+                <img src="/assets/icons/edit.svg" class="w-5">
+            </a>
+        </div>
+    <?php endif ?>
 </div>
