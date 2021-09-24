@@ -23,11 +23,11 @@
 
             <div class="flex space-x-6">
 
-                <?php if (session("is_logged_in") !== true) : ?>
-                    <a href="/login" class="rounded-md px-3.5 py-1.5 bg-yellow-400">Login</a>
-                <?php else : ?>
+                <?php if (session("is_logged_in") === true) : ?>
                     <a href="/upload-mod"><img src="/assets/icons/upload.svg" class="w-5"></a>
                     <a href="/user/<?= session("uid") ?>">My profile</a>
+                <?php else : ?>
+                    <a href="/login" class="rounded-md px-3.5 py-1.5 bg-yellow-400">Login</a>
                 <?php endif ?>
             </div>
         </div>
