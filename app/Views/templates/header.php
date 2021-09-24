@@ -9,6 +9,8 @@
     <!-- common css for all the pages -->
     <link rel="stylesheet" href="/assets/styles/css/compiled.css">
 
+    <script src="/assets/js_scripts/mod_search.js"></script>
+
     <title><?= esc($title) ?></title>
 </head>
 
@@ -17,7 +19,7 @@
         <div class="max-w-5xl mx-auto px-3 py-2 flex justify-between items-center text-sm">
             <a href="/" class="py-1">Home</a>
 
-            <input type="text" placeholder="search mod" class="px-3 py-1.5 w-64 border rounded">
+            <input type="text" placeholder="search mod" id="mod-search-input" class="px-3 py-1.5 w-64 border rounded">
 
             <div class="flex space-x-6">
 
