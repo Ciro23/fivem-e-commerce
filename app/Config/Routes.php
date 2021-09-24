@@ -35,7 +35,6 @@ $routes->setAutoRoute(false);
 // home
 $routes->group("", ["namespace" => "App\Controllers\Home"], function ($routes) {
 	$routes->get("/", "HomeController::index", ["as" => "home"]);
-	$routes->get("search/(:alpha)", "HomeController::search/$1", ["as" => "search"]);
 });
 
 // signup
@@ -72,6 +71,16 @@ $routes->get(
 	[
 		"namespace" => "App\Controllers\Mod",
 		"filter" => "can_view_mod"
+	]
+);
+
+// mod search
+// mod search
+$routes->get(
+	"/search/(:alphanum)",
+	"ModSearchController::search/$1",
+	[
+		"namespace" => "App\Controllers\Mod",
 	]
 );
 

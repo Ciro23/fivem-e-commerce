@@ -9,17 +9,9 @@ class HomeController extends BaseController {
 
     private array $data = [
         "title" => "Home",
-        "mods" => [],
     ];
 
     public function index(): void {
-        $this->view();
-    }
-
-    public function search($query): void {
-        $modModel = new ModModel();
-        $this->data['mods'] = $modModel->search($query);
-
         $this->view();
     }
 
