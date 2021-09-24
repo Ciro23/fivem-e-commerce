@@ -8,7 +8,7 @@
     foreach ($mods as $mod) {
         echo view_cell("\App\Libraries\Mod::modPreview", [
             "mod" => $mod,
-            "edit" => true
+            "edit" => session("uid") == $user->id,
         ]);
     }
     ?>
