@@ -19,4 +19,11 @@
             </div>
         </div>
     </div>
+
+    <?php if ($manage ?? false) : ?>
+        <div class="ml-auto flex flex-col space-y-3 text-white text-sm text-center">
+            <a href="/mod/<?= esc($mod->id) ?>/approve" class="rounded px-3 py-1.5 bg-green-500">Approve</a>
+            <a href="/mod/<?= esc($mod->id) ?>/deny" class="rounded px-3 py-1.5 bg-red-500">Deny</a>
+        </div>
+    <?php endif ?>
 </div>
