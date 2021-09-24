@@ -4,6 +4,7 @@ namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
 use App\Models\Mod\ModModel;
+use App\Models\User\UserModel;
 
 class ModUploadController extends BaseController {
 
@@ -28,6 +29,7 @@ class ModUploadController extends BaseController {
 
         if ($this->validate("mod")) {
             $modModel = new ModModel;
+            $userModel = new UserModel();
 
             $id = $modModel->getLastId() + 1;
 
@@ -46,12 +48,13 @@ class ModUploadController extends BaseController {
             if ($image->isValid() && !$image->hasMoved()) {
                 $image->move(ROOTPATH . "/public/assets/mods_images/" . $id, "image." . $imageExt);
             }
-
+            
             $additionalData = [
                 "author" => $this->session->uid,
                 "size" => $fileSize,
                 "file_ext" => $fileExt,
                 "image_ext" => $imageExt,
+                "is_approved" => $userModel->isUserAdmin($this->session->uid) ? 1 : 0,
             ];
 
             $data = array_merge($this->request->getPost(), $additionalData);
