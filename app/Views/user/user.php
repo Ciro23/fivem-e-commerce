@@ -10,7 +10,6 @@
     foreach ($mods as $mod) {
         echo view_cell("\App\Libraries\ViewCells::modPreview", [
             "mod" => $mod,
-            "edit" => session("uid") == $user->id,
         ]);
     }
     ?>
