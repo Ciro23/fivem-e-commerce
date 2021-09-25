@@ -3,7 +3,7 @@
 
     <?php
     foreach ($mods as $mod) {
-        echo view_cell("\App\Libraries\Mod::modPreview", [
+        echo view_cell("\App\Libraries\ViewCells::modPreview", [
             "mod" => $mod,
             "manage" => true
         ]);
