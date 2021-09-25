@@ -44,8 +44,8 @@ class SignupController extends BaseController {
     }
 
     private function view(): void {
-        echo view("templates/header", $this->data);
+        echo view("view_cells/header", $this->data);
         echo view("user_auth/signup");
-        echo view("templates/footer");
+        echo view("view_cells/footer");
     }
 }
