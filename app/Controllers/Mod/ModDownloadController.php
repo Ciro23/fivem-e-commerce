@@ -15,7 +15,14 @@ class ModDownloadController extends BaseController {
         $modModel = new ModModel();
         $mod = $modModel->getModDetails($modId);
 
-        $download = $this->response->download(WRITEPATH . "uploads/mods_files/" . $modId . "/file." . $mod->file_ext, null);
+        $download = $this->response->download(
+            WRITEPATH
+                . "uploads/mods_files/"
+                . $modId
+                . "/file."
+                . $mod->file_ext,
+            null
+        );
         $download->setFileName($mod->name . "." . $mod->file_ext);
 
         return $download;
