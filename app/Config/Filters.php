@@ -11,6 +11,7 @@ use CodeIgniter\Filters\Honeypot;
 use App\Filters\IsUserLoggedIn;
 use App\Filters\IsUserNotLoggedIn;
 use App\Filters\IsUserAdmin;
+use App\Filters\IsUserModAuthor;
 
 class Filters extends BaseConfig {
 	/**
@@ -30,6 +31,10 @@ class Filters extends BaseConfig {
 
 		'can_upload_mod' => [
 			IsUserLoggedIn::class,
+		],
+
+		'can_update_mod' => [
+			IsUserModAuthor::class,
 		],
 
 		'can_manage_mods' => [

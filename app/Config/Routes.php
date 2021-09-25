@@ -101,6 +101,7 @@ $routes->get(
 	"ModEditController::index/$1",
 	[
 		"namespace" => "App\Controllers\Mod",
+		"filter" => "can_update_mod",
 	]
 );
 
