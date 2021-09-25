@@ -107,16 +107,7 @@ class ModModel extends Model {
      * @return bool
      */
     public function isApproved(int $id): bool {
-        $builder = $this->select("is_approved");
-        $builder->where("id", $id);
-
-        if ($builder->countAllResults(false) === 1) {
-            if ($builder->get()->getRow()->is_approved === "1") {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->getModDetails($id)->is_approved === true;
     }
 
     /**
