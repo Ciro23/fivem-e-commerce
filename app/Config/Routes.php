@@ -42,7 +42,7 @@ $routes->group(
 	"signup",
 	[
 		"namespace" => "App\Controllers\UserAuth",
-		"filter" => "can_login_or_signup"
+		"filter" => "can_login_or_signup",
 	],
 	function ($routes) {
 		$routes->get("", "SignupController::index", ["as" => "signup"]);
@@ -54,7 +54,7 @@ $routes->group(
 	"login",
 	[
 		"namespace" => "App\Controllers\UserAuth",
-		"filter" => "can_login_or_signup"
+		"filter" => "can_login_or_signup",
 	],
 	function ($routes) {
 		$routes->get("", "LoginController::index", ["as" => "login"]);
@@ -70,7 +70,7 @@ $routes->get(
 	"ModController::index/$1",
 	[
 		"namespace" => "App\Controllers\Mod",
-		"filter" => "can_view_mod"
+		"filter" => "can_view_mod",
 	]
 );
 
@@ -88,7 +88,7 @@ $routes->group(
 	"upload-mod",
 	[
 		"namespace" => "App\Controllers\Mod",
-		"filter" => "can_upload_mod"
+		"filter" => "can_upload_mod",
 	],
 	function ($routes) {
 		$routes->get("", "ModUploadController::index", ["as" => "upload_mod"]);
@@ -113,7 +113,7 @@ $routes->group(
 	"",
 	[
 		"namespace" => "App\Controllers\Mod",
-		"filter" => "can_manage_mods"
+		"filter" => "can_manage_mods",
 	],
 	function ($routes) {
 		$routes->get("manage-mods", "ModManageController::index", ["as" => "manage_mods"]);
@@ -127,7 +127,7 @@ $routes->get(
 	"ModDownloadController::download/$1",
 	[
 		"namespace" => "App\Controllers\Mod",
-		"filter" => "can_download_mod"
+		"filter" => "can_download_mod",
 	]
 );
 
