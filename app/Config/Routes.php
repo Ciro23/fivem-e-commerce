@@ -96,13 +96,16 @@ $routes->group(
 });
 
 // mod edit
-$routes->get(
-	"/mod/(:num)/edit",
-	"ModEditController::index/$1",
+$routes->group(
+	"mod/(:num)/edit",
 	[
 		"namespace" => "App\Controllers\Mod",
 		"filter" => "can_update_mod",
-	]
+	],
+	function ($routes) {
+		$routes->get("", "ModEditController::index/$1", ["as" => "edit_mod"]);
+		$routes->post("", "ModEditController::uploadMod");
+	}
 );
 
 // mod manage
