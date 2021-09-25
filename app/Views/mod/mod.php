@@ -1,6 +1,7 @@
 <?= view_cell("\App\Libraries\ViewCells::header") ?>
 
 <div class="container distance max-w-5xl mx-auto flex flex-col space-y-6">
+
     <?php if ($mod->is_approved === "0") : ?>
         <div class="h-16 rounded p-6 bg-yellow-500 bg-opacity-50 flex flex-wrap content-center">
             <p>This mod is not approved yet. Do you want to approve it?</p>
@@ -10,6 +11,7 @@
             </div>
         </div>
     <?php endif ?>
+
     <div class="p-6 shadow rounded-lg flex flex-wrap content-center">
         <div class="flex space-x-4">
             <img src="/assets/mods_images/<?= esc($mod->id) ?>/image.<?= esc($mod->image_ext) ?>" class="w-32 rounded-md">
