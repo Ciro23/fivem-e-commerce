@@ -18,9 +18,15 @@
             <h1 class="font-medium"><?= esc($mod->name) ?></h1>
         </div>
 
-        <div class="ml-auto">
-            <a class="px-5 py-2.5 text-sm rounded bg-yellow-500 text-white" href="<?= esc($mod->id) ?>/download">Download</a>
-        </div>
+        <?php if (session("is_logged_in") === true) : ?>
+            <div class="ml-auto">
+                <a class="px-5 py-2.5 text-sm rounded bg-yellow-500 text-white" href="<?= esc($mod->id) ?>/download">Download</a>
+            </div>
+        <?php else : ?>
+            <div class="ml-auto">
+                <a class="px-5 py-2.5 text-sm rounded bg-yellow-500 text-white" href="/login">Login to download</a>
+            </div>
+        <?php endif ?>
     </div>
 
     <div class="flex justify-between space-x-6">
