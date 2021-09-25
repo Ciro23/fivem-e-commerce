@@ -27,12 +27,6 @@ class ModController extends BaseController {
 
         $this->data['title'] = $this->data['mod']->name . " mod";
 
-        $this->view();
-    }
-
-    private function view(): void {
-        echo view("templates/header", $this->data);
-        echo view("mod/mod");
-        echo view("templates/footer");
+        echo view("mod/mod", $this->data);
     }
 }

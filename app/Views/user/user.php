@@ -1,3 +1,5 @@
+<?= view_cell("\App\Libraries\ViewCells::header") ?>
+
 <div class="container distance max-w-5xl mx-auto flex flex-col space-y-10">
     <h1 class="font-medium text-xl text-center"><?= esc($user->username) ?> mods</h1>
     <?php if (empty($mods)) : ?>
@@ -13,3 +15,5 @@
     }
     ?>
 </div>
+
+<?= view_cell("\App\Libraries\ViewCells::footer") ?>

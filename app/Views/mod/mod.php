@@ -1,3 +1,5 @@
+<?= view_cell("\App\Libraries\ViewCells::header") ?>
+
 <div class="container distance max-w-5xl mx-auto flex flex-col space-y-6">
     <?php if ($mod->is_approved === "0") : ?>
         <div class="h-16 rounded p-6 bg-yellow-500 bg-opacity-50 flex flex-wrap content-center">
@@ -56,3 +58,5 @@
         </div>
     </div>
 </div>
+
+<?= view_cell("\App\Libraries\ViewCells::footer") ?>

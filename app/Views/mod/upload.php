@@ -1,3 +1,5 @@
+<?= view_cell("\App\Libraries\ViewCells::header") ?>
+
 <div class="mega-box">
     <form method="POST" enctype="multipart/form-data">
         <h2>Upload a mod</h2>
@@ -32,3 +34,5 @@
         <input type="submit" value="Upload mod">
     </form>
 </div>
+
+<?= view_cell("\App\Libraries\ViewCells::footer") ?>

@@ -17,12 +17,6 @@ class ModSearchController extends BaseController {
         $this->data['title'] .= $query;
         $this->data['query'] = $query;
 
-        $this->view();
-    }
-
-    private function view(): void {
-        echo view("templates/header", $this->data);
-        echo view("mod/search");
-        echo view("templates/footer");
+        echo view("mod/search", $this->data);
     }
 }

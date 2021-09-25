@@ -21,12 +21,6 @@ class UserController extends BaseController {
         $this->data['title'] = $this->data['user']->username . " profile";
         $this->data['mods'] = $modModel->getModsList(1, $userId);
 
-        $this->view();
-    }
-
-    private function view(): void {
-        echo view("templates/header", $this->data);
-        echo view("user/user");
-        echo view("templates/footer");
+        echo view("user/user", $this->data);
     }
 }

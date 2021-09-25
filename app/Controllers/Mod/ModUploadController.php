@@ -17,7 +17,7 @@ class ModUploadController extends BaseController {
      * shows the upload mod page only if the user is logged in
      */
     public function index(): void {
-        $this->view();
+        echo view("mod/upload", $this->data);
     }
 
     /**
@@ -65,12 +65,6 @@ class ModUploadController extends BaseController {
 
         $this->data['errors'] = $this->validator->listErrors("custom_errors");
 
-        $this->view();
-    }
-
-    private function view(): void {
-        echo view("templates/header", $this->data);
-        echo view("mod/upload");
-        echo view("templates/footer");
+        echo view("mod/upload", $this->data);
     }
 }

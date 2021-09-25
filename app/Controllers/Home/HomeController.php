@@ -12,12 +12,6 @@ class HomeController extends BaseController {
     ];
 
     public function index(): void {
-        $this->view();
-    }
-
-    private function view(): void {
-        echo view("templates/header", $this->data);
-        echo view("home/home");
-        echo view("templates/footer");
+        echo view("home/home", $this->data);
     }
 }

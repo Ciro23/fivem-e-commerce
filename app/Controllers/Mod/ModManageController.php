@@ -18,7 +18,7 @@ class ModManageController extends BaseController {
         $modModel = new ModModel();
         $this->data['mods'] = $modModel->getModsList(0);
 
-        echo $this->view();
+        echo view("mod/manage", $this->data);
     }
 
     /**
@@ -56,11 +56,5 @@ class ModManageController extends BaseController {
         rmdir($modImagePath);
 
         return redirect("manage_mods");
-    }
-
-    private function view(): void {
-        echo view("templates/header", $this->data);
-        echo view("mod/manage");
-        echo view("templates/footer");
     }
 }
