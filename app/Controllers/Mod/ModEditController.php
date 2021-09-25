@@ -8,13 +8,14 @@ use App\Models\Mod\ModModel;
 class ModEditController extends BaseController {
 
     private array $data = [
-        "title" => "Edit mod",
+        "title" => "Edit ",
     ];
 
     public function index(int $modId): void {
         $modModel = new ModModel();
 
         $this->data['mod'] = $modModel->getModDetails($modId);
+        $this->data['title'] .= $this->data['mod']->name;
 
         echo view("mod/edit", $this->data);
     }
