@@ -95,6 +95,15 @@ $routes->group(
 		$routes->post("", "ModUploadController::uploadMod");
 });
 
+// mod edit
+$routes->get(
+	"/mod/(:num)/edit",
+	"ModEditController::index/$1",
+	[
+		"namespace" => "App\Controllers\Mod",
+	]
+);
+
 // mod manage
 $routes->group(
 	"",
