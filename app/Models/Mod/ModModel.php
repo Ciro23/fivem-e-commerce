@@ -86,6 +86,19 @@ class ModModel extends Model {
         return [];
     }
 
+    public function search(string $query): array {
+        $builder = $this->select("mods.*, users.username as author_name");
+        $builder->like("name", $query);
+        $builder->join("users", "mods.author = users.id");
+        $builder->where("is_approved", 1);
+
+        if ($builder->countAllResults(false) > 0) {
+            return $builder->get()->getResult();
+        }
+
+        return [];
+    }
+
     /**
      * checks if the mod is approved or not
      * 
@@ -104,19 +117,6 @@ class ModModel extends Model {
         }
 
         return false;
-    }
-
-    public function search(string $query): array {
-        $builder = $this->select("mods.*, users.username as author_name");
-        $builder->like("name", $query);
-        $builder->join("users", "mods.author = users.id");
-        $builder->where("is_approved", 1);
-
-        if ($builder->countAllResults(false) > 0) {
-            return $builder->get()->getResult();
-        }
-
-        return [];
     }
 
     /**
