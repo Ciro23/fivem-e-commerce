@@ -11,7 +11,7 @@ class ModSearchController extends BaseController {
         "title" => "Results for ",
     ];
 
-    public function search($query): void {
+    public function search(string $query): void {
         $modModel = new ModModel();
         $this->data['mods'] = $modModel->search($query);
         $this->data['title'] .= $query;

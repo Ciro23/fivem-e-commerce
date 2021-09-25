@@ -4,6 +4,7 @@ namespace App\Controllers\Mod;
 
 use App\Controllers\BaseController;
 use App\Models\Mod\ModModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class ModManageController extends BaseController {
 
@@ -26,7 +27,7 @@ class ModManageController extends BaseController {
      * 
      * @param int $modId
      */
-    public function approve($modId) {
+    public function approve(int $modId): RedirectResponse {
         $modModel = new ModModel();
         $modModel->approve($modId);
 
@@ -38,7 +39,7 @@ class ModManageController extends BaseController {
      * 
      * @param int $modId
      */
-    public function deny($modId) {
+    public function deny(int $modId): RedirectResponse {
         helper("filesystem");
 
         // deletes the mod from the db
