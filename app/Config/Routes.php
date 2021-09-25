@@ -100,7 +100,7 @@ $routes->group(
 	"mod/(:num)/edit",
 	[
 		"namespace" => "App\Controllers\Mod",
-		"filter" => "can_update_mod",
+		"filter" => "can_edit_mod",
 	],
 	function ($routes) {
 		$routes->get("", "ModEditController::index/$1", ["as" => "edit_mod"]);

@@ -2,7 +2,7 @@
 
 <div class="mega-box">
     <form method="POST" enctype="multipart/form-data">
-        <h2>Update mod</h2>
+        <h2>Edit mod</h2>
 
         <?php
         if (isset($errors)) {
@@ -31,7 +31,7 @@
         <label for="description">Description</label>
         <textarea name="description" id="description" rows="5" placeholder="10-10000 characters" minlength="10" maxlength="10000"><?= $mod->name ?></textarea>
 
-        <input type="submit" value="Update mod">
+        <input type="submit" value="Edit mod">
     </form>
 </div>
 

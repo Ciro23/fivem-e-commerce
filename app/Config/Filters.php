@@ -33,7 +33,7 @@ class Filters extends BaseConfig {
 			IsUserLoggedIn::class,
 		],
 
-		'can_update_mod' => [
+		'can_edit_mod' => [
 			IsUserModAuthor::class,
 		],
 
