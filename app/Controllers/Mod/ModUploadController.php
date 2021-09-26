@@ -63,8 +63,10 @@ class ModUploadController extends BaseController {
             return redirect("home");
         }
 
+        // save the user input and errors
+        $this->data['mod'] = (object)$this->request->getPost();
         $this->data['errors'] = $this->validator->listErrors("custom_errors");
 
-        echo view("mod/upload", $this->data);
+        $this->index();
     }
 }
