@@ -10,6 +10,7 @@ class ModManageController extends BaseController {
 
     private array $data = [
         "title" => "Approve mods",
+        "mods" => null,
     ];
 
     /**
@@ -46,6 +47,17 @@ class ModManageController extends BaseController {
         $modModel = new ModModel();
         $modModel->remove($modId);
 
+        $this->deleteModFiles($modId);
+
+        return redirect("manage_mods");
+    }
+
+    /**
+     * deletes all the mod files from the disk
+     * 
+     * @param int $modId
+     */
+    private function deleteModFiles(int $modId): void {
         $modFilesPath = WRITEPATH . "uploads/mods_files/" . $modId;
         $modImagePath = ROOTPATH . "/public/assets/mods_images/" . $modId;
 
@@ -55,7 +67,5 @@ class ModManageController extends BaseController {
         // deletes the empty mod folders
         rmdir($modFilesPath);
         rmdir($modImagePath);
-
-        return redirect("manage_mods");
     }
 }
