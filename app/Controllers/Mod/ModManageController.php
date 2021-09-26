@@ -32,7 +32,7 @@ class ModManageController extends BaseController {
         $modModel = new ModModel();
         $modModel->approve($modId);
 
-        return redirect()->to("/mod/" . $modId);
+        return redirect("manage_mods");
     }
 
     /**
