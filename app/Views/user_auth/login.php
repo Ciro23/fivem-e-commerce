@@ -1,3 +1,5 @@
+<?= view_cell("\App\Libraries\ViewCells::header") ?>
+
 <div class="mega-box">
     <div>
         <form method="POST">
@@ -20,3 +22,5 @@
         <a href="/signup">Don't have an account? Signup</a>
     </div>
 </div>
+
+<?= view_cell("\App\Libraries\ViewCells::footer") ?>

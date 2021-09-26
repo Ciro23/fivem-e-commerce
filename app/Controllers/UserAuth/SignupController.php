@@ -16,7 +16,7 @@ class SignupController extends BaseController {
      * shows the signup page only if the user is not logged in
      */
     public function index(): void {
-        $this->view();
+        echo view("user_auth/signup", $this->data);
     }
 
     /**
@@ -40,12 +40,6 @@ class SignupController extends BaseController {
 
         $this->data['errors'] = $this->validator->listErrors("custom_errors");
 
-        $this->view();
-    }
-
-    private function view(): void {
-        echo view("view_cells/header", $this->data);
-        echo view("user_auth/signup");
-        echo view("view_cells/footer");
+        echo view("user_auth/signup", $this->data);
     }
 }

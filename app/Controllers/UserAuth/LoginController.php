@@ -16,7 +16,7 @@ class LoginController extends BaseController {
      * shows the login page
      */
     public function index() {
-        $this->view();
+        echo view("user_auth/login", $this->data);
     }
 
     /**
@@ -40,13 +40,7 @@ class LoginController extends BaseController {
             $this->data['errors'] = $this->validator->listErrors("custom_errors");
         }
 
-        $this->view();
-    }
-
-    private function view(): void {
-        echo view("view_cells/header", $this->data);
-        echo view("user_auth/login");
-        echo view("view_cells/footer");
+        echo view("user_auth/login", $this->data);
     }
 
     public function logout() {
