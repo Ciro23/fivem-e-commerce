@@ -4,7 +4,7 @@
             <img src="/assets/mods_images/<?= esc($mod->id) . "/image." . esc($mod->image_ext) ?>" class="rounded">
         </a>
 
-        <div class="flex flex-col w-3/4 justify-between space-y-5">
+        <div class="flex flex-col w-4/6 justify-between space-y-5">
             <div>
                 <a href="/mod/<?= esc($mod->id) ?>">
                     <h2 class="font-semibold"><?= $mod->name ?></h2>
