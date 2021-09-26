@@ -9,7 +9,7 @@
                 <a href="/mod/<?= esc($mod->id) ?>">
                     <h2 class="font-semibold"><?= $mod->name ?></h2>
                 </a>
-                <p class="text-sm"><?= esc(character_limiter($mod->description, 300)) ?></p>
+                <p class="text-sm"><?= character_limiter(esc($mod->description), 180) ?></p>
             </div>
 
             <div class="flex space-x-3 text-sm">
