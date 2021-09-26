@@ -29,7 +29,7 @@
         </div>
 
         <label for="description">Description</label>
-        <textarea name="description" id="description" rows="5" placeholder="10-10000 characters" minlength="10" maxlength="10000"><?= $mod->name ?></textarea>
+        <textarea name="description" id="description" rows="5" placeholder="10-10000 characters" minlength="10" maxlength="10000"><?= $mod->description ?></textarea>
 
         <input type="submit" value="Edit mod">
     </form>
