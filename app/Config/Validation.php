@@ -74,7 +74,7 @@ class Validation
 			"label" => "Mod file",
 		],
 		"image" => [
-			"rules" => "max_size[image,3000]|is_image[image]",
+			"rules" => "uploaded[file]|max_size[image,3000]|is_image[image]",
 			"label" => "Mod image",
 		]
 	];
