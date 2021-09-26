@@ -13,7 +13,7 @@
         <div class="form-columns">
             <div>
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="<?= $mod->name ?>" placeholder="4-30 chars (a-z, 0-9, spaces)">
+                <input class="cursor-not-allowed bg-gray-200" readonly type="text" id="name" name="name" value="<?= $mod->name ?>" placeholder="4-30 chars (a-z, 0-9, spaces)">
 
                 <label for="price">Price in Euros</label>
                 <input type="number" id="price" name="price" value="<?= $mod->price ?>" placeholder="9,99" min="0" max="25">
