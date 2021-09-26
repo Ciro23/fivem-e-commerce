@@ -78,4 +78,17 @@ class Validation
 			"label" => "Mod image",
 		]
 	];
+
+	public $mod_edit = [
+		"description" => "required|min_length[10]|max_length[10000]",
+		"price" => "required|numeric|greater_than_equal_to[0]|less_than_equal_to[25]",
+		"file" => [
+			"rules" => "max_size[file,50000]|ext_in[file,zip,rar]",
+			"label" => "Mod file",
+		],
+		"image" => [
+			"rules" => "max_size[image,3000]|is_image[image]",
+			"label" => "Mod image",
+		]
+	];
 }
