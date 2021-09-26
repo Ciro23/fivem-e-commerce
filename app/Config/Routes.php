@@ -33,9 +33,14 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 
 // home
-$routes->group("", ["namespace" => "App\Controllers\Home"], function ($routes) {
-	$routes->get("/", "HomeController::index", ["as" => "home"]);
-});
+$routes->get(
+	"/",
+	"HomeController::index",
+	[
+		"namespace" => "App\Controllers\Home",
+		"as" => "home",
+	]
+);
 
 // signup
 $routes->group(
@@ -104,7 +109,7 @@ $routes->group(
 	],
 	function ($routes) {
 		$routes->get("", "ModEditController::index/$1", ["as" => "edit_mod"]);
-		$routes->post("", "ModEditController::editMod");
+		$routes->post("", "ModUploadController::uploadMod");
 	}
 );
 
