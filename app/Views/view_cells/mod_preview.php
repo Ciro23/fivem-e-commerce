@@ -1,10 +1,10 @@
 <div class="flex h-42 shadow-md rounded p-6">
-    <div class="flex space-x-6">
-        <a href="/mod/<?= esc($mod->id) ?>" class="w-36">
+    <div class="flex w-5/6 space-x-6">
+        <a href="/mod/<?= esc($mod->id) ?>" class="w-1/6">
             <img src="/assets/mods_images/<?= esc($mod->id) . "/image." . esc($mod->image_ext) ?>" class="rounded">
         </a>
 
-        <div class="flex flex-col w-4/6 justify-between space-y-5">
+        <div class="flex flex-col w-5/6 justify-between space-y-5">
             <div>
                 <a href="/mod/<?= esc($mod->id) ?>">
                     <h2 class="font-semibold"><?= $mod->name ?></h2>
