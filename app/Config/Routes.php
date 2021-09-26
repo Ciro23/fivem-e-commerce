@@ -109,7 +109,7 @@ $routes->group(
 	],
 	function ($routes) {
 		$routes->get("", "ModEditController::index/$1", ["as" => "edit_mod"]);
-		$routes->post("", "ModUploadController::uploadMod");
+		$routes->post("", "ModEditController::editMod");
 	}
 );
 
