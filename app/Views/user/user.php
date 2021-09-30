@@ -1,19 +1,29 @@
 <?= view_cell("\App\Libraries\ViewCells::header") ?>
 
-<div class="container distance max-w-5xl mx-auto flex flex-col space-y-10">
-    <h1 class="font-medium text-xl text-center"><?= esc($user->username) ?> mods</h1>
+<div class="container max-w-5xl mx-auto flex space-x-5 justify-center">
+    <div class="distance flex flex-col space-y-10">
+        <?php if (empty($mods)) : ?>
+            <p class="text-center">wow! such empty :C</p>
+        <?php endif ?>
 
-    <?php if (empty($mods)) : ?>
-        <p class="text-center">wow! such empty :C</p>
-    <?php endif ?>
+        <?php
+        foreach ($mods as $mod) {
+            echo view_cell("\App\Libraries\ViewCells::modPreview", [
+                "mod" => $mod,
+            ]);
+        }
+        ?>
+    </div>
 
-    <?php
-    foreach ($mods as $mod) {
-        echo view_cell("\App\Libraries\ViewCells::modPreview", [
-            "mod" => $mod,
-        ]);
-    }
-    ?>
+    <div class="w-2/5 distance p-6 shadow rounded-lg flex flex-col justify-between items-center">
+        <div class="flex flex-col space-y-2 items-center">
+            <img src="/assets/users_propics/image.jpeg" class="w-28 h-28 rounded-full">
+            <h4 class="text-lg font-semibold text-center"><?= esc($user->username) ?></h4>
+
+            <p>Created <?= date("j M, Y", strtotime($user->created_at)) ?></p>
+        </div>
+        <a href=""><img src="/assets/icons/settings.svg"></a>
+    </div>
 </div>
 
 <?= view_cell("\App\Libraries\ViewCells::footer") ?>
