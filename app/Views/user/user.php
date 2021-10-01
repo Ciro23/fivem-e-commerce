@@ -15,7 +15,7 @@
         ?>
     </div>
 
-    <div class="w-2/5 distance p-6 shadow rounded-lg flex flex-col justify-between items-center">
+    <div class="w-2/5 h-80 distance p-6 shadow rounded-lg flex flex-col justify-between items-center">
         <div class="flex flex-col space-y-2 items-center">
             <img src="/assets/users_propics/image.jpeg" class="w-28 h-28 rounded-full">
             <h4 class="text-lg font-semibold text-center"><?= esc($user->username) ?></h4>
