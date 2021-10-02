@@ -1,4 +1,4 @@
-<div class="flex h-42 shadow-md rounded p-6">
+<div class="flex h-42 shadow rounded p-6">
     <div class="flex w-5/6 space-x-6">
         <a href="/mod/<?= esc($mod->id) ?>" class="w-1/6">
             <img src="/assets/mods_images/<?= esc($mod->id) . "/image." . esc($mod->image_ext) ?>" class="rounded">
