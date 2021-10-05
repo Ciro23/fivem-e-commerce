@@ -12,6 +12,7 @@ use App\Filters\IsUserLoggedIn;
 use App\Filters\IsUserNotLoggedIn;
 use App\Filters\IsUserAdmin;
 use App\Filters\IsUserModAuthor;
+use App\Filters\IsUserProfileOwner;
 
 class Filters extends BaseConfig {
 	/**
@@ -52,6 +53,10 @@ class Filters extends BaseConfig {
 			IsModApproved::class,
 			IsUserLoggedIn::class,
 		],
+
+		'can_edit_user' => [
+			IsUserProfileOwner::class,
+		]
 	];
 
 	/**
