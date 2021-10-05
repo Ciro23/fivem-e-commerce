@@ -145,6 +145,19 @@ $routes->get(
 	]
 );
 
+// user edit
+$routes->group(
+	"user/(:num)/edit",
+	[
+		"namespace" => "App\Controllers\User",
+		"filter" => "can_edit_user",
+	],
+	function ($routes) {
+		$routes->get("", "UserEditController::index/$1", ["as" => "edit_user"]);
+		$routes->post("", "UserEditController::editUser/$1");
+	}
+);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
