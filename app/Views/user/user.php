@@ -23,7 +23,7 @@
             <p>Created <?= date("j M, Y", strtotime($user->created_at)) ?></p>
         </div>
         <?php if ($user->id == session("uid")) : ?>
-            <a href=""><img src="/assets/icons/settings.svg"></a>
+            <a href="<?= $user->id ?>/edit"><img src="/assets/icons/settings.svg"></a>
         <?php endif ?>
     </div>
 </div>
