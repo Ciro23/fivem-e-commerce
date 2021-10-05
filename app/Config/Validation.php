@@ -54,6 +54,11 @@ class Validation
 		],
 	];
 
+	public $user_edit = [
+		"avatar" => "max_size[image,3000]|is_image[image]",
+		"description" => "max_length[200]"
+	];
+
 	public $login = [
 		"email" => "required|are_credentials_correct[password]",
 		"password" => "required",
