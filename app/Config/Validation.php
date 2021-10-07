@@ -55,7 +55,7 @@ class Validation
 	];
 
 	public $user_edit = [
-		"avatar" => "max_size[image,3000]|is_image[image]",
+		"avatar" => "max_size[avatar,3000]|is_image[avatar]",
 		"description" => "max_length[200]"
 	];
 
