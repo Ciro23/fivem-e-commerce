@@ -19,8 +19,8 @@
         <div class="flex flex-col space-y-2 items-center">
             <img src="/assets/users_propics/image.jpeg" class="w-28 h-28 rounded-full">
             <h4 class="text-lg font-semibold text-center"><?= esc($user->username) ?></h4>
-
             <p>Created <?= date("j M, Y", strtotime($user->created_at)) ?></p>
+            <p><?= esc($user->description) ?></p>
         </div>
         <?php if ($user->id == session("uid")) : ?>
             <a href="<?= $user->id ?>/edit"><img src="/assets/icons/settings.svg"></a>
