@@ -23,7 +23,7 @@
         </div>
 
         <label for="description">Description</label>
-        <textarea name="description" id="description" rows="5" placeholder="0-200 characters" minlength="10" maxlength="10000"></textarea>
+        <textarea name="description" id="description" rows="5" placeholder="0-200 characters" minlength="10" maxlength="10000"><?= $user->description ?></textarea>
 
         <input type="submit" value="Save settings">
     </form>
