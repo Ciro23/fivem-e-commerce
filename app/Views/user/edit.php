@@ -17,8 +17,8 @@
             </div>
 
             <div>
-                <label for="image">Avatar</label>
-                <input type="file" id="image" name="image">
+                <label for="avatar">Avatar</label>
+                <input type="file" id="avatar" name="avatar">
             </div>
         </div>
 
