@@ -19,42 +19,30 @@ class UserEditController extends BaseController {
         echo view("user/edit", $this->data);
     }
 
-    public function editMod(int $uid) {
+    public function editUser(int $uid) {
         helper("form");
 
         if ($this->validate("user_edit")) {
             $userModel = new UserModel;
             $modDetails = $userModel->getUserDetails($uid);
 
-            $file = $this->request->getFile("file");
-            $image = $this->request->getFile("image");
+            $avatar = $this->request->getFile("avatar");
 
-            // if no file or image is uploaded, keep the old ones
-            $fileExt = $modDetails->file_ext;
-            $fileSize = $modDetails->size;
-            $imageExt = $modDetails->image_ext;
+            // if no avatar is uploaded, keep the old one
+            $avatarExt = $modDetails->avatar_ext;
 
-            if ($file->isValid() && !$file->hasMoved()) {
-                $fileExt = $file->getExtension();
-                $fileSize = $file->getSize();
+            if ($avatar->isValid() && !$avatar->hasMoved()) {
+                $avatarExt = $avatar->getExtension();
 
-                $file->move(WRITEPATH . "uploads/mods_files/" . $uid, "file." . $fileExt);
-            }
-
-            if ($image->isValid() && !$image->hasMoved()) {
-                $imageExt = $image->getExtension();
-
-                $image->move(ROOTPATH . "/public/assets/mods_images/" . $uid, "image." . $imageExt);
+                $avatar->move(ROOTPATH . "/public/assets/users_avatars/" . $uid, "avatar." . $avatarExt);
             }
 
             $additionalData = [
-                "size" => $fileSize,
-                "file_ext" => $fileExt,
-                "image_ext" => $imageExt,
+                "avatar_ext" => $avatarExt,
             ];
 
             $data = array_merge($this->request->getPost(), $additionalData);
-            $userModel->update($modDetails->id, $data);
+            $userModel->update($uid, $data);
 
             return redirect("home");
         }
