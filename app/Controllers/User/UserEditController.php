@@ -8,7 +8,7 @@ use App\Models\User\UserModel;
 class UserEditController extends BaseController {
 
     private array $data = [
-        "title" => "Edit ",
+        "title" => "User settings",
     ];
 
     public function index(int $uid): void {
