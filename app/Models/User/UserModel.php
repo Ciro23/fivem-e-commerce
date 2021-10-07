@@ -12,7 +12,7 @@ class UserModel extends Model {
 
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ["email", "username", "password"];
+    protected $allowedFields = ["email", "username", "description", "password", "avatar_ext"];
 
     protected $validationRules = "user";
 
