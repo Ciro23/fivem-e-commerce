@@ -23,7 +23,7 @@
             <p><?= esc($user->description) ?></p>
         </div>
         <?php if ($user->id == session("uid")) : ?>
-            <a href="<?= $user->id ?>/edit"><img src="/assets/icons/settings.svg"></a>
+            <a href="<?= $user->id ?>/settings"><img src="/assets/icons/settings.svg"></a>
         <?php endif ?>
     </div>
 </div>

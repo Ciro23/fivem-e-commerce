@@ -145,9 +145,9 @@ $routes->get(
 	]
 );
 
-// user edit
+// user settings
 $routes->group(
-	"user/(:num)/edit",
+	"user/(:num)/settings",
 	[
 		"namespace" => "App\Controllers\User",
 		"filter" => "can_edit_user",
