@@ -15,7 +15,7 @@
             <div class="flex space-x-3 text-sm">
                 <p class="px-2.5 py-1.5 rounded shadow">Author: <?= esc($mod->author_name) ?></p>
                 <p class="px-2.5 py-1.5 rounded shadow">Price: <?= esc($mod->price) ?>€</p>
-                <p class="px-2.5 py-1.5 rounded shadow">Created: <?= date("j M Y, H:i", strtotime($mod->updated_at)) ?></p>
+                <p class="px-2.5 py-1.5 rounded shadow">Uploaded: <?= date("j M Y", strtotime($mod->updated_at)) ?></p>
             </div>
         </div>
     </div>
