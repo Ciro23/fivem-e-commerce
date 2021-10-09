@@ -9,9 +9,6 @@
     <!-- common css for all the pages -->
     <link rel="stylesheet" href="/assets/styles/css/compiled.css">
 
-    <script src="/assets/js_scripts/mod_search.js"></script>
-    <script src="/assets/js_scripts/dropdown.js"></script>
-
     <title><?= esc($title) ?></title>
 </head>
 
