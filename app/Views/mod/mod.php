@@ -6,8 +6,8 @@
         <div class="h-16 rounded p-6 bg-yellow-500 bg-opacity-50 flex flex-wrap content-center">
             <p>This mod is not approved yet. Do you want to approve it?</p>
             <div class="ml-auto space-y-3 text-white text-sm text-center">
-                <a href="/approve/mod/<?= esc($mod->id) ?>" class="rounded px-3 py-1.5 bg-green-500">Approve</a>
-                <a href="/deny/mod/<?= esc($mod->id) ?>" class="rounded px-3 py-1.5 bg-red-500">Deny</a>
+                <a href="/mod/<?= esc($mod->id) ?>/approve" class="rounded px-3 py-1.5 bg-green-500">Approve</a>
+                <a href="/mod/<?= esc($mod->id) ?>/deny" class="rounded px-3 py-1.5 bg-red-500">Deny</a>
             </div>
         </div>
     <?php endif ?>
