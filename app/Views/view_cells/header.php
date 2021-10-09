@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 <?php else : ?>
-                    <a href="/login" class="rounded-md px-3.5 py-1.5 bg-yellow-400">Login</a>
+                    <a href="/login" class="rounded-md px-3.5 py-1.5 bg-yellow-500 text-white">Login</a>
                 <?php endif ?>
             </div>
         </div>
