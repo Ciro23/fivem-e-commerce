@@ -2,10 +2,6 @@
 
 <div class="container max-w-5xl mx-auto flex space-x-5 justify-center">
     <div class="distance flex flex-col space-y-5">
-        <?php if (empty($mods)) : ?>
-            <p class="text-center">wow! such empty :C</p>
-        <?php endif ?>
-
         <?php
         foreach ($mods as $mod) {
             echo view_cell("\App\Libraries\ViewCells::modPreview", [
