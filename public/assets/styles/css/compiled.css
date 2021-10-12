@@ -32248,25 +32248,25 @@ html {
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
 }
 
-form > :not([hidden]) ~ :not([hidden]) {
+.form > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 
-form {
+.form {
   padding: 2rem;
   --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   border-radius: 0.25rem;
 }
 
-form h2 {
+.form h2 {
   text-align: center;
   font-size: 1.125rem;
   line-height: 1.75rem;

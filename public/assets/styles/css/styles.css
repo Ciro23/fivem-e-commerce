@@ -27,7 +27,7 @@
         @apply space-y-3;
     }
     
-    form {
+    .form {
         display: flex;
         flex-direction: column;
         @apply space-y-3;
@@ -36,7 +36,7 @@
         @apply rounded;
     }
     
-    form h2 {
+    .form h2 {
         text-align: center;
         @apply text-lg;
         @apply font-semibold;

@@ -1,7 +1,7 @@
 <?= view_cell("\App\Libraries\ViewCells::header") ?>
 
 <div class="mega-box">
-    <form method="POST" enctype="multipart/form-data">
+    <form class="form" method="POST" enctype="multipart/form-data">
         <h2>Upload a mod</h2>
 
         <?php

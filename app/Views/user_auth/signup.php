@@ -2,7 +2,7 @@
 
 <div class="mega-box">
     <div>
-        <form method="POST">
+        <form class="form" method="POST">
             <h2>Signup</h2>
 
             <?php
