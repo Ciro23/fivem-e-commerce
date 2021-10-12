@@ -16,7 +16,7 @@ class UserEditController extends BaseController {
 
         $this->data['user'] = $userModel->getUserDetails($uid);
 
-        echo view("user/edit", $this->data);
+        echo view("user/settings", $this->data);
     }
 
     public function editUser(int $uid) {
