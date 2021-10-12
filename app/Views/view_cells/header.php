@@ -15,7 +15,10 @@
 <body>
     <nav class="w-screen bg-white fixed shadow top-0">
         <div class="max-w-5xl mx-auto px-3 py-2 flex justify-between items-center text-sm">
-            <a href="/" class="py-1">Home</a>
+            <div class="flex space-x-6 items-center">
+                <a href="/" class="py-1">Home</a>
+                <a href="/mods">Mods</a>
+            </div>
 
             <input type="text" placeholder="search mod" id="mod-search-input" class="px-3 py-1.5 w-64 border rounded">
 
