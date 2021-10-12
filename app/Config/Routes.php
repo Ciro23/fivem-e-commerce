@@ -69,6 +69,15 @@ $routes->group(
 // logout
 $routes->get("/logout", "UserAuth\LoginController::logout", ["as" => "logout"]);
 
+// mods
+$routes->get(
+	"mods",
+	"ModsController::index",
+	[
+		"namespace" => "App\Controllers\Mod",
+	]
+);
+
 // mod view
 $routes->get(
 	"mod/(:num)",
