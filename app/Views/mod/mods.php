@@ -5,7 +5,7 @@
         <form action="">
             <label for="order">Order by</label>
 
-            <select id="order" name="order" class="border rounded px-2 py-1">
+            <select id="order" name="order" class="border rounded px-2 py-1" onchange="this.form.submit()">
                 <option value="newer">Newer</option>
                 <option value="older">Older</option>
             </select>
