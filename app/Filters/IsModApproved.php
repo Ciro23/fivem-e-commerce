@@ -13,8 +13,8 @@ class IsModApproved implements FilterInterface {
     public function before(RequestInterface $request, $arguments = null) {
         // gets the mod id from the url
         // url will be like this ['mod', '10', ...]
-        $uri = &$request->uri;
-        $segments = array_filter($uri->getSegments());
+        $uri = service("uri");
+        $segments = $uri->getSegments();
         $id = $segments[1];
 
         $modModel = new ModModel();
