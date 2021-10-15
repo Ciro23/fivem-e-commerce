@@ -19,7 +19,11 @@ class ModsController extends BaseController {
     public function index(): void {
         $modModel = new ModModel;
 
-        $this->data['mods'] = $modModel->getModsList(1);
+        $uri = service("uri");
+        $query = $uri->getQuery(['only' => 'order']);
+        $order = explode("=", $query)[1];
+
+        $this->data['mods'] = $modModel->getModsList(1, order: $order);
 
         echo view("mod/mods", $this->data);
     }
