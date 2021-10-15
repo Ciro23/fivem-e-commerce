@@ -70,10 +70,16 @@ class ModModel extends Model {
      * 
      * @return array
      */
-    public function getModsList(int $isApproved, int $authorId = null): array {
+    public function getModsList(int $isApproved, int $authorId = null, string $order = "newer",): array {
+        $orders = [
+            "newer" => "desc",
+            "older" => "asc",
+        ];
+        
         $builder = $this->select("mods.*, users.username as author_name");
         $builder->join("users", "mods.author = users.id");
         $builder->where("is_approved", $isApproved);
+        $builder->orderBy("id", $orders[$order]);
 
         if ($authorId !== null) {
             $builder->where("mods.author", $authorId);
