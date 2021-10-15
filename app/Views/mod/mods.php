@@ -6,8 +6,16 @@
             <label for="order">Order by</label>
 
             <select id="order" name="order" class="border rounded px-2 py-1" onchange="this.form.submit()">
-                <option value="newer">Newer</option>
-                <option value="older">Older</option>
+                <?php
+                foreach ($orders as $order) {
+                    $selected = "";
+                    if ($order === $selected_order) {
+                        $selected = "selected";
+                    }
+
+                    echo "<option value='$order' $selected>$order</option>";
+                }
+                ?>
             </select>
         </form>
     </div>
