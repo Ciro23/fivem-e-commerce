@@ -54,11 +54,12 @@
         @apply space-y-3;
     }
     
-    form label {
+    .form label {
         @apply text-sm;
     }
     
-    form input {
+    .form input,
+    .file-label {
         @apply w-56;
         @apply h-9;
         @apply px-3;
@@ -66,8 +67,13 @@
         @apply rounded;
         border: solid 0.1rem #e6e6e6;
     }
+
+    .file-label {
+        display: flex;
+        cursor: pointer;
+    }
     
-    form input[type="submit"] {
+    .form input[type="submit"] {
         cursor: pointer;
         @apply h-auto;
         @apply p-3;
@@ -76,8 +82,12 @@
         border: none;
         width: 100%;
     }
+
+    .form input[type="file"] {
+        display: none;
+    }
     
-    form textarea {
+    .form textarea {
         resize: vertical;
         @apply px-3;
         @apply py-2;

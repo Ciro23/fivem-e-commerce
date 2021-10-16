@@ -32295,23 +32295,44 @@ html {
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
 }
 
-form label {
+.form label {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
-form input {
+.form input, .file-label {
   width: 14rem;
+}
+
+.form input, .file-label {
   height: 2.25rem;
+}
+
+.form input, .file-label {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+.form input, .file-label {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.form input, .file-label {
   border-radius: 0.25rem;
+}
+
+.form input,
+    .file-label {
   border: solid 0.1rem #e6e6e6;
 }
 
-form input[type="submit"] {
+.file-label {
+  display: flex;
+  cursor: pointer;
+}
+
+.form input[type="submit"] {
   cursor: pointer;
   height: auto;
   padding: 0.75rem;
@@ -32321,7 +32342,11 @@ form input[type="submit"] {
   width: 100%;
 }
 
-form textarea {
+.form input[type="file"] {
+  display: none;
+}
+
+.form textarea {
   resize: vertical;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
