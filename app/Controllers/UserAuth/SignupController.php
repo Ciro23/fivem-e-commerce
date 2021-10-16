@@ -32,7 +32,7 @@ class SignupController extends BaseController {
 
             $this->session->set([
                 "is_logged_in" => true,
-                "uid" => $userModel->getInsertID(),
+                "uid" => $userModel->getUserIdByEmail($this->request->getPost("email")),
             ]);
 
             return redirect("home");

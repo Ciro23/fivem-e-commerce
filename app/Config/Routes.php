@@ -147,7 +147,7 @@ $routes->get(
 
 // user profile
 $routes->get(
-	"user/(:num)",
+	"user/(:alphanum)",
 	"UserController::index/$1",
 	[
 		"namespace" => "App\Controllers\User",
@@ -157,7 +157,7 @@ $routes->get(
 
 // user settings
 $routes->group(
-	"user/(:num)/settings",
+	"user/(:alphanum)/settings",
 	[
 		"namespace" => "App\Controllers\User",
 		"filter" => "can_edit_user",

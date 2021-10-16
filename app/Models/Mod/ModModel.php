@@ -66,11 +66,11 @@ class ModModel extends Model {
      * gets all mods filtered by their approved status and author
      * 
      * @param int $isApproved
-     * @param int $authorId [optional]
+     * @param string $authorId [optional]
      * 
      * @return array
      */
-    public function getModsList(int $isApproved, int $authorId = null, string $order = "newer",): array {
+    public function getModsList(int $isApproved, string $authorId = null, string $order = "newer",): array {
         $orders = [
             "newer" => "desc",
             "older" => "asc",

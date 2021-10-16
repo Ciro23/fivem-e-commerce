@@ -11,7 +11,7 @@ class UserEditController extends BaseController {
         "title" => "User settings",
     ];
 
-    public function index(int $uid): void {
+    public function index(string $uid): void {
         $userModel = new UserModel();
 
         $this->data['user'] = $userModel->getUserDetails($uid);
@@ -19,7 +19,7 @@ class UserEditController extends BaseController {
         echo view("user/settings", $this->data);
     }
 
-    public function editUser(int $uid) {
+    public function editUser(string $uid) {
         helper("form");
 
         if ($this->validate("user_edit")) {
