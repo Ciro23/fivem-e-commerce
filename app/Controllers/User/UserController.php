@@ -8,7 +8,7 @@ use App\Models\User\UserModel;
 
 class UserController extends BaseController {
 
-    private array $data = [
+    protected array $data = [
         "title" => "",
         "mods" => [],
     ];

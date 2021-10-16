@@ -8,7 +8,7 @@ use CodeIgniter\HTTP\RedirectResponse;
 
 class ModManageController extends BaseController {
 
-    private array $data = [
+    protected array $data = [
         "title" => "Approve mods",
         "mods" => null,
     ];

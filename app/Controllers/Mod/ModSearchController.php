@@ -7,7 +7,7 @@ use App\Models\Mod\ModModel;
 
 class ModSearchController extends BaseController {
 
-    private array $data = [
+    protected array $data = [
         "title" => "Results for ",
     ];
 

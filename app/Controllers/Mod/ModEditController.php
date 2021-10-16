@@ -7,7 +7,7 @@ use App\Models\Mod\ModModel;
 
 class ModEditController extends BaseController {
 
-    private array $data = [
+    protected array $data = [
         "title" => "Edit ",
     ];
 

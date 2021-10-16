@@ -8,7 +8,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class ModController extends BaseController {
 
-    private array $data = [
+    protected array $data = [
         "title" => "",
         "mod" => null,
     ];

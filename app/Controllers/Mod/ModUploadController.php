@@ -8,7 +8,7 @@ use App\Models\User\UserModel;
 
 class ModUploadController extends BaseController {
 
-    private array $data = [
+    protected array $data = [
         "title" => "Upload a mod",
     ];
 

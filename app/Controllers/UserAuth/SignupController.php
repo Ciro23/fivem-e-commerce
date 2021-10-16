@@ -7,7 +7,7 @@ use App\Models\User\UserModel;
 
 class SignupController extends BaseController {
 
-    private array $data = [
+    protected array $data = [
         "title" => "Signup",
     ];
 

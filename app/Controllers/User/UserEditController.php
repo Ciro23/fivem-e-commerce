@@ -7,7 +7,7 @@ use App\Models\User\UserModel;
 
 class UserEditController extends BaseController {
 
-    private array $data = [
+    protected array $data = [
         "title" => "User settings",
     ];
 
