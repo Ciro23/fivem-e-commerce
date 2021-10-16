@@ -50,21 +50,15 @@ class UserModel extends Model {
     }
 
     /**
-     * checks if a user already exists given its username or email
+     * checks if a user already exists
      * 
-     * @param string $field user email or username
-     * @param string $value the value of the field
+     * @param int $id
      * 
      * @return bool
      */
-    public function doesUserExist(string $field, string $value): bool {
-        // email and username are the only two primary key fields in the users table (except id)
-        if (!in_array($field, ["email", "username"])) {
-            return false;
-        }
-
-        $builder = $this->select($field);
-        $builder->where($field, $value);
+    public function doesUserExist(int $id): bool {
+        $builder = $this->select("id");
+        $builder->where("id", $id);
 
         return $builder->countAllResults() === 1;
     }

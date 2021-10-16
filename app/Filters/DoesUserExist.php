@@ -19,7 +19,7 @@ class DoesUserExist implements FilterInterface {
 
         $userModel = new UserModel();
 
-        if (!$userModel->doesUserExist("id", $id)) {
+        if (!$userModel->doesUserExist($id)) {
             throw new PageNotFoundException();
         }
     }
