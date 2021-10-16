@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\IsUserAdmin;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -45,6 +46,8 @@ class BaseController extends Controller
 	 */
 	protected $session;
 
+	protected array $data = [];
+
 	/**
 	 * Constructor.
 	 *
@@ -62,5 +65,6 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
 		$this->session = session();
+		$this->data['is_user_admin'] = new IsUserAdmin();
 	}
 }
