@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\Libraries\RandomId;
 use CodeIgniter\Model;
 
 class UserModel extends Model {
@@ -16,7 +17,24 @@ class UserModel extends Model {
 
     protected $validationRules = "user";
 
-    protected $beforeInsert = ["hashPassword"];
+    protected $beforeInsert = ["generateRandomId", "hashPassword"];
+
+    /**
+     * this method is called before every insert action invoked by this class
+     * 
+     * @param array $data
+     * 
+     * @return array
+     */
+    public function generateRandomId(array $data): array {
+        $randomId = new RandomId();
+
+        do {
+            $data['data']['id'] = $randomId->generateRandomId();
+        } while ($this->doesUserExist($data['data']['id']));
+
+        return $data;
+    }
 
     /**
      * this method is called before every insert action invoked by this class
@@ -52,11 +70,11 @@ class UserModel extends Model {
     /**
      * checks if a user already exists
      * 
-     * @param int $id
+     * @param string $id
      * 
      * @return bool
      */
-    public function doesUserExist(int $id): bool {
+    public function doesUserExist(string $id): bool {
         $builder = $this->select("id");
         $builder->where("id", $id);
 
@@ -68,9 +86,9 @@ class UserModel extends Model {
      * 
      * @param string $email
      * 
-     * @return int|null
+     * @return string|null
      */
-    public function getUserIdByEmail(string $email): int|null {
+    public function getUserIdByEmail(string $email): string|null {
         $builder = $this->select("id");
         $builder->where("email", $email);
 
@@ -84,11 +102,11 @@ class UserModel extends Model {
     /**
      * gets the user details by their id
      * 
-     * @param int $id
+     * @param string $id
      * 
      * @return object|null
      */
-    public function getUserDetails(int $id): object|null {
+    public function getUserDetails(string $id): object|null {
         $builder = $this->select();
         $builder->where("id", $id);
 
@@ -102,22 +120,22 @@ class UserModel extends Model {
     /**
      * checks if the user is an admin
      * 
-     * @param int $id
+     * @param string $id
      * 
      * @return bool
      */
-    public function isUserAdmin(int $id): bool {
+    public function isUserAdmin(string $id): bool {
         return $this->getUserRole($id) == 1;
     }
 
     /**
      * gets the user role by their id
      * 
-     * @param int $id
+     * @param string $id
      * 
      * @return int|null
      */
-    public function getUserRole(int $id): int|null {
+    public function getUserRole(string $id): int|null {
         $builder = $this->select("role");
         $builder->where("id", $id);
 

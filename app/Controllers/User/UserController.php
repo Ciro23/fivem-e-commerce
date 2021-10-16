@@ -13,7 +13,7 @@ class UserController extends BaseController {
         "mods" => [],
     ];
 
-    public function index(int $userId): void {
+    public function index(string $userId): void {
         $modModel = new ModModel();
         $userModel = new UserModel();
 

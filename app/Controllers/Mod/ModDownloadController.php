@@ -11,7 +11,7 @@ class ModDownloadController extends BaseController {
     /**
      * downloads the specified mod file
      */
-    public function download(int $modId): DownloadResponse {
+    public function download(string $modId): DownloadResponse {
         $modModel = new ModModel();
         $mod = $modModel->getModDetails($modId);
 

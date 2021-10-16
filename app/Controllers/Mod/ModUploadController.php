@@ -31,7 +31,7 @@ class ModUploadController extends BaseController {
             $modModel = new ModModel;
             $userModel = new UserModel();
 
-            $id = $modModel->getLastId() + 1;
+            $id = $modModel->generateRandomId();
 
             $file = $this->request->getFile("file");
             $image = $this->request->getFile("image");
@@ -50,6 +50,7 @@ class ModUploadController extends BaseController {
             }
             
             $additionalData = [
+                "id" => $id,
                 "author" => $this->session->uid,
                 "size" => $fileSize,
                 "file_ext" => $fileExt,
@@ -58,7 +59,7 @@ class ModUploadController extends BaseController {
             ];
 
             $data = array_merge($this->request->getPost(), $additionalData);
-            $modModel->save($data);
+            $modModel->insert($data);
 
             return redirect("home");
         }
