@@ -151,6 +151,7 @@ $routes->get(
 	"UserController::index/$1",
 	[
 		"namespace" => "App\Controllers\User",
+		"filter" => "can_view_user",
 	]
 );
 
