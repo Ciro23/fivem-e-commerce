@@ -18,6 +18,10 @@
 
             <div>
                 <label for="avatar">Avatar</label>
+                <label for="avatar" class="file-label">
+                    <img src="/assets/icons/upload.svg">
+                    Upload avatar
+                </label>
                 <input type="file" id="avatar" name="avatar">
             </div>
         </div>

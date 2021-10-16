@@ -21,9 +21,17 @@
 
             <div>
                 <label for="file">File*</label>
+                <label for="file" class="file-label">
+                    <img src="/assets/icons/upload.svg">
+                    Upload file
+                </label>
                 <input type="file" id="file" name="file">
 
                 <label for="image">Image*</label>
+                <label for="image" class="file-label">
+                    <img src="/assets/icons/upload.svg">
+                    Upload image
+                </label>
                 <input type="file" id="image" name="image">
             </div>
         </div>
