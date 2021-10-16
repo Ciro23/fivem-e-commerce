@@ -67,6 +67,7 @@ class ModModel extends Model {
      * 
      * @param int $isApproved
      * @param int $authorId [optional]
+     * @param string $order [optional]
      * 
      * @return array
      */
