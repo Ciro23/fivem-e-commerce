@@ -129,4 +129,8 @@ nb-configuration.xml
 # uploaded images
 /public/assets/mods_images
 
+# user avatars
+/public/assets/users_avatars
+
+
 node_modules
