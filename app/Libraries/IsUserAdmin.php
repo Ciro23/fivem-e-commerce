@@ -6,7 +6,7 @@ use App\Models\User\UserModel;
 
 class IsUserAdmin {
 
-    public function __construct() {
+    public function isUserAdmin() {
         $userModel = new UserModel();
         $id = session("uid");
 

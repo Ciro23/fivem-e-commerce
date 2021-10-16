@@ -65,6 +65,8 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
 		$this->session = session();
-		$this->data['is_user_admin'] = new IsUserAdmin();
+		$asd = new IsUserAdmin();
+		$this->data['is_user_admin'] = $asd->IsUserAdmin();
+		var_dump($this->data['is_user_admin']);
 	}
 }
