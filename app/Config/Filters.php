@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Filters\DoesModExist;
+use App\Filters\DoesUserExist;
 use App\Filters\IsModApproved;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -54,7 +55,12 @@ class Filters extends BaseConfig {
 			IsUserLoggedIn::class,
 		],
 
+		'can_view_user' => [
+			DoesUserExist::class,
+		],
+
 		'can_edit_user' => [
+			DoesUserExist::class,
 			IsUserProfileOwner::class,
 		]
 	];
