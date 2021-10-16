@@ -28,8 +28,9 @@
                     <a href="/upload-mod"><img src="/assets/icons/upload.svg" class="w-5"></a>
                     <div class="relative cursor-pointer select-none">
                         <p href="/user/<?= session("uid") ?>" class="pl-4 pr-8" id="dropdown">My profile</p>
-                        <div class="hidden absolute mt-6 shadow bg-white flex-col rounded" id="dropdown-content">
+                        <div class="hidden w-36 absolute mt-6 shadow bg-white flex-col rounded" id="dropdown-content">
                             <a href="/user/<?= session("uid") ?>" class="pl-4 pr-8 py-3 hover:bg-gray-100">Profile</a>
+
                             <?php if ($is_user_admin) : ?>
                                 <a href="/manage-mods" class="pl-4 pr-8 py-3 hover:bg-gray-100">Manage mods</a>
                             <?php endif ?>
