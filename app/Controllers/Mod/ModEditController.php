@@ -11,7 +11,7 @@ class ModEditController extends BaseController {
         "title" => "Edit ",
     ];
 
-    public function index(int $modId): void {
+    public function index(string $modId): void {
         $modModel = new ModModel();
 
         $this->data['mod'] = $modModel->getModDetails($modId);
@@ -20,7 +20,7 @@ class ModEditController extends BaseController {
         echo view("mod/edit", $this->data);
     }
 
-    public function editMod(int $modId) {
+    public function editMod(string $modId) {
         helper("form");
 
         if ($this->validate("mod_edit")) {

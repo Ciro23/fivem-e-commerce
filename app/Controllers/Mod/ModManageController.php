@@ -26,9 +26,9 @@ class ModManageController extends BaseController {
     /**
      * update is_approved status to true
      * 
-     * @param int $modId
+     * @param string $modId
      */
-    public function approve(int $modId): RedirectResponse {
+    public function approve(string $modId): RedirectResponse {
         $modModel = new ModModel();
         $modModel->approve($modId);
 
@@ -38,9 +38,9 @@ class ModManageController extends BaseController {
     /**
      * deletes the specified mod
      * 
-     * @param int $modId
+     * @param string $modId
      */
-    public function deny(int $modId): RedirectResponse {
+    public function deny(string $modId): RedirectResponse {
         helper("filesystem");
 
         // deletes the mod from the db

@@ -16,7 +16,7 @@ class ModController extends BaseController {
     /**
      * shows the mod page
      */
-    public function index(int $modId): void {
+    public function index(string $modId): void {
         $modModel = new ModModel;
 
         $this->data['mod'] = $modModel->getModDetails($modId);

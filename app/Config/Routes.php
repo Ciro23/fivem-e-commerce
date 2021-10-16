@@ -80,7 +80,7 @@ $routes->get(
 
 // mod view
 $routes->get(
-	"mod/(:num)",
+	"mod/(:alphanum)",
 	"ModController::index/$1",
 	[
 		"namespace" => "App\Controllers\Mod",
@@ -111,7 +111,7 @@ $routes->group(
 
 // mod edit
 $routes->group(
-	"mod/(:num)/edit",
+	"mod/(:alphanum)/edit",
 	[
 		"namespace" => "App\Controllers\Mod",
 		"filter" => "can_edit_mod",
@@ -131,13 +131,13 @@ $routes->group(
 	],
 	function ($routes) {
 		$routes->get("manage-mods", "ModManageController::index", ["as" => "manage_mods"]);
-		$routes->get("mod/(:num)/approve", "ModManageController::approve/$1");
-		$routes->get("mod/(:num)/deny", "ModManageController::deny/$1");
+		$routes->get("mod/(:alphanum)/approve", "ModManageController::approve/$1");
+		$routes->get("mod/(:alphanum)/deny", "ModManageController::deny/$1");
 });
 
 // mod download
 $routes->get(
-	"mod/(:num)/download",
+	"mod/(:alphanum)/download",
 	"ModDownloadController::download/$1",
 	[
 		"namespace" => "App\Controllers\Mod",

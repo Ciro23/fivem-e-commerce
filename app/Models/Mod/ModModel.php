@@ -2,6 +2,7 @@
 
 namespace App\Models\Mod;
 
+use App\Libraries\RandomId;
 use CodeIgniter\Model;
 
 class ModModel extends Model {
@@ -12,31 +13,31 @@ class ModModel extends Model {
 
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ["author", "name", "description", "price", "size", "is_approved", "file_ext", "image_ext"];
+    protected $allowedFields = ["id", "author", "name", "description", "price", "size", "is_approved", "file_ext", "image_ext"];
 
     /**
-     * gets the last uploaded mod id
+     * generate a random alphanumeric string
      * 
-     * @return int
+     * @return string
      */
-    public function getLastId(): int {
-        $query = $this->db->query("select id from mods order by id desc limit 1");
+    public function generateRandomId(): string {
+        $randomId = new RandomId();
 
-        if ($query->getNumRows() > 0) {
-            return $query->getRow()->id;
-        }
+        do {
+            $id = $randomId->generateRandomId();
+        } while ($this->doesModExist($id));
 
-        return 0;
+        return $id;
     }
 
     /**
      * checks whether a mod exists or not
      * 
-     * @param int $id
+     * @param string $id
      * 
      * @return bool
      */
-    public function doesModExist(int $id): bool {
+    public function doesModExist(string $id): bool {
         $builder = $this->select("id");
         $builder->where("id", $id);
 
@@ -46,11 +47,11 @@ class ModModel extends Model {
     /**
      * gets mod details
      * 
-     * @param int $id
+     * @param string $id
      * 
      * @return object|null
      */
-    public function getModDetails(int $id): object|null {
+    public function getModDetails(string $id): object|null {
         $builder = $this->select("mods.*, users.username as author_name");
         $builder->join("users", "mods.author = users.id");
         $builder->where("mods.id", $id);
@@ -108,29 +109,29 @@ class ModModel extends Model {
     /**
      * checks if the mod is approved or not
      * 
-     * @param int $id
+     * @param string $id
      * 
      * @return bool
      */
-    public function isApproved(int $id): bool {
+    public function isApproved(string $id): bool {
         return $this->getModDetails($id)->is_approved === "1";
     }
 
     /**
      * update is_approve status to true
      * 
-     * @param int $id
+     * @param string $id
      */
-    public function approve(int $id): void {
+    public function approve(string $id): void {
         $builder = $this->update($id, ['is_approved' => 1]);
     }
 
     /**
      * deletes a mod from the mods table
      * 
-     * @param int $id
+     * @param string $id
      */
-    public function remove(int $id): void {
+    public function remove(string $id): void {
         $builder = $this->delete(['id' => $id]);
     }
 }
