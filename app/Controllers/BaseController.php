@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Libraries\IsUserAdmin;
+use App\Models\User\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -65,8 +65,9 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
 		$this->session = session();
-		$asd = new IsUserAdmin();
-		$this->data['is_user_admin'] = $asd->IsUserAdmin();
-		var_dump($this->data['is_user_admin']);
+
+		$userModel = new UserModel();
+		$uid = session("uid") ?? -1;
+		$this->data['is_user_admin'] = $userModel->IsUserAdmin($uid);
 	}
 }
