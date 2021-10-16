@@ -18,9 +18,7 @@ class UserController extends BaseController {
         $userModel = new UserModel();
 
         $this->data['user'] = $userModel->getUserDetails($userId);
-        $this->data['mods'] = $modModel->getModsList(1, $userId);
-
-        arsort($this->data['mods']);
+        $this->data['mods'] = $modModel->getModsList(1, $userId, order: "older");
 
         $this->data['title'] = $this->data['user']->username . " profile";
 
