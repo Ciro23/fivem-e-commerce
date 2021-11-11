@@ -35,7 +35,7 @@
             <p><?= esc($mod->description) ?></p>
         </div>
 
-        <div class="p-6 shadow rounded-lg w-1/3">
+        <div class="self-start p-6 shadow rounded-lg w-1/3">
             <h4 class="text-lg font-semibold">About this mod</h4>
 
             <ul>
