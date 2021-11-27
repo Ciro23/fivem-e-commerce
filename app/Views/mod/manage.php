@@ -4,6 +4,10 @@
     <h1 class="font-medium text-xl text-center">List of all pending mods</h1>
 
     <?php
+    if (empty($mods)) {
+        echo "<p class='text-center'>no mods to approve :C</p>";
+    }
+
     foreach ($mods as $mod) {
         echo view_cell("\App\Libraries\ViewCells::modPreview", [
             "mod" => $mod,
