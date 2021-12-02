@@ -13,7 +13,7 @@ class ModModel extends Model {
 
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ["id", "author", "name", "description", "price", "size", "is_approved", "file_ext", "image_ext"];
+    protected $allowedFields = ["id", "author", "name", "description", "price", "size", "is_approved", "file_ext", "logo_ext"];
 
     /**
      * generate a random alphanumeric string

@@ -1,7 +1,7 @@
 <div class="flex h-42 shadow rounded p-6">
     <div class="flex w-5/6 space-x-6">
         <a href="/mod/<?= esc($mod->id) ?>" class="w-1/6 self-start">
-            <img src="/assets/mods_images/<?= esc($mod->id) . "/image." . esc($mod->image_ext) ?>" class="rounded">
+            <img src="/assets/mods_images/<?= esc($mod->id) . "/logo." . esc($mod->logo_ext) ?>" class="rounded">
         </a>
 
         <div class="flex flex-col w-5/6 justify-between space-y-5">

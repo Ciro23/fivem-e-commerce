@@ -28,12 +28,12 @@ class ModEditController extends BaseController {
             $modDetails = $modModel->getModDetails($modId);
 
             $file = $this->request->getFile("file");
-            $image = $this->request->getFile("image");
+            $logo = $this->request->getFile("logo");
 
-            // if no file or image is uploaded, keep the old ones
+            // if no file or logo is uploaded, keep the old ones
             $fileExt = $modDetails->file_ext;
             $fileSize = $modDetails->size;
-            $imageExt = $modDetails->image_ext;
+            $logoExt = $modDetails->logo_ext;
 
             if ($file->isValid() && !$file->hasMoved()) {
                 $fileExt = $file->getExtension();
@@ -42,16 +42,16 @@ class ModEditController extends BaseController {
                 $file->move(WRITEPATH . "uploads/mods_files/" . $modId, "file." . $fileExt);
             }
 
-            if ($image->isValid() && !$image->hasMoved()) {
-                $imageExt = $image->getExtension();
+            if ($logo->isValid() && !$logo->hasMoved()) {
+                $logoExt = $logo->getExtension();
 
-                $image->move(ROOTPATH . "/public/assets/mods_images/" . $modId, "image." . $imageExt);
+                $logo->move(ROOTPATH . "/public/assets/mods_images/" . $modId, "logo." . $logoExt);
             }
 
             $additionalData = [
                 "size" => $fileSize,
                 "file_ext" => $fileExt,
-                "image_ext" => $imageExt,
+                "logo_ext" => $logoExt,
             ];
 
             $data = array_merge($this->request->getPost(), $additionalData);

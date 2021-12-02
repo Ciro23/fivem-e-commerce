@@ -27,12 +27,12 @@
                 </label>
                 <input type="file" id="file" name="file">
 
-                <label for="image">Image*</label>
-                <label for="image" class="file-label">
+                <label for="logo">Logo*</label>
+                <label for="logo" class="file-label">
                     <img src="/assets/icons/upload.svg">
-                    Upload image
+                    Upload logo
                 </label>
-                <input type="file" id="image" name="image">
+                <input type="file" id="logo" name="logo">
             </div>
         </div>
 

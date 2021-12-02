@@ -14,7 +14,7 @@
 
     <div class="p-6 shadow rounded-lg flex flex-wrap content-center">
         <div class="flex space-x-4">
-            <img src="/assets/mods_images/<?= esc($mod->id) ?>/image.<?= esc($mod->image_ext) ?>" class="w-32 rounded-md">
+            <img src="/assets/mods_images/<?= esc($mod->id) ?>/logo.<?= esc($mod->logo_ext) ?>" class="w-32 rounded-md">
             <h1 class="font-medium"><?= esc($mod->name) ?></h1>
         </div>
 

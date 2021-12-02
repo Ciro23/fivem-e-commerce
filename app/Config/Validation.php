@@ -78,9 +78,9 @@ class Validation
 			"rules" => "uploaded[file]|max_size[file,50000]|ext_in[file,zip,rar]",
 			"label" => "Mod file",
 		],
-		"image" => [
-			"rules" => "uploaded[file]|max_size[image,3000]|is_image[image]",
-			"label" => "Mod image",
+		"logo" => [
+			"rules" => "uploaded[file]|max_size[logo,3000]|is_image[logo]",
+			"label" => "Mod logo",
 		]
 	];
 
@@ -91,9 +91,9 @@ class Validation
 			"rules" => "max_size[file,50000]|ext_in[file,zip,rar]",
 			"label" => "Mod file",
 		],
-		"image" => [
-			"rules" => "max_size[image,3000]|is_image[image]",
-			"label" => "Mod image",
+		"logo" => [
+			"rules" => "max_size[logo,3000]|is_image[logo]",
+			"label" => "Mod logo",
 		]
 	];
 }

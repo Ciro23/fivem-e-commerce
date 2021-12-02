@@ -34,10 +34,10 @@ class ModUploadController extends BaseController {
             $id = $modModel->generateRandomId();
 
             $file = $this->request->getFile("file");
-            $image = $this->request->getFile("image");
+            $logo = $this->request->getFile("logo");
 
             $fileExt = $file->getExtension();
-            $imageExt = $image->getExtension();
+            $logoExt = $logo->getExtension();
 
             $fileSize = $file->getSize();
 
@@ -45,8 +45,8 @@ class ModUploadController extends BaseController {
                 $file->move(WRITEPATH . "uploads/mods_files/" . $id, "file." . $fileExt);
             }
 
-            if ($image->isValid() && !$image->hasMoved()) {
-                $image->move(ROOTPATH . "/public/assets/mods_images/" . $id, "image." . $imageExt);
+            if ($logo->isValid() && !$logo->hasMoved()) {
+                $logo->move(ROOTPATH . "/public/assets/mods_images/" . $id, "logo." . $logoExt);
             }
             
             $additionalData = [
@@ -54,7 +54,7 @@ class ModUploadController extends BaseController {
                 "author" => $this->session->uid,
                 "size" => $fileSize,
                 "file_ext" => $fileExt,
-                "image_ext" => $imageExt,
+                "logo_ext" => $logoExt,
                 "is_approved" => $userModel->isUserAdmin($this->session->uid) ? 1 : 0,
             ];
 
