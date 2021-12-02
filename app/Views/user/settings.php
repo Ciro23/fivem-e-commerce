@@ -13,7 +13,7 @@
         <div class="form-columns">
             <div>
                 <label for="name">Username</label>
-                <input class="cursor-not-allowed bg-gray-200" readonly type="text" id="name" name="name" value="<?= $user->username ?>" placeholder="4-30 chars (a-z, 0-9, spaces)">
+                <input class="cursor-not-allowed bg-gray-200" readonly type="text" id="name" name="name" value="<?= esc($user->username) ?>" placeholder="4-30 chars (a-z, 0-9, spaces)">
             </div>
 
             <div>
@@ -27,7 +27,7 @@
         </div>
 
         <label for="description">Description</label>
-        <textarea name="description" id="description" rows="5" placeholder="0-200 characters" minlength="10" maxlength="200"><?= $user->description ?></textarea>
+        <textarea name="description" id="description" rows="5" placeholder="0-200 characters" minlength="10" maxlength="200"><?= esc($user->description) ?></textarea>
 
         <input type="submit" value="Save settings">
     </form>
