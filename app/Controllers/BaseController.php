@@ -68,6 +68,6 @@ class BaseController extends Controller
 
 		$userModel = new UserModel();
 		$uid = session("uid") ?? -1;
-		$this->data['is_user_admin'] = $userModel->IsUserAdmin($uid);
+		$this->data['is_user_admin'] = $userModel->isUserAdmin($uid);
 	}
 }
